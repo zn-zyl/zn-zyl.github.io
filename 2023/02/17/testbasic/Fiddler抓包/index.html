@@ -1,0 +1,765 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhounuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="fiddler抓包工具1.什么是Fiddler，它可以做什么 Fiddler是位于客户端和服务器端的HTTP代理，也是目前最常用的http抓包工具之一。 Fiddler能够记录客户端和服务器之间的所有http请求，可以针对特定的http请求，分析请求数据，设置断点，调试web应用，修改请求的数据，甚至可以修改服务器返回的数据，功能非常强大，是web调试的利器。 既然是代理，也就是说客户端的所有请求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fiddler抓包">
+<meta property="og:url" content="https://zn-zyl.github.io/2023/02/17/testbasic/Fiddler%E6%8A%93%E5%8C%85/index.html">
+<meta property="og:site_name" content="ZN Blog">
+<meta property="og:description" content="fiddler抓包工具1.什么是Fiddler，它可以做什么 Fiddler是位于客户端和服务器端的HTTP代理，也是目前最常用的http抓包工具之一。 Fiddler能够记录客户端和服务器之间的所有http请求，可以针对特定的http请求，分析请求数据，设置断点，调试web应用，修改请求的数据，甚至可以修改服务器返回的数据，功能非常强大，是web调试的利器。 既然是代理，也就是说客户端的所有请求">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-19-14.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-19-37.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-33-47.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-38-23.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-21-43.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-22-11.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-22-41.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-55-42.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-22-11.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-23-58.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_13-00-04.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_13-01-12.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-25-05.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-25-24.png">
+<meta property="article:published_time" content="2023-02-16T16:17:50.000Z">
+<meta property="article:modified_time" content="2025-02-15T14:53:55.337Z">
+<meta property="article:author" content="zhounuo">
+<meta property="article:tag" content="testbasic">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_12-19-14.png">
+  
+  
+  
+  <title>Fiddler抓包 - ZN Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zn-zyl.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zn&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Fiddler抓包"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-17 00:17" pubdate>
+          2023年2月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Fiddler抓包</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="fiddler抓包工具"><a href="#fiddler抓包工具" class="headerlink" title="fiddler抓包工具"></a>fiddler抓包工具</h1><h2 id="1-什么是Fiddler，它可以做什么"><a href="#1-什么是Fiddler，它可以做什么" class="headerlink" title="1.什么是Fiddler，它可以做什么"></a>1.什么是Fiddler，它可以做什么</h2><ul>
+<li>Fiddler是位于客户端和服务器端的HTTP代理，也是目前最常用的http抓包工具之一。</li>
+<li>Fiddler能够记录客户端和服务器之间的所有http请求，可以针对特定的http请求，分析请求数据，设置断点，调试web应用，修改请求的数据，甚至可以修改服务器返回的数据，功能非常强大，是web调试的利器。</li>
+<li>既然是代理，也就是说客户端的所有请求都要先经过Fiddler,然后转发到相应的服务器，反之服务器的所有响应，也都会先经过Fiddler,然后发送到客户端，基于这个原因，Fiddler支持所有可以设置http代理为：127.0.0.1:8888的浏览器和应用程序</li>
+</ul>
+<p>使用了FIddler后，web客户端和服务器的请求如右图所示：</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_12-19-14.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="本地回路地址"><a href="#本地回路地址" class="headerlink" title="本地回路地址"></a>本地回路地址</h2><p>本地回路地址是指本地回环地址，本地回环地址不属于任何一个有类别地址类。它代表设备的本地虚拟接口，所以默认被看作是永远不会宕掉的接口。</p>
+<h4 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h4><p>一般都会用来检查本地网络协议、基本数据接口等是否正常的。<br>主要作用有两个：</p>
+<ul>
+<li>一是测试本机的网络配置，能PING通127.0.0.1说明本机的网卡和IP协议安装都没有问题；</li>
+<li>另一个作用是某些SERVER&#x2F;CLIENT的应用程序在运行时需调用服务器上的资源，一般要指定SERVER的IP地址，但当该程序要在同一台机器上运行而没有别的SERVER时就可以把SERVER的资源装在本机，SERVER的IP地址设为127.0.0.1同样也可以运行。</li>
+</ul>
+<p>本地回环地址指的是以127开头的地址（127.0.0.1 - 127.255.255.254），通常用127.0.0.1来表示。</p>
+<h2 id="2-利用Fiddler录制web请求"><a href="#2-利用Fiddler录制web请求" class="headerlink" title="2.利用Fiddler录制web请求"></a>2.利用Fiddler录制web请求</h2><ul>
+<li>1.打开浏览器，设置服务代理器为：127.0.0.1端口为：8888</li>
+<li>2.打开Fiddler,然后打开浏览器，进行目标网站访问</li>
+<li>3.录制请求如下：<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_12-19-37.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/chengchengla1990/p/5681775.html">http://www.cnblogs.com/chengchengla1990/p/5681775.html</a>  界面详解<br><a target="_blank" rel="noopener" href="http://blog.csdn.net/andrewpj/article/det">http://blog.csdn.net/andrewpj/article/det</a> ails&#x2F;45440097 session请求详解</p>
+<h2 id="3-Fiddler各个组件分析"><a href="#3-Fiddler各个组件分析" class="headerlink" title="3.Fiddler各个组件分析"></a>3.Fiddler各个组件分析</h2><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_12-33-47.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="web-session面板：主要是Fiddler抓取到的每条http请求（每一条称为一个session）"><a href="#web-session面板：主要是Fiddler抓取到的每条http请求（每一条称为一个session）" class="headerlink" title="web session面板：主要是Fiddler抓取到的每条http请求（每一条称为一个session）"></a>web session面板：主要是Fiddler抓取到的每条http请求（每一条称为一个session）</h4><p>主要包含了请求的URL,协议，状态码，body等信息，详细的字段含义如下</p>
+<ul>
+<li><ol>
+<li>http request 的顺序，从1开始，按照页面加载请求的顺序递增</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Result   http响应的状态，可以参考这里</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>protocol：请求使用的协议（如http，https，ftp)</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>host 请求地址的域名</li>
+</ol>
+</li>
+<li>5.URL：请求的服务器路径和文件名，也包括GET参数</li>
+<li><ol start="6">
+<li>BODY: 请求的大小，以byte为单位</li>
+</ol>
+</li>
+<li>7.caching:请求的缓存过期时间或缓存控制 header等值</li>
+<li><ol start="8">
+<li>content-type: 请求响应的类型</li>
+</ol>
+</li>
+<li>9.process 发出此请求的windows进程和进程ID</li>
+<li>10：comments:用户通过脚本或者右键菜单给此session增加的备注</li>
+<li>11.custom: 用户可以通过脚本设置的自定义值</li>
+</ul>
+<h4 id="HTTP状态码（HTTP-Status-Code）是用以表示网页服务器HTTP响应状态的3位数字代码"><a href="#HTTP状态码（HTTP-Status-Code）是用以表示网页服务器HTTP响应状态的3位数字代码" class="headerlink" title="HTTP状态码（HTTP Status Code）是用以表示网页服务器HTTP响应状态的3位数字代码"></a>HTTP状态码（HTTP Status Code）是用以表示网页服务器HTTP响应状态的3位数字代码</h4><p>常见的http  code:200  ok 302  move 400 bad request 401 Unauthorized 403Forbidden  404 Not Found 405Method Not Allowed 500 Internal Server Error 服务器内部错误</p>
+<h4 id="如果只想抓取一个网站的包的话"><a href="#如果只想抓取一个网站的包的话" class="headerlink" title="如果只想抓取一个网站的包的话"></a>如果只想抓取一个网站的包的话</h4><p>把fiddler的默认端口8888改掉，改成7777，右边第一个在启动时作为系统代理不打钩<br>后把火狐的端口也改成7777。<br>重启fiddler<br>crtl+x 清除右边session<br>statistic:<br>关于http请求的性能和其他数据分析，我们可以从中看出一些基本性能数据，如DNS解析的时间，建立TCP&#x2F;IP连接的时间消耗等信息</p>
+<h5 id="inspectors"><a href="#inspectors" class="headerlink" title="inspectors"></a>inspectors</h5><ul>
+<li>分为上下两个部分，上半部分是请求头部分，下半部分是响应头部分。</li>
+<li>对于每一部分，提供了多种不同格式查看每个请求的响应的内容</li>
+<li>JPG格式使用imageview就可以看到图片</li>
+<li>HTML&#x2F;JS&#x2F;CSS使用textview 可以看到响应的内容</li>
+<li>raw标签可以查看原始的符合http标准的请求和响应头</li>
+<li>cookies标签可以看到请求的cookie和响应的set-cookie头信息</li>
+</ul>
+<h5 id="AutoResponder-调试bug"><a href="#AutoResponder-调试bug" class="headerlink" title="AutoResponder   调试bug"></a>AutoResponder   调试bug</h5><p>Fiddler比较重要且强大的功能之一，可用于拦截某一请求，并重定向到本地资源，或者使用Fiddler的内置响应，可用于调试服务器端代码而无需修改服务器端的代码和配置，因为拦截和重定向后，实际上访问的是本地的的文件或者得到的Fiddler的内置响应。当勾选allow autoresponser并设置相应的规则后，进行使用。因此，如果要调试服务器的某个脚本文件，可以将该脚本拦截到本地，在本地修改完脚本以后，在修改服务器的内容，这样可以保证尽量在真实的环境下去调试，从而最大限度的减少bug发生的可能性。</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_12-38-23.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="Composer-设计者-也可以做接口测试，可以修改数据，从fiddler端发起请求"><a href="#Composer-设计者-也可以做接口测试，可以修改数据，从fiddler端发起请求" class="headerlink" title="Composer  设计者  也可以做接口测试，可以修改数据，从fiddler端发起请求"></a>Composer  设计者  也可以做接口测试，可以修改数据，从fiddler端发起请求</h5><p>Parsed输入请求的url之后，execute即可，也可以修改相应的头信息（如添加常用的accept,host,referrer,cookie,cache-control等头部）后execute<br>把请求信息拖到右边，可以看到具体的请求信息。点击excute可以从fiddler端发起请求代替浏览器端<br>可以绕过前端，去发现前端一些发现不了的bug 提高网站的健壮性，可以判断是前端的文图<br>比如说先登录获取session信息 然后拖住登录login请求拖到composer里，查看webform会以表单形式把用户名和密码列出来,修改密码或用户名点击execute 重新登录查看statis里的提示 可以绕过前端，比如密码输入1个字gaus<br>也可以用来做接口测试</p>
+<h5 id="Filters-相当于数据库里面的where-过滤"><a href="#Filters-相当于数据库里面的where-过滤" class="headerlink" title="Filters  相当于数据库里面的where 过滤"></a>Filters  相当于数据库里面的where 过滤</h5><p>另一个更强大的功能，提供了多维度的过滤规则,足以满足日常开发调试的需求，Fiddler的过滤器非常强大，可以过滤特定http状态码的请求，可以过滤特定请求类型的http请求（如css请求，image请求，js请求等）可以过滤请求报文大于或小于等于指定大小（byte)<br>intrante内网  internet外网</p>
+<h4 id="利用Fiddler设置断点进行调试修改"><a href="#利用Fiddler设置断点进行调试修改" class="headerlink" title="利用Fiddler设置断点进行调试修改"></a>利用Fiddler设置断点进行调试修改</h4><p>1.Fiddler菜单栏-rules-automatic breakpoint选择断点方式<br>before request 也就是发送请求之后，fiddler代理中转之前，这是可以修改请求的数据<br>after request 也就是服务器响应之后，在fiddler将响应中转给客户端之前，这是可以修改响应的结果</p>
+<h4 id="https"><a href="#https" class="headerlink" title="https"></a>https</h4><p>我们都知道HTTP并非是安全传输，在HTTPS基础上使用SSL协议进行加密构成的HTTPS协议是相对安全的。目前越来越多的企业选择使用HTTPS协议与用户进行通信，如百度、谷歌等。HTTPS在传输数据之前需要客户端（浏览器）与服务端（网站）之间进行一次握手，在握手过程中将确立双方加密传输数据的密码信息。<br>一言以弊之，HTTPS是通过一次非对称加密算法（如RSA算法）进行了协商密钥的生成与交换，然后在后续通信过程中就使用协商密钥进行对称加密通信。HTTPS协议传输的原理和过程简图如下所示</p>
+<h2 id="Fiddler抓取HTTPS协议原理"><a href="#Fiddler抓取HTTPS协议原理" class="headerlink" title="Fiddler抓取HTTPS协议原理"></a>Fiddler抓取HTTPS协议原理</h2><p>我们都知道，Fiddler是个很好的代理工具，可抓取协议请求用于调试。关于Fiddler抓取HTTP协议的原理和配置比较简单，对Fiddler和客户端稍作配置，便能使得Fiddler轻易地获取HTTP请求。但是由于HTTPS协议的特殊性，要进一步地配置Fiddler，我们首先要了解一下fiddler抓取HTTPS协议的原理才能更好地理解如何对fiddler进行配置。Fiddler本身就是一个协议代理工具，在上一节HTTPS原理图上，客户端与服务器端进行通信的过程全部都由Fiddler获取到，也就是如下图所示：</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_12-21-43.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>服务器—&gt;客户端：Fiddler接收到服务器发送的密文， 用对称密钥解开， 获得服务器发送的明文。再次加密， 发送给客户端。</li>
+<li>客户端—&gt;服务端：客户端用对称密钥加密，被Fiddler截获后，解密获得明文。再次加密，发送给服务器端。由于Fiddler一直拥有通信用对称密钥enc_key， 所以在整个HTTPS通信过程中信息对其透明。</li>
+</ul>
+<h2 id="Fiddler抓取HTTPS设置"><a href="#Fiddler抓取HTTPS设置" class="headerlink" title="Fiddler抓取HTTPS设置"></a>Fiddler抓取HTTPS设置</h2><p>（一）首先对Fiddler进行设置：打开工具栏-&gt;Tools-&gt;Fiddler Options-&gt;HTTPS</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_12-22-11.png" srcset="/img/loading.gif" lazyload></p>
+<p>选中Capture HTTPS CONNECTs，因为我们要用Fiddler获取手机客户端发出的HTTPS请求，所以中间的下拉菜单中选中from remote clients only。选中下方Ignore server certificate errors.</p>
+<h2 id="Fiddler抓包之app抓包"><a href="#Fiddler抓包之app抓包" class="headerlink" title="Fiddler抓包之app抓包"></a>Fiddler抓包之app抓包</h2><h4 id="1-保证电脑和手机连接的是同一个无线网，可以直接用手机测试也可以用模拟器"><a href="#1-保证电脑和手机连接的是同一个无线网，可以直接用手机测试也可以用模拟器" class="headerlink" title="1.保证电脑和手机连接的是同一个无线网，可以直接用手机测试也可以用模拟器"></a>1.保证电脑和手机连接的是同一个无线网，可以直接用手机测试也可以用模拟器</h4><p>抓取http请求</p>
+<h5 id="1-设置手机"><a href="#1-设置手机" class="headerlink" title="1.设置手机"></a>1.设置手机</h5><p>找到手机连接的wif,双击后点击修改网络—将代理改为为手动代理—–</p>
+<ul>
+<li>1）服务器主机名为电脑的ip地址（cmd ipconfig查看）</li>
+<li>2）服务器端口设定为8888，必须为8888固定的 ,</li>
+<li>3）ip为DHCP点击保存</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_12-22-41.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="2-设置Fiddler"><a href="#2-设置Fiddler" class="headerlink" title="2.设置Fiddler"></a>2.设置Fiddler</h4><p>菜单栏点击Tools-Options-Connections  勾选Allow remote computers to connect选项 ，端口改为固定的8888  勾选一下Monitor all connections选项 点击OK</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_12-55-42.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="3-设置完毕后，点击手机端的app-Fidder就会出现请求信息了。"><a href="#3-设置完毕后，点击手机端的app-Fidder就会出现请求信息了。" class="headerlink" title="3.设置完毕后，点击手机端的app,Fidder就会出现请求信息了。"></a>3.设置完毕后，点击手机端的app,Fidder就会出现请求信息了。</h4><h3 id="抓取https请求"><a href="#抓取https请求" class="headerlink" title="抓取https请求"></a>抓取https请求</h3><ul>
+<li>1）Android手机<br>1.设置Fiddler<br>菜单栏点击Tools-Options-HTTPS勾选以下3项</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_12-22-11.png" srcset="/img/loading.gif" lazyload></p>
+<p>2.在手机端安装一下证书<br>1.在手机浏览器输入以下网址，中间为电脑的ip地址，注意替换</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_12-23-58.png" srcset="/img/loading.gif" lazyload></p>
+<p>2.输入后进入以下画面，点击红线标注部分下载证书</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_13-00-04.png" srcset="/img/loading.gif" lazyload></p>
+<p>有的安卓手机比如我的华为，点击红线部分下载证书后，网页转到无证书页面。<br>此时可以百度 Fiddler证书安装问题。解决方法如下<br>在电脑运行栏输入cmd  进入后</p>
+<ul>
+<li><ol>
+<li>cd “C:\Program Files (x86)\Fiddler2”      cd后面为Fiddler安装路径 这一步为进入Fiddler</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>输入  makecert.exe -r -ss my -n “CN&#x3D;DO_NOT_TRUST_FiddlerRoot, O&#x3D;DO_NOT_TRUST, OU&#x3D;Created by <a target="_blank" rel="noopener" href="http://www.fiddler2.com/">http://www.fiddler2.com</a>“ -sky signature -eku 1.3.6.1.5.5.7.3.1 -h 1 -cy authority -a sha1 -m 120 -b 09&#x2F;05&#x2F;2012</li>
+</ol>
+</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_13-01-12.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后在进入手机浏览器输入<a target="_blank" rel="noopener" href="http://192.168.1.107:8888/">http://192.168.1.107:8888/</a>  此时就可以下载证书了。<br>如果手机自动安装的话，直接就可以截取https的包了。<br>如果手机不自动安装的话，自己要找到下载路径自己点击安装。<br>如果只想抓取某个app的请求的话</p>
+<ol>
+<li>点击Filters进行设置</li>
+</ol>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_12-25-05.png" srcset="/img/loading.gif" lazyload></p>
+<p>粘贴host地址的时候要去掉host:后粘贴到上面框里</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_12-25-24.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/testbasic/" class="category-chain-item">testbasic</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/testbasic/" class="print-no-link">#testbasic</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Fiddler抓包</div>
+      <div>https://zn-zyl.github.io/2023/02/17/testbasic/Fiddler抓包/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhounuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/02/17/django/django%E5%9F%BA%E7%A1%80/" title="django基础">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">django基础</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/17/java/java%E8%BF%90%E7%AE%97%E7%AC%A6/" title="java运算符">
+                        <span class="hidden-mobile">java运算符</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

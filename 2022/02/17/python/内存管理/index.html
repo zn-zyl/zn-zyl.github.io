@@ -1,0 +1,682 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhounuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="内存管理内存管理机制深浅复制（copy）一般数在数据嵌套的情况讨论，以列表为例：  如果是变量赋值，则会在内存中分配一片内存存放这个数据对象 a&#x3D;10 如果是变量引用，直接指向的引用的数据 b&#x3D;a 如果是列表的copy方法，会在内存中重新分配一片内存存放复制对象  浅复制浅复制：在复制对象的时候，会重新划分一块内存存储复制的对象，关于对应的数据的引用不会进行复制      只会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存管理">
+<meta property="og:url" content="https://zn-zyl.github.io/2022/02/17/python/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="ZN Blog">
+<meta property="og:description" content="内存管理内存管理机制深浅复制（copy）一般数在数据嵌套的情况讨论，以列表为例：  如果是变量赋值，则会在内存中分配一片内存存放这个数据对象 a&#x3D;10 如果是变量引用，直接指向的引用的数据 b&#x3D;a 如果是列表的copy方法，会在内存中重新分配一片内存存放复制对象  浅复制浅复制：在复制对象的时候，会重新划分一块内存存储复制的对象，关于对应的数据的引用不会进行复制      只会">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/copy.png">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/neicunchi.png">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/xunhuanyinyong.png">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/biaojiqingchu.png">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/fendaihuishou.png">
+<meta property="article:published_time" content="2022-02-17T15:04:48.000Z">
+<meta property="article:modified_time" content="2025-02-15T14:53:54.210Z">
+<meta property="article:author" content="zhounuo">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zn-zyl.github.io/the-nuo/picture/copy.png">
+  
+  
+  
+  <title>内存管理 - ZN Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zn-zyl.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zn&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="内存管理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-17 23:04" pubdate>
+          2022年2月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">内存管理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><h2 id="内存管理机制"><a href="#内存管理机制" class="headerlink" title="内存管理机制"></a>内存管理机制</h2><h4 id="深浅复制（copy）"><a href="#深浅复制（copy）" class="headerlink" title="深浅复制（copy）"></a>深浅复制（copy）</h4><p>一般数在数据嵌套的情况讨论，以列表为例：</p>
+<ul>
+<li>如果是变量赋值，则会在内存中分配一片内存存放这个数据对象 a&#x3D;10</li>
+<li>如果是变量引用，直接指向的引用的数据 b&#x3D;a</li>
+<li>如果是列表的copy方法，会在内存中重新分配一片内存存放复制对象</li>
+</ul>
+<h4 id="浅复制"><a href="#浅复制" class="headerlink" title="浅复制"></a>浅复制</h4><p>浅复制：在复制对象的时候，会重新划分一块内存存储复制的对象，关于对应的数据的引用不会进行复制<br>      只会复制对象，不会复制对象中引用的数据（也是直接引用）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> copy <span class="hljs-keyword">import</span> deepcopy<br>li = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br>li1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br>li2 = li<br>li3 = li.copy()<br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(li))   <span class="hljs-comment"># 4341104064</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(li1))  <span class="hljs-comment"># 4341105200</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(li2))  <span class="hljs-comment"># 4341104064</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(li3))  <span class="hljs-comment"># 4341104624</span><br><br>问题：这三个是否是同一个对象？<br><br>a = [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]<br>li = [<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, a]<br>li2 = li  <span class="hljs-comment"># 变量引用</span><br><br>li3 = li.copy()  <span class="hljs-comment"># 浅复制</span><br>a.append(<span class="hljs-number">99</span>)<br><br><br><span class="hljs-comment"># 问题：li  li3中的值会不会变化？</span><br><span class="hljs-built_in">print</span>(li)   <span class="hljs-comment"># [11,22,[1,3,4,99]]</span><br><span class="hljs-built_in">print</span>(li3)  <span class="hljs-comment"># [11,22,[1,3,4,99]]</span><br><br>li.append(<span class="hljs-number">10000</span>)<br><span class="hljs-built_in">print</span>(li)   <span class="hljs-comment"># [11,22,[1,3,4,99],10000]</span><br><span class="hljs-built_in">print</span>(li3)  <span class="hljs-comment"># [11,22,[1,3,4,99]]</span><br></code></pre></td></tr></table></figure>
+<h4 id="深复制（copy）"><a href="#深复制（copy）" class="headerlink" title="深复制（copy）"></a>深复制（copy）</h4><p>深拷贝:在进行复制的时候，不仅会复制对象，更会把对象中所有引用的数据复制一份</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">a = [1, 3, 4]<br>li = [11, 22, a]<br>li3 = deepcopy(li) <span class="hljs-comment"># 深拷贝</span><br><br><span class="hljs-built_in">print</span>(li,<span class="hljs-built_in">id</span>(li))  <span class="hljs-comment"># 4341104064 [11,22,[1,3,4]]</span><br><span class="hljs-built_in">print</span>(li3,<span class="hljs-built_in">id</span>(li)) <span class="hljs-comment"># 4341104064 [11,22,[1,3,4]]</span><br><br>a.append(99)<br>li.append(100)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;--------------a发生变化之后-------------------------&#x27;</span>)<br><span class="hljs-built_in">print</span>(li,<span class="hljs-built_in">id</span>(li))   <span class="hljs-comment"># [11,22,[1,3,4,99],100]</span><br><span class="hljs-built_in">print</span>(li3,<span class="hljs-built_in">id</span>(li3)) <span class="hljs-comment"># [11,22,[1,3,4]]</span><br></code></pre></td></tr></table></figure>
+<p><img src="/the-nuo/picture/copy.png" srcset="/img/loading.gif" lazyload alt="copy"></p>
+<h4 id="内存池机制："><a href="#内存池机制：" class="headerlink" title="内存池机制："></a>内存池机制：</h4><ul>
+<li><p>1、小整数池<br>  在python中 -5到256之间的数据 直接引用小整数池里的无需重新分配内存，内存id一致</p>
+</li>
+<li><p>2、大整数池（字符串驻留池）：intern机制<br>  在运行py程序的时候，解释器会专门分配一块空白的内存，用来存放纯单词字符组成的字符串（数字，字母，下划线）</p>
+</li>
+</ul>
+<p><img src="/the-nuo/picture/neicunchi.png" srcset="/img/loading.gif" lazyload alt="neicun"></p>
+<h2 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h2><h3 id="python的垃圾回收机制用一句话来形容就是：引用计数为主，标记-清除和分代回收两种机制为辅的策略"><a href="#python的垃圾回收机制用一句话来形容就是：引用计数为主，标记-清除和分代回收两种机制为辅的策略" class="headerlink" title="python的垃圾回收机制用一句话来形容就是：引用计数为主，标记-清除和分代回收两种机制为辅的策略"></a>python的垃圾回收机制用一句话来形容就是：引用计数为主，标记-清除和分代回收两种机制为辅的策略</h3><h3 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h3><p>当对象的引用计数为0的时候，python的垃圾回收机制会自动把它销毁，回收内存空间</p>
+<h4 id="pytho中对象引用计数增加的情况"><a href="#pytho中对象引用计数增加的情况" class="headerlink" title="pytho中对象引用计数增加的情况"></a>pytho中对象引用计数增加的情况</h4><ul>
+<li>1、变量赋值  a&#x3D; ‘abc’</li>
+<li>2、变量引用  b &#x3D;a</li>
+<li>3、被其他的对象引用  li &#x3D; [1,2,a]</li>
+</ul>
+<h4 id="python中对象引用计数减少的情况"><a href="#python中对象引用计数减少的情况" class="headerlink" title="python中对象引用计数减少的情况"></a>python中对象引用计数减少的情况</h4><ul>
+<li>1、变量被删除 del a</li>
+<li>2、变量引用了其他对象 a&#x3D;10 被改成a&#x3D;100 此时10的引用计数就减少了</li>
+<li>3、变量离开了所在的作用域（函数调用结束）<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs go">def <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(<span class="hljs-keyword">var</span>)</span></span>:<br>  <span class="hljs-built_in">print</span>(<span class="hljs-keyword">var</span>) <span class="hljs-keyword">var</span>指向的是a的数值 函数调用结束 <span class="hljs-keyword">var</span>的引用计数为<span class="hljs-number">0</span> 则会被销毁<br><span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(a)</span></span><br></code></pre></td></tr></table></figure></li>
+<li>4、在其他的引用对象中被删除（移除）<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-tag">a</span> = <span class="hljs-string">&quot;abc&quot;</span><br><span class="hljs-selector-tag">li</span> = <span class="hljs-selector-attr">[1,2,a]</span><br><span class="hljs-selector-tag">li</span>.remove<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="引用计数的缺点"><a href="#引用计数的缺点" class="headerlink" title="引用计数的缺点"></a>引用计数的缺点</h4><p>那就是当两个对象出现循环引用的时候，那么两个变量始终不会被销毁，这样就会导致内存泄漏</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-tag">a</span> = <span class="hljs-selector-attr">[11, 22]</span><br><span class="hljs-selector-tag">b</span> = <span class="hljs-selector-attr">[1, 2]</span><br><span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.append</span>(b)<br><span class="hljs-selector-tag">b</span><span class="hljs-selector-class">.append</span>(a)<br><br><span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(a)</span></span><br><span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(b)</span></span><br><span class="hljs-selector-tag">del</span> <span class="hljs-selector-tag">a</span><br><span class="hljs-selector-tag">del</span> b<br></code></pre></td></tr></table></figure>
+<p>a b已经被删除，但是对象之间的循环引用还在，因为有引用计数，此时引用计数删除不了，需要用到标记清除<br><img src="/the-nuo/picture/xunhuanyinyong.png" srcset="/img/loading.gif" lazyload alt="循环引用"></p>
+<h3 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h3><p>标记清除机制，顾名思义首先标记对象（垃圾检测），然后清除垃圾（垃圾回收)。删除所有未被全局变量引用的对象,可以解决循环引用问题。   </p>
+<ul>
+<li>1.首先初始所有对象标记为白色，并确定全局变量，标记他们为黑色（表示对象有效）  </li>
+<li>2.从全部变量开始往下找，将全局变量引用的对象进行标记，再继续往下找，把所有有效对象标记为黑色  </li>
+<li>3.所有的全部变量全部查找完后，最后剩下的白色结点都是需要清除的对象</li>
+</ul>
+<p><img src="/the-nuo/picture/biaojiqingchu.png" srcset="/img/loading.gif" lazyload alt="标记清除"></p>
+<h3 id="分代回收"><a href="#分代回收" class="headerlink" title="分代回收"></a>分代回收</h3><p>分代回收策略着眼于提升垃圾回收的效率。研究表明，任何语言，任何环节的编程中，对于变量在内存中的创建、销毁，总有频繁和不那么频繁。<br><img src="/the-nuo/picture/fendaihuishou.png" srcset="/img/loading.gif" lazyload alt="分代回收"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/python/" class="category-chain-item">python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>内存管理</div>
+      <div>https://zn-zyl.github.io/2022/02/17/python/内存管理/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhounuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/17/PerformanceTesting/JMeter%E5%8E%8B%E6%B5%8B/" title="JMeter压测">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JMeter压测</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/17/java/java%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5%E5%92%8C%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5/" title="java循环语句和条件语句">
+                        <span class="hidden-mobile">java循环语句和条件语句</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

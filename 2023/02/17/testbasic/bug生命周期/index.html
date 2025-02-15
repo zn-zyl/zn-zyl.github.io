@@ -1,0 +1,677 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhounuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="bug的生命周期&amp;bug状态处理bug的定义软件的bug狭义的是指软件程序的漏洞或缺陷，广义概念除此之外还包括测试工程师或用户发现和提出的软件可改进细节，或与需求文档存在差异的功能实现等。我们的职责就是发现这些bug，提交给开发，让开发去修改 bug是怎么来的？ 1.缺乏有效沟通 2.软件的复杂度 3.编程错误 4.不断变更的需求 5.时间的压力  bug的类型要确定一个bug类型，需要对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bug生命周期">
+<meta property="og:url" content="https://zn-zyl.github.io/2023/02/17/testbasic/bug%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/index.html">
+<meta property="og:site_name" content="ZN Blog">
+<meta property="og:description" content="bug的生命周期&amp;bug状态处理bug的定义软件的bug狭义的是指软件程序的漏洞或缺陷，广义概念除此之外还包括测试工程师或用户发现和提出的软件可改进细节，或与需求文档存在差异的功能实现等。我们的职责就是发现这些bug，提交给开发，让开发去修改 bug是怎么来的？ 1.缺乏有效沟通 2.软件的复杂度 3.编程错误 4.不断变更的需求 5.时间的压力  bug的类型要确定一个bug类型，需要对">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-16T19:57:54.000Z">
+<meta property="article:modified_time" content="2025-02-15T14:53:55.308Z">
+<meta property="article:author" content="zhounuo">
+<meta property="article:tag" content="testbasic">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>bug生命周期 - ZN Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zn-zyl.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zn&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="bug生命周期"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-17 03:57" pubdate>
+          2023年2月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">bug生命周期</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="bug的生命周期-bug状态处理"><a href="#bug的生命周期-bug状态处理" class="headerlink" title="bug的生命周期&amp;bug状态处理"></a>bug的生命周期&amp;bug状态处理</h1><h2 id="bug的定义"><a href="#bug的定义" class="headerlink" title="bug的定义"></a>bug的定义</h2><p>软件的bug狭义的是指软件程序的漏洞或缺陷，广义概念除此之外还包括测试工程师或用户发现和提出的软件可改进细节，或与需求文档存在差异的功能实现等。<br>我们的职责就是发现这些bug，提交给开发，让开发去修改</p>
+<h2 id="bug是怎么来的？"><a href="#bug是怎么来的？" class="headerlink" title="bug是怎么来的？"></a>bug是怎么来的？</h2><ul>
+<li>1.缺乏有效沟通</li>
+<li>2.软件的复杂度</li>
+<li>3.编程错误</li>
+<li>4.不断变更的需求</li>
+<li>5.时间的压力</li>
+</ul>
+<h2 id="bug的类型"><a href="#bug的类型" class="headerlink" title="bug的类型"></a>bug的类型</h2><p>要确定一个bug类型，需要对项目（或产品）有比较深的理解，这个划分对开发定位问题影响较小，但对于问题类型的统计就比较重要了。</p>
+<p>常见的bug类型划分：代码错误，界面优化，设计缺陷，配置相关，安装部署，安全相关，性能问题，标准规范，测试脚本，其他。</p>
+<p>其他划分：功能类，界面类 性能类    易用性类 兼容类    其他</p>
+<h2 id="缺陷的等级"><a href="#缺陷的等级" class="headerlink" title="缺陷的等级"></a>缺陷的等级</h2><p>bug的等级一般分为四级，也有分五级的，如果是等级越高，那么对应的优先级也会高一些，然后有些公司还会根据你提的bug数量和bug等级，作为绩效考核的一部分。<br>-（1）致命性错误<br>     1.常规操作引起的系统崩溃，死机，死循环<br>     2.造成数据泄露的安全性问题，比如恶意攻击造成的账户私密信息泄露<br>     3.涉及金钱<br>     4.用户数据受到破坏，或者危及人身安全<br>-（2）严重错误<br>     1.重要功能不能实现<br>     2.错误的波及面广，影响到其他重要功能实现<br>     3.非常规操作导致的程序崩溃，死机，死循环<br>     4.数据不能保存，系统的次要功能完全丧失，系统所提供的功能或服务受到明显影响<br>-（3）一般错误<br>     不影响产品的运行，不能成为故障起因，但对产品外观和下道工序影响较大的缺陷<br>     1.次要功能能不能正常实现<br>     2.操作界面错误（包括数据窗口内列名定义，含义不一致）<br>     3.查询错误，数据错误显示<br>     4.简单的输入限制未放在前台进行控制<br>     5.删除操作未给出提示<br>-（4）细微错误<br>     程序在一些显示上不美观，不符合用户习惯，或者是一些文字的错误<br>     1.界面不规范<br>      2.辅助说明描述不清楚<br>      3.提示窗口文字未采用行业术语<br>     4.界面存在文字性错误<br>优先级分为4级，一般问题越严重，其处理的优先级越高</p>
+<h2 id="bug的生命周期"><a href="#bug的生命周期" class="headerlink" title="bug的生命周期"></a>bug的生命周期</h2><p>就是一个bug被发现到这个bug被关闭的过程。<br>生命周期中的一般缺陷状态：<br>新建——指派——已解决——待验——关闭<br>如果待验的bug在验证时没有解决好，我们需要重新打开（激活）——指派——已解决——待验，循环这个过程。中间状态拒绝——延期等  </p>
+<h2 id="bug处理流程"><a href="#bug处理流程" class="headerlink" title="bug处理流程"></a>bug处理流程</h2><ul>
+<li><p>1.发现bug–提交bug—指派bug—研发确认bug——（否）设计如此无法复现                 </p>
+</li>
+<li><p>2.发现bug–提交bug—指派bug—研发确认bug——-(是）研发是否解决——-（否）不予解决，延期</p>
+</li>
+<li><p>3.发现bug–提交bug—指派bug—研发确认bug——-(是）研发是否解决——-（是）回归验证bug—是否通过验证—–（是） 关闭bug</p>
+</li>
+<li><p>4.发现bug–提交bug—指派bug—研发确认bug——-(是）研发是否解决——-（是）回归验证bug—是否通过验证—–（否） 激活——指派bug~~~~~~~~~~</p>
+</li>
+<li><p>1.激活bug:已经指派给开发的，要关注bug走向，随时跟踪，如果一直未修复，提醒开发修改，如果已经修复等待测试环境更新后进行验证</p>
+</li>
+<li><p>2.已解决bug：等待测试环境更新后进行验证，验证通过则关闭，验证不通过则重新打开指派给开发</p>
+</li>
+<li><p>3.重复bug:先去查看下是否跟开发指定的bug重复？如果确定是重复则庀：如果不重复，说明原因，重新打开指派给开发</p>
+</li>
+<li><p>4.无法重现：确认开发环境是否跟测试环境一致，包括操作步骤，浏览器，特定账号等，如果多个版本验证之后，如果开发说重现不了，依据bug的严重程度跟产品，开发一起确认关闭，如果找到重现原音，注明清楚并在此指派给开发</p>
+</li>
+<li><p>5.不予解决：找产品经理进行确认，确认不予解决进行关闭，确认需要解决请备注原因，并打开指派给开发</p>
+</li>
+<li><p>6.设计如此：找产品经理进行确认，确认设计如此进行关闭，确认是问题，备注原因重新指派给开发</p>
+</li>
+<li><p>7.延期修改：请看下bug严重程度，是否影响当前版本发布，与产品经理确认，不予延期请根据情况进行激活与情况说明，确认延期则做好记录，后续版本进行关注。</p>
+</li>
+</ul>
+<p>面试题：</p>
+<h4 id="有没有你印象深刻的bug"><a href="#有没有你印象深刻的bug" class="headerlink" title="有没有你印象深刻的bug"></a>有没有你印象深刻的bug</h4><p>有很多印象深刻的bug,比如说后台播放 av source时rev on开启back camera后，关闭，重复开启-关闭几次后机器出现重启。</p>
+<h4 id="bug的生命周期-1"><a href="#bug的生命周期-1" class="headerlink" title="bug的生命周期"></a>bug的生命周期</h4><p>新建bug指派给开发–开发已解决—-评价验证bug,修复后—关闭bug</p>
+<h4 id="当你打开了一个bug-但开放不认为是bug-如何处理？"><a href="#当你打开了一个bug-但开放不认为是bug-如何处理？" class="headerlink" title="当你打开了一个bug,但开放不认为是bug,如何处理？"></a>当你打开了一个bug,但开放不认为是bug,如何处理？</h4><p>首先查找需求说明书和式样书，寻找确切的依据，如果是用户体验票，侧从用户的角度来说明为什么是bug,如果开发依然认为不是bug的话，交由产品经理来判定</p>
+<h4 id="对于复现率不高的bug如何处理？你再发现bug并确认bug的过程中"><a href="#对于复现率不高的bug如何处理？你再发现bug并确认bug的过程中" class="headerlink" title="对于复现率不高的bug如何处理？你再发现bug并确认bug的过程中"></a>对于复现率不高的bug如何处理？你再发现bug并确认bug的过程中</h4><p>复现率不高的bug要立马录像，拍照片，截取log,保留现场，直接叫开发来调查问题。<br>如果现场已经被破坏，只能在以后每天的测试中带着再现，把这个问题在测试人员中展开一下，别的测试人员也可以帮忙验证。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/testbasic/" class="category-chain-item">testbasic</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/testbasic/" class="print-no-link">#testbasic</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>bug生命周期</div>
+      <div>https://zn-zyl.github.io/2023/02/17/testbasic/bug生命周期/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhounuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/02/17/AutoTest/README/" title="README">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">README</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/17/%E6%B5%8B%E8%AF%95%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/" title="测试需求分析">
+                        <span class="hidden-mobile">测试需求分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

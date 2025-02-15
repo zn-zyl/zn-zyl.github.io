@@ -1,0 +1,1110 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhounuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JMeter常用操作概念JMeter，一个100%的纯Java桌面应用，由Apache组织的开放源代码项目，它是功能和性能测试的工具。具有高可扩展性、支持Web(HTTP&#x2F;HTTPS)、SOAP、FTP、JAVA 等多种协议的特点。 官方网站:https:&#x2F;&#x2F;jmeter.apache.org&#x2F;  安装与配置 1.下载好jdk,本机配置好环境变量 2.官网下载压缩包，在任意目录下解压 3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JMeter常用操作">
+<meta property="og:url" content="https://zn-zyl.github.io/2023/02/17/PerformanceTesting/JMeter%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="ZN Blog">
+<meta property="og:description" content="JMeter常用操作概念JMeter，一个100%的纯Java桌面应用，由Apache组织的开放源代码项目，它是功能和性能测试的工具。具有高可扩展性、支持Web(HTTP&#x2F;HTTPS)、SOAP、FTP、JAVA 等多种协议的特点。 官方网站:https:&#x2F;&#x2F;jmeter.apache.org&#x2F;  安装与配置 1.下载好jdk,本机配置好环境变量 2.官网下载压缩包，在任意目录下解压 3">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-02-32.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-05-56.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-08-29.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_17-10-40.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-10-01.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-12-41.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_21-28-27.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_17-57-10.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-22-03.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-27-02.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-29-50.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-35-01.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-43-39.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_10-36-01.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_10-52-26.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_10-53-02.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_12-15-07.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_10-39-51.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_12-08-25.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_12-12-06.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_12-05-10.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_11-10-52.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_15-07-39.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_15-32-35.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_17-18-46.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_17-19-21.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_17-03-27.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_17-42-43.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_18-17-45.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_18-36-04.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_18-48-25.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_18-59-43.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_19-02-20.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_19-32-43.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_14-15-01.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_19-51-58.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_14-41-10.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_14-52-21.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_14-53-04.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_15-54-49.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_16-14-57.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_16-11-29.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_17-43-26.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_17-47-47.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_17-48-34.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_18-20-49.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_18-24-52.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_21-56-35.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_22-52-59.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_14-17-36.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_14-23-06.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_14-26-20.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_17-51-14.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_18-07-21.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_18-09-25.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_19-55-41.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-24-19.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-21-46.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-18-03.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-44-30.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-45-47.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-58-54.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-24-19.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_21-20-01.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_21-30-16.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_13-11-57.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_13-43-19.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_13-37-32.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_13-40-01.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_14-05-05.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_14-03-06.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_14-06-13.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_14-20-30.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_18-21-51.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-05-10.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-07-03.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-09-15.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-10-23.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-11-20.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-11-49.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-12-07.png">
+<meta property="article:published_time" content="2023-02-16T21:23:35.000Z">
+<meta property="article:modified_time" content="2025-02-15T14:53:54.746Z">
+<meta property="article:author" content="zhounuo">
+<meta property="article:tag" content="PerformanceTesting">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-02-32.png">
+  
+  
+  
+  <title>JMeter常用操作 - ZN Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zn-zyl.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zn&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JMeter常用操作"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-17 05:23" pubdate>
+          2023年2月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">JMeter常用操作</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="JMeter常用操作"><a href="#JMeter常用操作" class="headerlink" title="JMeter常用操作"></a>JMeter常用操作</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>JMeter，一个100%的纯Java桌面应用，由Apache组织的开放源代码项目，它是功能和性能测试的工具。具有高可扩展性、支持Web(HTTP&#x2F;HTTPS)、SOAP、FTP、JAVA 等多种协议的特点。</p>
+<p>官方网站:<a target="_blank" rel="noopener" href="https://jmeter.apache.org/">https://jmeter.apache.org/</a> </p>
+<h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><ul>
+<li>1.下载好jdk,本机配置好环境变量</li>
+<li>2.官网下载压缩包，在任意目录下解压</li>
+<li>3.打开JMeter的bin目录下jmeter.properties,修改：<ul>
+<li>language&#x3D;zh_CN</li>
+<li>sampleresult.default.encoding&#x3D;utf-8</li>
+</ul>
+</li>
+<li>4.进入到JMeter的bin目录下，双击jmeter.bat启动</li>
+</ul>
+<h2 id="JMeter主要元件"><a href="#JMeter主要元件" class="headerlink" title="JMeter主要元件"></a>JMeter主要元件</h2><ul>
+<li>测试计划</li>
+<li>线程组</li>
+<li>采样器（sampler)</li>
+<li>断言</li>
+<li>监听器</li>
+</ul>
+<p>测试覆盖度<br>测试进度变更</p>
+<h3 id="JMeter基本元件-线程组"><a href="#JMeter基本元件-线程组" class="headerlink" title="JMeter基本元件-线程组"></a>JMeter基本元件-线程组</h3><p>添加线程组并设置参数大小：测试计划 - 添加 - Threads - 线程组  </p>
+<ul>
+<li>循环次数：请求执行几次</li>
+<li>线程组：一组用户</li>
+<li>线程数：用户数</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-02-32.png" srcset="/img/loading.gif" lazyload>  </p>
+<h3 id="JMeter基本元件-http请求"><a href="#JMeter基本元件-http请求" class="headerlink" title="JMeter基本元件-http请求"></a>JMeter基本元件-http请求</h3><p>添加http请求： 线程组下添加 - sample取样器 - http请求  </p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-05-56.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="JMeter超时处理"><a href="#JMeter超时处理" class="headerlink" title="JMeter超时处理"></a>JMeter超时处理</h3><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-08-29.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_17-10-40.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="查看结果树"><a href="#查看结果树" class="headerlink" title="查看结果树"></a>查看结果树</h3><p>添加查看结果树：监听器-查看结果树<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-10-01.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="响应断言-无论服务器返回的是什么都可以使用响应断言"><a href="#响应断言-无论服务器返回的是什么都可以使用响应断言" class="headerlink" title="响应断言 无论服务器返回的是什么都可以使用响应断言"></a>响应断言 无论服务器返回的是什么都可以使用响应断言</h3><p>添加-断言-响应断言<br>响应断言模式匹配规则</p>
+<ul>
+<li>包括（contains):如果响应中包含了指定的字符串，判断为成功，支持正则表达式</li>
+<li>匹配（matches):如果响应完全匹配了指定的字符串，判断为成功，支持正则表达式</li>
+<li>相等（equals):如果响应完全匹配指定的字符串，判断为成功，不支持正则表达式</li>
+<li>子字符串（substring):如果响应中包含了指定的字符串，判断为成功，不支持正则表达式</li>
+</ul>
+<p>一般常用的测试字段是 响应文本 响应代码 响应头<br>注意：拷贝接口返回值到“测试模式”下进行断言时，要注意切换回text模式再复制，因为json有美化作用，可能有空格。导致断言失败</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-12-41.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4><h3 id="json断言-针对返回数据是json的判断"><a href="#json断言-针对返回数据是json的判断" class="headerlink" title="json断言 针对返回数据是json的判断"></a>json断言 针对返回数据是json的判断</h3><p>添加断言-json断言</p>
+<ul>
+<li>Assert JSON Path exists : $.code  $ 被认为是接口返回的json字符串本身</li>
+<li>Expected Value : 期望值 0 即代表 $.code &#x3D; 0</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_21-28-27.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="json路径表达式"><a href="#json路径表达式" class="headerlink" title="json路径表达式"></a>json路径表达式</h4><p>详细用法可参考 <a target="_blank" rel="noopener" href="https://github.com/json-path/JsonPath">https://github.com/json-path/JsonPath</a></p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_17-57-10.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="参数化"><a href="#参数化" class="headerlink" title="参数化"></a>参数化</h2><h3 id="定义全局变量"><a href="#定义全局变量" class="headerlink" title="定义全局变量"></a>定义全局变量</h3><p>测试计划-用户定义的变量  </p>
+<p>调用参数的方法： ${参数名}  ${ip}</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-22-03.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="常用的参数化方式-随机数"><a href="#常用的参数化方式-随机数" class="headerlink" title="常用的参数化方式-随机数"></a>常用的参数化方式-随机数</h3><p>可以通过函数助手 生成各种函数  </p>
+<p>生成随机数： _Random函数  </p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-27-02.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="常用的参数化方式-随机字符串"><a href="#常用的参数化方式-随机字符串" class="headerlink" title="常用的参数化方式-随机字符串"></a>常用的参数化方式-随机字符串</h3><p>生成随机字符串函数 _RandomString  </p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-29-50.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="常用的参数化方式-CSVRead-根据用户数来进行分配的"><a href="#常用的参数化方式-CSVRead-根据用户数来进行分配的" class="headerlink" title="常用的参数化方式-CSVRead 根据用户数来进行分配的"></a>常用的参数化方式-CSVRead 根据用户数来进行分配的</h3><p>从文本文件中读取数据 _CSVRead  </p>
+<ul>
+<li>绝对路径</li>
+<li>相对路径 相对于当前脚本的路径 ${_CSVRead(a.text,0)} ${_CSVRead(test\a.text,0)}  </li>
+<li>CSV取值机制：不论循环多少次，是根据用户数来进行分配的。 如果只有一个用户，那么循环四次也只会取文件里的第一行数据执行。如果有4个用户，循环四次，那么每个用户都会取一行数据，执行4次，总共执行16次。</li>
+<li>使用场景:一个用户分一条数据 比如先注册 后登陆</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-35-01.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="参数化文件-CSVDataSetConfig-按照循环次数顺序分配，循环多少次分配多少条"><a href="#参数化文件-CSVDataSetConfig-按照循环次数顺序分配，循环多少次分配多少条" class="headerlink" title="参数化文件 CSVDataSetConfig 按照循环次数顺序分配，循环多少次分配多少条"></a>参数化文件 CSVDataSetConfig 按照循环次数顺序分配，循环多少次分配多少条</h3><p>添加CSVDataSetConfig: 线程组 -添加- 配置元件 - CSV Data Set Config  </p>
+<ul>
+<li>文件编码 有中文选择utf-8</li>
+<li>变量名称 几列数据定义几个变量 username,password  引用${username} ${password}</li>
+<li>忽略首行 数据从数据库导出来，首行为数据库字段，此时需要忽略首行</li>
+<li>分隔符  文件参数之间用逗号分割就用逗号, 文件参数之间用tab键分割就用用\t分割</li>
+<li>遇到文件结束是否再次循环  循环5次只有4条数据，true默认第5次重新从头读数据 那么遇到文件结束符停止线程 选择false</li>
+<li>遇到文件结束符停止线程   如果遇到文件结束是否再次循环选择false 那么 遇到文件结束符停止线程 选择true 此时可以实现让所有的请求数据只跑一次，无论你设置了多少线程数多少循环次数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Recycle on EOF</th>
+<th>Stop thread on EOF</th>
+<th>参数效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>True</td>
+<td>False</td>
+<td>重复</td>
+</tr>
+<tr>
+<td>False</td>
+<td>True</td>
+<td>唯一</td>
+</tr>
+</tbody></table>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-43-39.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="参数化函数"><a href="#参数化函数" class="headerlink" title="参数化函数"></a>参数化函数</h3><ul>
+<li>CSV文件读取：${_CSVRead(D:\a.text,0,)}   </li>
+<li>随机数：${_Random(1,100,)} </li>
+<li>随机字符串：${_RandomString(8,adbcdefjjsjsjsjjsjsjs,)} </li>
+<li>时间戳 ${_time(,)}  格式yyy-MM-dd HH:mm:ss</li>
+<li>生成唯一UUID:${_UUID} 全局不重复的字符串</li>
+</ul>
+<p>上述函数都可以将结果保存到一个变量里，函数的最后一个参数为变量名称</p>
+<h2 id="JMeter常用函数"><a href="#JMeter常用函数" class="headerlink" title="JMeter常用函数"></a>JMeter常用函数</h2><h2 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>关联是将服务器返回的数据通过一定的规则过滤出来，将其保存成参数，并且在后续脚本中使用这个参数进行逻辑处理</p>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>同时满足以下两个条件才需要关联</p>
+<ul>
+<li>服务器返回的数据是动态的</li>
+<li>脚本中需要对这个动态数据做处理</li>
+</ul>
+<h4 id="关联场景"><a href="#关联场景" class="headerlink" title="关联场景"></a>关联场景</h4><p>1.选择商品品类 2.返回商品ID列表【100，101，102】 选择一个商品101 加购物车下单。 模拟真实用户，每次随机选择一个商品下单测试</p>
+<h3 id="后置处理器-json提取器"><a href="#后置处理器-json提取器" class="headerlink" title="后置处理器-json提取器"></a>后置处理器-json提取器</h3><p>专门对json数据进行提取的后置处理器<br>一个提取器只能写一个路径，可以通过添加多个提取器来提取多个字段<br>添加 - 后置处理器- json提取器</p>
+<ul>
+<li>变量名称： 自定义的变量名称</li>
+<li>json路径： jsonpath表达式</li>
+<li>匹配数字：  0代表随机，n代表具体的数字，-1代表所有</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_10-36-01.png" srcset="/img/loading.gif" lazyload>  </p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_10-52-26.png" srcset="/img/loading.gif" lazyload>  </p>
+<p>当 MathchNo为-1时。调试取样器里查看到返回数据组里的所有值</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_10-53-02.png" srcset="/img/loading.gif" lazyload></p>
+<p>返回数据：<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_12-15-07.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="添加调试取样器"><a href="#添加调试取样器" class="headerlink" title="添加调试取样器"></a>添加调试取样器</h3><p>线程组上添加 -  取样器 - debugsample<br>可以打印出来Jmeter运行过程中保存下来的参数，需要配合查看结果树使用</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_10-39-51.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="后置处理器-正则表达式提取器"><a href="#后置处理器-正则表达式提取器" class="headerlink" title="后置处理器-正则表达式提取器"></a>后置处理器-正则表达式提取器</h3><p>可以通过正则表达式来获取http请求返回的数据<br>引用名称：匹配后的结果，保存到一个参数中 如param</p>
+<p>正则表达式三步走：</p>
+<ul>
+<li>1、拷贝目标数据和左右边界  保证能够精准识别到目标数据</li>
+<li>2、把目标数据用括号括起来 </li>
+<li>3、把目标数据用.+?代替 .匹配任何字符  + 匹配前面的正则表达式一次或多次 ？匹配前面出现的正则表达式零次或一次，第一次匹配到就停止</li>
+</ul>
+<h4 id="正则表达式在线测试小工具"><a href="#正则表达式在线测试小工具" class="headerlink" title="正则表达式在线测试小工具"></a>正则表达式在线测试小工具</h4><p><a target="_blank" rel="noopener" href="https://c.runoob.com/front-end/854">https://c.runoob.com/front-end/854</a></p>
+<ul>
+<li>模板:$1$表示取匹配到的第一组数据，$2$为第二组 </li>
+<li>匹配数字:当某组数据中包含多少个参数时，0代表随机，1代表该组的第一个参数，2表示第二 个。。。-1代表获取全部的参数，这个时候，引用名称就变成了参数数组，可以通过param_n来 获取指定的参数，当有多组数据时，第一组为param_1_g1，第二组为param_1_g2</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_12-08-25.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果要匹配的数据没有右边界的话，可以用\n \r \n\r 试一试肯定有一个能取到</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_12-12-06.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_12-05-10.png" srcset="/img/loading.gif" lazyload></p>
+<p>常用正则表达式</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_11-10-52.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="JMeter结果统计"><a href="#JMeter结果统计" class="headerlink" title="JMeter结果统计"></a>JMeter结果统计</h2><h3 id="JMeter结果统计-聚合报告"><a href="#JMeter结果统计-聚合报告" class="headerlink" title="JMeter结果统计-聚合报告"></a>JMeter结果统计-聚合报告</h3><p>添加 -  监听器 - 聚合报告</p>
+<ul>
+<li>samples 样本 代表接口请求了多少次</li>
+<li>Average 平均值 响应时间的平均值</li>
+<li>Median  中位数  tp50响应时间</li>
+<li>吞吐量  默认情况下表示每秒完成的请求</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_15-07-39.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="线程组设置"><a href="#线程组设置" class="headerlink" title="线程组设置"></a>线程组设置</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_15-32-35.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="JMeter图形化插件"><a href="#JMeter图形化插件" class="headerlink" title="JMeter图形化插件"></a>JMeter图形化插件</h2><p>插件官网地址：<a target="_blank" rel="noopener" href="https://jmeter-plugins.org/install/Install/">https://jmeter-plugins.org/install/Install/</a>  </p>
+<p>使用JMeter插件管理器，可以自动下载并安装插件，更加方便简单</p>
+<h4 id="使用方法："><a href="#使用方法：" class="headerlink" title="使用方法："></a>使用方法：</h4><ul>
+<li>1.下载插件管理器对应的jar包，然后放在JMeter的lib&#x2F;ext目录下，重启 </li>
+<li>2，打开JMeter，选项Options-插件管理器Plugins Manager </li>
+<li>3，勾选对应的插件，等待下载完成，点击apply，等待重启JMeter，即可使用</li>
+</ul>
+<h4 id="几个好用的插件"><a href="#几个好用的插件" class="headerlink" title="几个好用的插件:"></a>几个好用的插件:</h4><ul>
+<li>1&gt; 3 Basic Graph:windows下可用的vu、实时tps和响应时间的插件 </li>
+<li>2&gt; Custom JMeter Functions</li>
+<li>3&gt; Random CSV Data Set Config</li>
+<li>4&gt; PerfMon :服务端性能实时监控插件</li>
+<li>5&gt; Custom Thread Groups </li>
+<li>6&gt; Dummy Sampler</li>
+</ul>
+<h4 id="图形化插件的使用-TPS"><a href="#图形化插件的使用-TPS" class="headerlink" title="图形化插件的使用-TPS"></a>图形化插件的使用-TPS</h4><p>添加tps监听器:事务控制器 - 添加- 监听器 -  jp@gc – Transaction per Second</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_17-18-46.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="图形化插件的使用-平均响应时间"><a href="#图形化插件的使用-平均响应时间" class="headerlink" title="图形化插件的使用-平均响应时间"></a>图形化插件的使用-平均响应时间</h4><p>添加响应时间:事务控制器- 添加 - 监听器 - jp@gc – Response Times Over Time</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_17-19-21.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="图形化插件的使用-并发数"><a href="#图形化插件的使用-并发数" class="headerlink" title="图形化插件的使用-并发数"></a>图形化插件的使用-并发数</h4><p>添加响应时间:事务控制器- 添加 - 监听器 - jp@gc – Active Threads Over Time</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_17-03-27.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><p>JMeter中的定时器类似于LoadRunner中的pacing值和think_time </p>
+<ul>
+<li>1)定时器是在每个sampler(采样器)之前执行的，而不是之后 </li>
+<li>2)定时器是有作用域的;当执行一个sampler之前时，所有当前作用域内的定时器都会被执行。 且所有的sampler执行前都会执行定时器 </li>
+<li>3)如果希望定时器仅应用于其中一个sampler，则把该定时器作为子节点加入</li>
+</ul>
+<h3 id="常用的定时器"><a href="#常用的定时器" class="headerlink" title="常用的定时器"></a>常用的定时器</h3><ul>
+<li>1，固定定时器:设置一个固定的延迟时间，单位ms 每隔1秒请求一次  <ul>
+<li>步骤：添加 - 定时器 - 固定定时器</li>
+</ul>
+</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_17-42-43.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>2，同步定时器(synchronizing timer): 集合点  <ul>
+<li>在该定时器处，使线程等待，一直到指定的线程个数达到 后，再一起释放。可以在瞬间制造出很大的压力。它和LoadRunner的集合点差不多的功能     </li>
+<li>步骤：添加 - 定时器 - 同步定时器</li>
+</ul>
+</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_18-17-45.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>3、统一随机定时器<ul>
+<li>使用场景：线上压测时，怕把系统压挂，所以上一个保险</li>
+<li>步骤：添加 - 定时器 - 常量定时器  </li>
+<li>目标吞吐量&#x2F;TPS ：可以跑一下看一下tps 然后再根据需求设置</li>
+</ul>
+</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_18-36-04.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="JMeter逻辑控制器"><a href="#JMeter逻辑控制器" class="headerlink" title="JMeter逻辑控制器"></a>JMeter逻辑控制器</h2><h3 id="常用的逻辑控制器"><a href="#常用的逻辑控制器" class="headerlink" title="常用的逻辑控制器"></a>常用的逻辑控制器</h3><h4 id="1、循环控制器"><a href="#1、循环控制器" class="headerlink" title="1、循环控制器:"></a>1、循环控制器:</h4><p>可以设置该控制器内的sampler执行的次数，循环次数与线程的循环次数各自独立。</p>
+<ul>
+<li>添加：线程组添加 - 控制器  - 循环控制器</li>
+<li>应用场景：第一个接口执行一次，第二个接口执行三次，可以把第二个接口内添加到循环控制器</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_18-48-25.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="2、if控制器-根据判断条件决定是否执行该控制器内的请求，如果是字符串比较条件，参数和字符串都需要加引-号"><a href="#2、if控制器-根据判断条件决定是否执行该控制器内的请求，如果是字符串比较条件，参数和字符串都需要加引-号" class="headerlink" title="2、if控制器:根据判断条件决定是否执行该控制器内的请求，如果是字符串比较条件，参数和字符串都需要加引 号"></a>2、if控制器:根据判断条件决定是否执行该控制器内的请求，如果是字符串比较条件，参数和字符串都需要加引 号</h4><ul>
+<li>条件格式:<br>${__jexl3(条件表达式)}<br>如:${__jexl3(${num} &gt; 10)}、 ${__jexl3(“${num}” &#x3D;&#x3D; “10”)}</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_18-59-43.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="3、仅一次控制器-该控制器内的请求只执行一次，无论线程循环多少次"><a href="#3、仅一次控制器-该控制器内的请求只执行一次，无论线程循环多少次" class="headerlink" title="3、仅一次控制器:该控制器内的请求只执行一次，无论线程循环多少次"></a>3、仅一次控制器:该控制器内的请求只执行一次，无论线程循环多少次</h4><p>使用场景： 登录</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_19-02-20.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="4、foreach控制器，可以遍历某个参数数组，循环获取数组中的参数。压测用的不多，接口测试时用。取出来多少数据，接下来调用的接口就会执行多少次"><a href="#4、foreach控制器，可以遍历某个参数数组，循环获取数组中的参数。压测用的不多，接口测试时用。取出来多少数据，接下来调用的接口就会执行多少次" class="headerlink" title="4、foreach控制器，可以遍历某个参数数组，循环获取数组中的参数。压测用的不多，接口测试时用。取出来多少数据，接下来调用的接口就会执行多少次"></a>4、foreach控制器，可以遍历某个参数数组，循环获取数组中的参数。压测用的不多，接口测试时用。取出来多少数据，接下来调用的接口就会执行多少次</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_19-32-43.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="配置元件-cookie管理器"><a href="#配置元件-cookie管理器" class="headerlink" title="配置元件 - cookie管理器"></a>配置元件 - cookie管理器</h2><p>JMeter自动处理cookie，只需要添加一个空的cookie处理器</p>
+<h4 id="cookie-session-token"><a href="#cookie-session-token" class="headerlink" title="cookie session token"></a>cookie session token</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_14-15-01.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="cookie和session的关系"><a href="#cookie和session的关系" class="headerlink" title="cookie和session的关系"></a>cookie和session的关系</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_19-51-58.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="http-cookie管理器"><a href="#http-cookie管理器" class="headerlink" title="http cookie管理器"></a>http cookie管理器</h4><p>可以在浏览器中抓取到cookie信息，然后通过http cookie管理器为http请求添加cookie信息</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_14-41-10.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="JMeter中的cookie处理机制"><a href="#JMeter中的cookie处理机制" class="headerlink" title="JMeter中的cookie处理机制"></a>JMeter中的cookie处理机制</h4><p>和Loadrunner一样，Jmeter可以自动处理cookie,但是需要再线程组内添加一个空的cookie管理器</p>
+<h2 id="配置元件-header管理器"><a href="#配置元件-header管理器" class="headerlink" title="配置元件 - header管理器"></a>配置元件 - header管理器</h2><p>添加 - 配置元件 - header管理器  JMeter需要手动处理token</p>
+<ul>
+<li>1.利用json提取器 提起登录接口的json值</li>
+<li>2.利用HTTP信息头管理器 添加引用的token值</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_14-52-21.png" srcset="/img/loading.gif" lazyload><br><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_14-53-04.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="JMeter上传和下载"><a href="#JMeter上传和下载" class="headerlink" title="JMeter上传和下载"></a>JMeter上传和下载</h2><h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><ul>
+<li>上传文件的本质是浏览器读取本地文件的内容，以二进制数据方式传输到服务端，服务端新建 一个文件，将获取到的数据复制到文件中。</li>
+<li>POST请求</li>
+<li>同请求一起发送文件里，填写文件名称，参数名称 </li>
+<li>MIME类型: application&#x2F;octet-stream</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_15-54-49.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h3><p>下载文件的本质是服务端读取文件内容，传输到浏览器端，浏览器在本地新建一个 文件，将内容保存进去<br>不用真正的下载文件，只需要判断下载下来的文件size大于原来的文件size即可</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_16-14-57.png" srcset="/img/loading.gif" lazyload></p>
+<p>添加 - 断言 - 大小断言</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_16-11-29.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="JMeter请求webservice接口"><a href="#JMeter请求webservice接口" class="headerlink" title="JMeter请求webservice接口"></a>JMeter请求webservice接口</h2><p>关键点:</p>
+<ul>
+<li>1、添加http post请求 </li>
+<li>2、添加header:Content-type:text&#x2F;xml</li>
+<li>参考接口:<a target="_blank" rel="noopener" href="http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx">http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx</a></li>
+</ul>
+<h4 id="1-添加http请求，请求方法为post-且xml格式的数据放在消息体数据中发起请求"><a href="#1-添加http请求，请求方法为post-且xml格式的数据放在消息体数据中发起请求" class="headerlink" title="1.添加http请求，请求方法为post,且xml格式的数据放在消息体数据中发起请求"></a>1.添加http请求，请求方法为post,且xml格式的数据放在消息体数据中发起请求</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_17-43-26.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="2-需要添加请求头"><a href="#2-需要添加请求头" class="headerlink" title="2.需要添加请求头"></a>2.需要添加请求头</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_17-47-47.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="3-接口返回数据会把入参返回，直接用入参做断言即可"><a href="#3-接口返回数据会把入参返回，直接用入参做断言即可" class="headerlink" title="3.接口返回数据会把入参返回，直接用入参做断言即可"></a>3.接口返回数据会把入参返回，直接用入参做断言即可</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_17-48-34.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="TCP取样器"><a href="#TCP取样器" class="headerlink" title="TCP取样器"></a>TCP取样器</h2><ul>
+<li>服务器名称或IP:填写socket接口的ip</li>
+<li>端口号:写socket接口的端口号</li>
+<li>Re-use connection:是否重用链接，如果选择，同一个线程执行的所有请求都会使用一个tcp连接 </li>
+<li>Re-use connection+close connection:每个请求结束后关闭连接</li>
+<li>End of line byte value（行尾字节值）:socket接口返回的数据结尾标识符的ascii码</li>
+</ul>
+<p>添加 - 取样器 - TCP取样器</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_18-20-49.png" srcset="/img/loading.gif" lazyload></p>
+<p>断言</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_18-24-52.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h2><p>JDBC(Java Data Base Connectivity,java数据库连接)是一种用于执行SQL语句的Java API， 可以为多种关系数据库提供统一访问，它由一组用Java语言编写的类和接口组成。JDBC提供了 一种基准，据此可以构建更高级的工具和接口，使数据库开发人员能够编写数据库应用程序</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_21-56-35.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="java代码连接数据库执行sql语句步骤"><a href="#java代码连接数据库执行sql语句步骤" class="headerlink" title="java代码连接数据库执行sql语句步骤"></a>java代码连接数据库执行sql语句步骤</h3><ul>
+<li>注册驱动</li>
+<li>通过用户名，密码，数据库url等信息，获取jdbc链接Connection </li>
+<li>通过jdbc链接，对sql语句进行预编译，得到PreparedStatement </li>
+<li>对sql语句进行传参数</li>
+<li>执行sql语句</li>
+<li>获取数据<ul>
+<li>insert、update、delete返回的是操作的是数据行数</li>
+<li>Select返回的ResultSet对象，可以获取对应的列值</li>
+</ul>
+</li>
+<li>关闭链接<ul>
+<li>关闭Connection</li>
+<li>关闭PreparedStatement</li>
+</ul>
+</li>
+</ul>
+<h5 id="把mysql驱动包放到lib目录下后-还需要File-Project-Structure-Libraries-点击-选择java-把整个lib加入到工程依赖库里才能够识别驱动包"><a href="#把mysql驱动包放到lib目录下后-还需要File-Project-Structure-Libraries-点击-选择java-把整个lib加入到工程依赖库里才能够识别驱动包" class="headerlink" title="把mysql驱动包放到lib目录下后 还需要File - Project Structure - Libraries - 点击+ 选择java 把整个lib加入到工程依赖库里才能够识别驱动包"></a>把mysql驱动包放到lib目录下后 还需要File - Project Structure - Libraries - 点击+ 选择java 把整个lib加入到工程依赖库里才能够识别驱动包</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_22-52-59.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="JDBC请求"><a href="#JDBC请求" class="headerlink" title="JDBC请求"></a>JDBC请求</h2><h4 id="1-先添加数据库Jar包（2种方式）"><a href="#1-先添加数据库Jar包（2种方式）" class="headerlink" title="1.先添加数据库Jar包（2种方式）"></a>1.先添加数据库Jar包（2种方式）</h4><ul>
+<li>拷贝mysql驱动包到jmeter&#x2F;lib目录下或者在测试计划处添加驱动包</li>
+<li>驱动包和mysql版本匹配</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_14-17-36.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="2-配置数据库连接信息"><a href="#2-配置数据库连接信息" class="headerlink" title="2.配置数据库连接信息"></a>2.配置数据库连接信息</h4><p>添加 - 配置元件 - JDBC Connection Configuration<br>需要配置项</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_14-23-06.png" srcset="/img/loading.gif" lazyload></p>
+<p>URL:jdbc:mysql:&#x2F;&#x2F;{ip}:{port}&#x2F;{dbname}?useUnicode&#x3D;true&amp;characterEncoding&#x3D;utf8</p>
+<h4 id="3-创建JDBC-sample发起JDBE-request请求"><a href="#3-创建JDBC-sample发起JDBE-request请求" class="headerlink" title="3.创建JDBC sample发起JDBE request请求"></a>3.创建JDBC sample发起JDBE request请求</h4><p>SQL语句类型</p>
+<ul>
+<li>select</li>
+<li>update</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_14-26-20.png" srcset="/img/loading.gif" lazyload></p>
+<p>执行方式分类</p>
+<ul>
+<li>普通SQL</li>
+<li>预编译SQL:sql语句中的数值用？代替<ul>
+<li>Parameter values:代替sql语句中问号的数据</li>
+<li>Parameter types:数据库字段数据类型，如VARCHAR INTEGER</li>
+<li>Variable Names:变量名称，跟SQL语句中查询字段数量保持一致</li>
+</ul>
+</li>
+</ul>
+<h4 id="Prepared-Update-Statement-预编译-做压测时性能更好"><a href="#Prepared-Update-Statement-预编译-做压测时性能更好" class="headerlink" title="Prepared Update Statement 预编译 做压测时性能更好"></a>Prepared Update Statement 预编译 做压测时性能更好</h4><p>对于性能要求比较高的情况下，为了提高sql语句执行效率，需要做参数化的字段写成？</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_17-51-14.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="Prepared-Select-Statement"><a href="#Prepared-Select-Statement" class="headerlink" title="Prepared Select Statement"></a>Prepared Select Statement</h4><p>查询出来的字段可以保存在变量中<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_18-07-21.png" srcset="/img/loading.gif" lazyload></p>
+<p>字段已保存为变量<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_18-09-25.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="beanshell"><a href="#beanshell" class="headerlink" title="beanshell"></a>beanshell</h2><ul>
+<li>BeanShell是一种完全符合Java语法规范的脚本语言,并且又拥有自己的一些语法和方法;</li>
+<li>BeanShell是一种松散类型的脚本语言(这点和JS类似);</li>
+<li>BeanShell是用Java写成的,一个小型的、免费的、可以下载的、嵌入式的Java源代码解释器,具</li>
+<li>有对象脚本语言特性,非常精简的解释器jar文件大小为175k。</li>
+<li>BeanShell执行标准Java语句和表达式,另外包括一些脚本命令和语法。</li>
+</ul>
+<h3 id="JMeter常用beanshell"><a href="#JMeter常用beanshell" class="headerlink" title="JMeter常用beanshell"></a>JMeter常用beanshell</h3><ul>
+<li>前置处理器:BeanShell PreProcesser </li>
+<li>采样器:BeanShell Sampler</li>
+<li>后置处理器:BeanShell PostProcesser </li>
+<li>断言:BeanShell断言</li>
+</ul>
+<h3 id="BeanShell内置变量"><a href="#BeanShell内置变量" class="headerlink" title="BeanShell内置变量"></a>BeanShell内置变量</h3><p>BeanShell脚本中不用定义，可以直接使用的变量，常用的内置变量和方法如下 </p>
+<ul>
+<li>log:写日志到控制台和jmeter.log，如log.info(“xxxxx”); </li>
+<li>vars:操作jmeter变量</li>
+<li>vars.get(“skuId”);从jmeter中获取${skuId}变量的值</li>
+<li>vars.put(“name”,”test”);创建新变量name的值为test 或者修改name属性的值为test</li>
+<li>prev:后置处理器里使用 获取前面sampler返回的信息 </li>
+<li>getResponseDataAsString():获取响应信息 </li>
+<li>getResponseCode():获取响应code</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_19-55-41.png" srcset="/img/loading.gif" lazyload></p>
+<p>更多内置变量参考 <a target="_blank" rel="noopener" href="https://jmeter.apache.org/">https://jmeter.apache.org/</a></p>
+<h4 id="BeanShell使用方式一-BeanShell面板上写脚本"><a href="#BeanShell使用方式一-BeanShell面板上写脚本" class="headerlink" title="BeanShell使用方式一 BeanShell面板上写脚本"></a>BeanShell使用方式一 BeanShell面板上写脚本</h4><p>需求:</p>
+<ul>
+<li>1、调用接口获取sku信息 </li>
+<li>2、判断库存，如果库存大于500，调用buy接口购买10个商品，否则购买5个商品<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">// 获取接口返回的库存值</span><br><span class="hljs-built_in">String</span> myStock = vars.<span class="hljs-keyword">get</span>(“p_stock”); <span class="hljs-comment">// 转换为整数</span><br><span class="hljs-built_in">int</span> iStock = Integer.parseInt(myStock); <span class="hljs-comment">// 判断库存</span><br><span class="hljs-keyword">if</span> (iStock &gt; <span class="hljs-number">500</span>)&#123;<br><span class="hljs-comment">// 重新保存参数</span><br>vars.put(“buyNum”,<span class="hljs-string">&quot;10&quot;</span>); &#125;<span class="hljs-keyword">else</span>&#123;<br>vars.put(“buyNum”,”<span class="hljs-number">5</span>”)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="1-通过json提取器获取前一个接口的返回值"><a href="#1-通过json提取器获取前一个接口的返回值" class="headerlink" title="1.通过json提取器获取前一个接口的返回值"></a>1.通过json提取器获取前一个接口的返回值</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-24-19.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="2-在后一个接口的预处理程序中-获取返回值并进行相应逻辑处理"><a href="#2-在后一个接口的预处理程序中-获取返回值并进行相应逻辑处理" class="headerlink" title="2.在后一个接口的预处理程序中 获取返回值并进行相应逻辑处理"></a>2.在后一个接口的预处理程序中 获取返回值并进行相应逻辑处理</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-21-46.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="3-在后一个接口中引用处理后的值作为入参"><a href="#3-在后一个接口中引用处理后的值作为入参" class="headerlink" title="3.在后一个接口中引用处理后的值作为入参"></a>3.在后一个接口中引用处理后的值作为入参</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-18-03.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="BeanShell使用方式二-引用外部java源文件"><a href="#BeanShell使用方式二-引用外部java源文件" class="headerlink" title="BeanShell使用方式二 引用外部java源文件"></a>BeanShell使用方式二 引用外部java源文件</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">// 引入源代码</span><br>source(“D:/Md5Util.java”);<br><span class="hljs-comment">// 生成随机手机号,</span><br><span class="hljs-built_in">String</span> phone = <span class="hljs-string">&quot;135<span class="hljs-subst">$&#123;__Random(<span class="hljs-number">10000000</span>,<span class="hljs-number">99999999</span>,myPhone)&#125;</span>&quot;</span>;  # 可以直接调用JMeter内置函数<br><span class="hljs-built_in">String</span> code = <span class="hljs-string">&quot;testfan&quot;</span>;<br><span class="hljs-comment">// 生成时间戳</span><br><span class="hljs-built_in">String</span> time = <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;__time(,myTime)&#125;</span>&quot;</span>;<br><span class="hljs-comment">// 调用外部函数进行加密</span><br><span class="hljs-built_in">String</span> md5 = Md5Util.getMd5Hex(phone+code+time); # 直接调用文件中的函数<br><span class="hljs-comment">// 将数据另存为新的变量</span><br>vars.put(<span class="hljs-string">&quot;phone&quot;</span>,phone);<br>vars.put(<span class="hljs-string">&quot;md5&quot;</span>,md5);<br>vars.put(<span class="hljs-string">&quot;time&quot;</span>,time);<br></code></pre></td></tr></table></figure>
+<h5 id="1-添加前置beanshell处理器-处理入参"><a href="#1-添加前置beanshell处理器-处理入参" class="headerlink" title="1.添加前置beanshell处理器 处理入参"></a>1.添加前置beanshell处理器 处理入参</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-44-30.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="2-发起请求"><a href="#2-发起请求" class="headerlink" title="2.发起请求"></a>2.发起请求</h5><h3 id="BeanShell使用方式三-调用jar包"><a href="#BeanShell使用方式三-调用jar包" class="headerlink" title="BeanShell使用方式三-调用jar包"></a>BeanShell使用方式三-调用jar包</h3><p>调用jar包</p>
+<h5 id="1、测试计划，Add-directory-or-jar-to-classpath"><a href="#1、测试计划，Add-directory-or-jar-to-classpath" class="headerlink" title="1、测试计划，Add directory or jar to classpath"></a>1、测试计划，Add directory or jar to classpath</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-45-47.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="2、import-所需要的类名"><a href="#2、import-所需要的类名" class="headerlink" title="2、import 所需要的类名"></a>2、import 所需要的类名</h5><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">import</span> com.lee.util.Md5Util  jar包需要导入<br><span class="hljs-comment">// 生成随机手机号,8</span><br><span class="hljs-built_in">String</span> phone = <span class="hljs-string">&quot;135<span class="hljs-subst">$&#123;__Random(<span class="hljs-number">10000000</span>,<span class="hljs-number">99999999</span>,myPhone)&#125;</span>&quot;</span>; <span class="hljs-built_in">String</span> code = <span class="hljs-string">&quot;testfan&quot;</span>;<br><span class="hljs-comment">// 生成时间戳</span><br><span class="hljs-built_in">String</span> time = <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;__time(,myTime)&#125;</span>&quot;</span>;<br><span class="hljs-comment">// 调用外部函数进行加密</span><br><span class="hljs-built_in">String</span> md5 = Md5Util.getMd5Hex(phone+code+time);<br><span class="hljs-comment">// 将数据另存为新的变量</span><br>vars.put(<span class="hljs-string">&quot;phone&quot;</span>,phone);<br>vars.put(<span class="hljs-string">&quot;md5&quot;</span>,md5)<br></code></pre></td></tr></table></figure>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-58-54.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="beanshell断言"><a href="#beanshell断言" class="headerlink" title="beanshell断言"></a>beanshell断言</h3><p>内置变量</p>
+<ul>
+<li>Failure:是否失败，boolean类型 </li>
+<li>FailureMessage:失败日志，在断言失败时显示<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-type">int</span> iStock = <span class="hljs-type">Integer</span>.parseInt(vars.<span class="hljs-keyword">get</span>(&quot;p_stock&quot;)); <span class="hljs-keyword">if</span> (iStock &gt; <span class="hljs-number">1500</span>)&#123;<br>Failure = <span class="hljs-keyword">true</span>;<br>FailureMessage = &quot;库存数量超过了1500&quot;;<br>// ResponseData是服务器返回的byte[]类型的数据<br>// 如果想打印接口返回值，必须转换为String类型的，用<span class="hljs-built_in">new</span> String(ResponseData) <br><span class="hljs-keyword">log</span>.<span class="hljs-keyword">info</span>(<span class="hljs-built_in">new</span> String(ResponseData));<br>//打印当前请求的url, SamplerData是String类型的数据 <br><span class="hljs-keyword">log</span>.<span class="hljs-keyword">info</span>(SamplerData);<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="json提取器提取出返回值"><a href="#json提取器提取出返回值" class="headerlink" title="json提取器提取出返回值"></a>json提取器提取出返回值</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-24-19.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="断言-beanshell断言-对json提取器取出的值进行逻辑判断"><a href="#断言-beanshell断言-对json提取器取出的值进行逻辑判断" class="headerlink" title="断言-beanshell断言 对json提取器取出的值进行逻辑判断"></a>断言-beanshell断言 对json提取器取出的值进行逻辑判断</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_21-20-01.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="BeanShell写数据到文件"><a href="#BeanShell写数据到文件" class="headerlink" title="BeanShell写数据到文件"></a>BeanShell写数据到文件</h3><ul>
+<li>1、调用登录接口，获取token值 </li>
+<li>2、将token值保存到一个文件里<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">String</span> line = vars.<span class="hljs-keyword">get</span>(“userName<span class="hljs-string">&quot;)+&quot;</span>,<span class="hljs-string">&quot;+vars.get(“token&quot;</span>); <span class="hljs-meta"># 拼接需要写入的数据</span><br><span class="hljs-keyword">try</span> &#123;<br>    BufferedWriter writer = <span class="hljs-keyword">new</span><span class="hljs-type"></span> BufferedWriter(<span class="hljs-keyword">new</span><span class="hljs-type"></span> FileWriter(“C:<span class="hljs-type"></span>\\output.txt”,<span class="hljs-literal">true</span>));<span class="hljs-comment">//追加，否则覆盖 </span><br>    writer.write(line);<br>    writer.newLine();<span class="hljs-comment">//换行</span><br>    writer.close();<br>&#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>    e.printStackTrace(); <br>    &#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="仅红字标出部分需要替换"><a href="#仅红字标出部分需要替换" class="headerlink" title="仅红字标出部分需要替换"></a>仅红字标出部分需要替换</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_21-30-16.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="JMeter中的JAVA请求"><a href="#JMeter中的JAVA请求" class="headerlink" title="JMeter中的JAVA请求"></a>JMeter中的JAVA请求</h2><h3 id="1-使用JMeter运行java脚本，需要用到Jmeter提供的框架jar包（分别在jmeter目录下的lib和ext目录下）"><a href="#1-使用JMeter运行java脚本，需要用到Jmeter提供的框架jar包（分别在jmeter目录下的lib和ext目录下）" class="headerlink" title="1.使用JMeter运行java脚本，需要用到Jmeter提供的框架jar包（分别在jmeter目录下的lib和ext目录下）"></a>1.使用JMeter运行java脚本，需要用到Jmeter提供的框架jar包（分别在jmeter目录下的lib和ext目录下）</h3><ul>
+<li>ApacheJMeter_core.jar</li>
+<li>ApacheJMeter_java.jar</li>
+<li>slf4j-api-1.7.25.jar </li>
+<li>jorphan.jar </li>
+<li>oro-2.0.8.jar (高版本JMeter需要额外加入)</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_13-11-57.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-Jmeter脚本要点"><a href="#2-Jmeter脚本要点" class="headerlink" title="2.Jmeter脚本要点"></a>2.Jmeter脚本要点</h3><h5 id="1，实现JavaSamplerClient接口-规范定义在java接口中，JMeter通过接口来执行脚本"><a href="#1，实现JavaSamplerClient接口-规范定义在java接口中，JMeter通过接口来执行脚本" class="headerlink" title="1，实现JavaSamplerClient接口 规范定义在java接口中，JMeter通过接口来执行脚本"></a>1，实现JavaSamplerClient接口 规范定义在java接口中，JMeter通过接口来执行脚本</h5><h5 id="2，四个方法"><a href="#2，四个方法" class="headerlink" title="2，四个方法:"></a>2，四个方法:</h5><ul>
+<li>getDefaultParameters:获取参数，设置的参数会在Jmeter的参数面板上显示出来 </li>
+<li>setupTest:初始化方法，每个并发用户只执行一次，跟LR里的init方法一样的，用于建立链接 </li>
+<li>runTest:每个并发用户执行N次，处理业务 </li>
+<li>teardownTest:结束方法，每个并发用户只执行一次，LR里的end方法是一样的，用于释放资源</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_13-43-19.png" srcset="/img/loading.gif" lazyload></p>
+<p>打成jar包</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_13-37-32.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="3，导出JMeter的java脚本"><a href="#3，导出JMeter的java脚本" class="headerlink" title="3，导出JMeter的java脚本"></a>3，导出JMeter的java脚本</h5><ul>
+<li>1&gt; 将导出的xxx.jar 和xxx_lib文件夹放到JMeter的lib&#x2F;ext目录下  重启JMeter</li>
+<li>2&gt; 添加JAVA请求，类名称选择jar包，运行</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_13-40-01.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="JAVA请求脚本参数化"><a href="#JAVA请求脚本参数化" class="headerlink" title="JAVA请求脚本参数化"></a>JAVA请求脚本参数化</h3><h5 id="1-需要现在代码里定义"><a href="#1-需要现在代码里定义" class="headerlink" title="1.需要现在代码里定义"></a>1.需要现在代码里定义</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_14-05-05.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="2-重新打成jar包放到JMeter的lib目录下重启JMeter后可以看到入参"><a href="#2-重新打成jar包放到JMeter的lib目录下重启JMeter后可以看到入参" class="headerlink" title="2.重新打成jar包放到JMeter的lib目录下重启JMeter后可以看到入参"></a>2.重新打成jar包放到JMeter的lib目录下重启JMeter后可以看到入参</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_14-03-06.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="3-对入参进行CSV参数化，从文件中读取数据"><a href="#3-对入参进行CSV参数化，从文件中读取数据" class="headerlink" title="3.对入参进行CSV参数化，从文件中读取数据"></a>3.对入参进行CSV参数化，从文件中读取数据</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_14-06-13.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="4-JMeter参数化获取的数据保存在JavaSamplerContext中，调用其方法获取即可"><a href="#4-JMeter参数化获取的数据保存在JavaSamplerContext中，调用其方法获取即可" class="headerlink" title="4.JMeter参数化获取的数据保存在JavaSamplerContext中，调用其方法获取即可"></a>4.JMeter参数化获取的数据保存在JavaSamplerContext中，调用其方法获取即可</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_14-20-30.png" srcset="/img/loading.gif" lazyload></p>
+<p>Java编写sql查询脚本在JMeter运行</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_18-21-51.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="websocket请求"><a href="#websocket请求" class="headerlink" title="websocket请求"></a>websocket请求</h2><h3 id="websocket请求应用场景：客服客服消息发送"><a href="#websocket请求应用场景：客服客服消息发送" class="headerlink" title="websocket请求应用场景：客服客服消息发送"></a>websocket请求应用场景：客服客服消息发送</h3><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-05-10.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="插件库里下载-Websocket-samples-by-Peter-Doorm"><a href="#插件库里下载-Websocket-samples-by-Peter-Doorm" class="headerlink" title="插件库里下载 Websocket samples by Peter Doorm"></a>插件库里下载 Websocket samples by Peter Doorm</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-07-03.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="1-添加-取样器-websocket-open-connection"><a href="#1-添加-取样器-websocket-open-connection" class="headerlink" title="1.添加 - 取样器 - websocket open connection"></a>1.添加 - 取样器 - websocket open connection</h4><ul>
+<li>内网选择ws</li>
+<li>公网选择wss<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-09-15.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h4 id="2-发送匹配请求-提取返回值里的msgId-给后续接口调用"><a href="#2-发送匹配请求-提取返回值里的msgId-给后续接口调用" class="headerlink" title="2.发送匹配请求 提取返回值里的msgId 给后续接口调用"></a>2.发送匹配请求 提取返回值里的msgId 给后续接口调用</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-10-23.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="3-循环发送消息和接收服务器回执消息5次-间隔300ms发送一次"><a href="#3-循环发送消息和接收服务器回执消息5次-间隔300ms发送一次" class="headerlink" title="3.循环发送消息和接收服务器回执消息5次 间隔300ms发送一次"></a>3.循环发送消息和接收服务器回执消息5次 间隔300ms发送一次</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-11-20.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-11-49.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="4-关闭连接"><a href="#4-关闭连接" class="headerlink" title="4.关闭连接"></a>4.关闭连接</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-12-07.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/PerformanceTesting/" class="category-chain-item">PerformanceTesting</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/PerformanceTesting/" class="print-no-link">#PerformanceTesting</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JMeter常用操作</div>
+      <div>https://zn-zyl.github.io/2023/02/17/PerformanceTesting/JMeter常用操作/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhounuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/02/17/java/%E5%85%B3%E9%94%AE%E5%AD%97/" title="关键字">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">关键字</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/17/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/" title="测试用例设计">
+                        <span class="hidden-mobile">测试用例设计</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
