@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>测试用例设计</title>
+    <link href="/zn-zyl/zn-zyl.github.io/2025/02/12/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/"/>
+    <url>/zn-zyl/zn-zyl.github.io/2025/02/12/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/</url>
+    
+    <content type="html"><![CDATA[<h2 id="测试需求分析"><a href="#测试需求分析" class="headerlink" title="测试需求分析"></a>测试需求分析</h2><p>软件测试需求分析</p><h2 id="1-什么是软件测试需求？"><a href="#1-什么是软件测试需求？" class="headerlink" title="1.什么是软件测试需求？"></a>1.什么是软件测试需求？</h2><p>测试需求就是明确在项目中要测试什么。<br>我们在测试活动中，首先要明确测试需求（what),才能决定怎么测（how)什么时候测（when)需要多少人（who)测试的环境是什么（where),测试中需要的技能，工具以及相应的背景知识，测试中可能遇到的风险等等。</p><h2 id="2-软目件需求分析的的"><a href="#2-软目件需求分析的的" class="headerlink" title="2.软目件需求分析的的"></a>2.软目件需求分析的的</h2><p>测试需求分析的主要目的“获取测试点，根据测试点来编写测试用例</p><ul><li>1.把不直观的需求—–转变为直观的需求（用例图&#x2F;活动图 flow图）<ul><li>a.使得测试范围可以度量（有多少功能，有多少功能项）度量测试范围（规定测试范围）</li><li>b.使得独立的功能点对应的所 有处理分支可以度量 度量独立功能点的功能处理分支（细化独立功能点的功能范围）</li><li>c.使得该系统需要测试的业务场景可以度量    度量业务场景（各种各样的流程图也是各种业务场景）</li></ul></li><li>2.把不明确的需求转变为可度量的需求明确其功能点的输入，处理和输出结果（明确输入—-输出的结果）</li></ul><h2 id="3-如何对软件测试需求分析"><a href="#3-如何对软件测试需求分析" class="headerlink" title="3.如何对软件测试需求分析"></a>3.如何对软件测试需求分析</h2><p>需求分析和测试需求分析的区别?  先需求分析(产品经理）——-测试需求分析（测试人员）</p><p>需求分析：初步设想（客户需求）-需求分析-需求规格：输入，处理和输出（先得到原始需求，由产品经理进行需求分析，然后输出需求规格说明书）</p><p>测试需求分析：单个功能点输入处理输出——-业务流程分析——-全局–（整个系统）——隐式需求挖掘（UI，性能，安全，应用性等)</p><h2 id="4-测试需求分析"><a href="#4-测试需求分析" class="headerlink" title="4.测试需求分析"></a>4.测试需求分析</h2><ul><li>通过分析需求描述中的输入，输出，处理，限制，约束等给出对应的验证内容：（功能测试）</li><li>通过分析各个功能模块之间的业务顺序，和接口之间信息和数据的传递，对存在功能交互的功能项，给出对应的验证内容（功能交互性测试，握手）</li><li>考虑到需求的完整性，要充分考虑隐性需求的验证，比如界面的验证，注册账号的唯一性（界面，易用性，兼容性，安全性，性能）</li><li>根据场景法和错误分析法补充测试案例</li></ul><h4 id="测试点分析步骤："><a href="#测试点分析步骤：" class="headerlink" title="测试点分析步骤："></a>测试点分析步骤：</h4><ul><li>1.正常功能：核心最基本的功能</li><li>2.功能验证：规则：按顺序从上至下，对每一个输入项进行验证</li><li>3.功能交互验证</li><li>4.隐性需求<br>充分熟悉产品业务，挖掘隐性需求。（UI，兼容，性能，安全，易用）</li></ul><h2 id="5-需求的变更"><a href="#5-需求的变更" class="headerlink" title="5.需求的变更"></a>5.需求的变更</h2><p>对于一个存在生命周期的软件产品来说，软件的开发和测试往往都不是一次性的，因为随着新的需求出现，以及对原有版本的改进，新的版本会不断的发布。<br>  我们都面临一个点实际问题：就是软件需求在开发过程中会不断发生变化，有时候到了后期还会有新的需求加进来，或者是发版以后发现原来的需求存在缺陷，之后重新返工，那么我们该如何在最终发布之前，确定需求呢？</p><p>如此我们就必须要考虑软件需求的版本化控制。当要进行一个新版本的迭代时，我们在工作开始之前就确认好本次需求的范围：如实出现需求变更，则根据市场策略，已公布的发布时间，客户需求，实现的代价，难易程度以及对现有工作影响等方面考虑，对需求进行适度划分，严格定义当前版本需要实现的功能，而其他的部分，则作为未来版本的需求<br>总之遵循一个原则，对一个版本的需求版更，必须早发现，早讨论，早决定，早调整。</p><h4 id="以上常用的黑盒用例设计方法，等价类，边界值，错误推测，场景法细化出测试点。"><a href="#以上常用的黑盒用例设计方法，等价类，边界值，错误推测，场景法细化出测试点。" class="headerlink" title="以上常用的黑盒用例设计方法，等价类，边界值，错误推测，场景法细化出测试点。"></a>以上常用的黑盒用例设计方法，等价类，边界值，错误推测，场景法细化出测试点。</h4><p>桌子<br>功能度：桌子能不能放东西。<br>安全性：打造桌子所用的木料有没有毒或者腐烂污染<br>可靠性：杯子从不同高度落下的损坏程度<br>可移植性：桌子在不同的地方、温度等环境下是否都可以正常使用<br>兼容性：桌子能否作为饭桌，书桌，游戏桌子使用。<br>易用性：桌子是否平滑不拉手、桌角是否打磨平整，桌子的高度设置是否符合人体工学标准、是否方便办公<br>用户文档：使用手册是否对桌子的用法、限制、使用条件等有详细描述<br>疲劳测试：将桌子放上100kg重物放24小时检查桌子表面的情况<br>压力测试：在桌子上面不断加重物，看压力多大时桌子会倾斜  </p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/zn-zyl/zn-zyl.github.io/2025/02/11/hello-world/"/>
+    <url>/zn-zyl/zn-zyl.github.io/2025/02/11/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>手动创建的文章</title>
+    <link href="/zn-zyl/zn-zyl.github.io/2024/02/13/test/"/>
+    <url>/zn-zyl/zn-zyl.github.io/2024/02/13/test/</url>
+    
+    <content type="html"><![CDATA[<p>这是手动创建的文章内容。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Hexo</tag>
+      
+      <tag>文章创作</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>测试需求分析</title>
+    <link href="/zn-zyl/zn-zyl.github.io/2019/02/12/%E6%B5%8B%E8%AF%95%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"/>
+    <url>/zn-zyl/zn-zyl.github.io/2019/02/12/%E6%B5%8B%E8%AF%95%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/</url>
+    
+    <content type="html"><![CDATA[<h2 id="测试需求分析"><a href="#测试需求分析" class="headerlink" title="测试需求分析"></a>测试需求分析</h2><p>软件测试需求分析</p><h2 id="1-什么是软件测试需求？"><a href="#1-什么是软件测试需求？" class="headerlink" title="1.什么是软件测试需求？"></a>1.什么是软件测试需求？</h2><p>测试需求就是明确在项目中要测试什么。<br>我们在测试活动中，首先要明确测试需求（what),才能决定怎么测（how)什么时候测（when)需要多少人（who)测试的环境是什么（where),测试中需要的技能，工具以及相应的背景知识，测试中可能遇到的风险等等。</p><h2 id="2-软目件需求分析的的"><a href="#2-软目件需求分析的的" class="headerlink" title="2.软目件需求分析的的"></a>2.软目件需求分析的的</h2><p>测试需求分析的主要目的“获取测试点，根据测试点来编写测试用例</p><ul><li>1.把不直观的需求—–转变为直观的需求（用例图&#x2F;活动图 flow图）<ul><li>a.使得测试范围可以度量（有多少功能，有多少功能项）度量测试范围（规定测试范围）</li><li>b.使得独立的功能点对应的所 有处理分支可以度量 度量独立功能点的功能处理分支（细化独立功能点的功能范围）</li><li>c.使得该系统需要测试的业务场景可以度量    度量业务场景（各种各样的流程图也是各种业务场景）</li></ul></li><li>2.把不明确的需求转变为可度量的需求明确其功能点的输入，处理和输出结果（明确输入—-输出的结果）</li></ul><h2 id="3-如何对软件测试需求分析"><a href="#3-如何对软件测试需求分析" class="headerlink" title="3.如何对软件测试需求分析"></a>3.如何对软件测试需求分析</h2><p>需求分析和测试需求分析的区别?  先需求分析(产品经理）——-测试需求分析（测试人员）</p><p>需求分析：初步设想（客户需求）-需求分析-需求规格：输入，处理和输出（先得到原始需求，由产品经理进行需求分析，然后输出需求规格说明书）</p><p>测试需求分析：单个功能点输入处理输出——-业务流程分析——-全局–（整个系统）——隐式需求挖掘（UI，性能，安全，应用性等)</p><h2 id="4-测试需求分析"><a href="#4-测试需求分析" class="headerlink" title="4.测试需求分析"></a>4.测试需求分析</h2><ul><li>通过分析需求描述中的输入，输出，处理，限制，约束等给出对应的验证内容：（功能测试）</li><li>通过分析各个功能模块之间的业务顺序，和接口之间信息和数据的传递，对存在功能交互的功能项，给出对应的验证内容（功能交互性测试，握手）</li><li>考虑到需求的完整性，要充分考虑隐性需求的验证，比如界面的验证，注册账号的唯一性（界面，易用性，兼容性，安全性，性能）</li><li>根据场景法和错误分析法补充测试案例</li></ul><h4 id="测试点分析步骤："><a href="#测试点分析步骤：" class="headerlink" title="测试点分析步骤："></a>测试点分析步骤：</h4><ul><li>1.正常功能：核心最基本的功能</li><li>2.功能验证：规则：按顺序从上至下，对每一个输入项进行验证</li><li>3.功能交互验证</li><li>4.隐性需求<br>充分熟悉产品业务，挖掘隐性需求。（UI，兼容，性能，安全，易用）</li></ul><h2 id="5-需求的变更"><a href="#5-需求的变更" class="headerlink" title="5.需求的变更"></a>5.需求的变更</h2><p>对于一个存在生命周期的软件产品来说，软件的开发和测试往往都不是一次性的，因为随着新的需求出现，以及对原有版本的改进，新的版本会不断的发布。<br>  我们都面临一个点实际问题：就是软件需求在开发过程中会不断发生变化，有时候到了后期还会有新的需求加进来，或者是发版以后发现原来的需求存在缺陷，之后重新返工，那么我们该如何在最终发布之前，确定需求呢？</p><p>如此我们就必须要考虑软件需求的版本化控制。当要进行一个新版本的迭代时，我们在工作开始之前就确认好本次需求的范围：如实出现需求变更，则根据市场策略，已公布的发布时间，客户需求，实现的代价，难易程度以及对现有工作影响等方面考虑，对需求进行适度划分，严格定义当前版本需要实现的功能，而其他的部分，则作为未来版本的需求<br>总之遵循一个原则，对一个版本的需求版更，必须早发现，早讨论，早决定，早调整。</p><h4 id="以上常用的黑盒用例设计方法，等价类，边界值，错误推测，场景法细化出测试点。"><a href="#以上常用的黑盒用例设计方法，等价类，边界值，错误推测，场景法细化出测试点。" class="headerlink" title="以上常用的黑盒用例设计方法，等价类，边界值，错误推测，场景法细化出测试点。"></a>以上常用的黑盒用例设计方法，等价类，边界值，错误推测，场景法细化出测试点。</h4><p>桌子<br>功能度：桌子能不能放东西。<br>安全性：打造桌子所用的木料有没有毒或者腐烂污染<br>可靠性：杯子从不同高度落下的损坏程度<br>可移植性：桌子在不同的地方、温度等环境下是否都可以正常使用<br>兼容性：桌子能否作为饭桌，书桌，游戏桌子使用。<br>易用性：桌子是否平滑不拉手、桌角是否打磨平整，桌子的高度设置是否符合人体工学标准、是否方便办公<br>用户文档：使用手册是否对桌子的用法、限制、使用条件等有详细描述<br>疲劳测试：将桌子放上100kg重物放24小时检查桌子表面的情况<br>压力测试：在桌子上面不断加重物，看压力多大时桌子会倾斜  </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>测试基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>测试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
