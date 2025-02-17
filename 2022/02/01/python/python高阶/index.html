@@ -1,0 +1,1011 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhounuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="字符串是不可变数据类型，所有操作不会修改原数据，生成新的数据 字符串是复合数据类型，引号里面每个字符都是字符串的元素 。  每个元素都有自己的位置，叫做索引。索引从0开始的，依次+1  1、字符串取值： 某个元素取出来，通过索引取值  变量名[索引]  正向索引 索引可以是负数：从右到做，-1 开始索引编号，负数里面 -1用的最多 索引超过索引范围：报错，IndexError: string in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python高阶">
+<meta property="og:url" content="https://zn-zyl.github.io/2022/02/01/python/python%E9%AB%98%E9%98%B6/index.html">
+<meta property="og:site_name" content="ZN Blog">
+<meta property="og:description" content="字符串是不可变数据类型，所有操作不会修改原数据，生成新的数据 字符串是复合数据类型，引号里面每个字符都是字符串的元素 。  每个元素都有自己的位置，叫做索引。索引从0开始的，依次+1  1、字符串取值： 某个元素取出来，通过索引取值  变量名[索引]  正向索引 索引可以是负数：从右到做，-1 开始索引编号，负数里面 -1用的最多 索引超过索引范围：报错，IndexError: string in">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-01T13:09:16.000Z">
+<meta property="article:modified_time" content="2025-02-17T07:20:54.528Z">
+<meta property="article:author" content="zhounuo">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>python高阶 - ZN Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zn-zyl.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zn&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="python高阶"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-01 21:09" pubdate>
+          2022年2月1日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">python高阶</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>字符串是不可变数据类型，所有操作不会修改原数据，生成新的数据</p>
+<p>字符串是复合数据类型，引号里面每个字符都是字符串的元素 。</p>
+<ul>
+<li>每个元素都有自己的位置，叫做索引。索引从0开始的，依次+1</li>
+</ul>
+<p>1、字符串取值： 某个元素取出来，通过索引取值  变量名[索引]</p>
+<ul>
+<li>正向索引</li>
+<li>索引可以是负数：从右到做，-1 开始索引编号，负数里面 -1用的最多</li>
+<li>索引超过索引范围：报错，IndexError: string index out of range</li>
+</ul>
+<p>2、切片：取多个值，从哪里开始取  取到哪里结束  a[索引头:索引尾:步长]</p>
+<ul>
+<li>切片 左闭右开的规则 [索引头:索引尾)，取头不取尾  ，如果想要去到最后元素，索引尾+1</li>
+<li>索引尾： 可以不写，默认就是取到末尾</li>
+<li>索引头： 可以不写，默认为0</li>
+<li>切片索引尾超过范围 不会报错，取到最后一个元素。</li>
+<li>步长： 走几个步取一次数据 ，步长可以省略 默认就是1. “123456789”<ul>
+<li>步长为负数的: 逆序输出 ，print(a[::-1]) –重要</li>
+<li>-2 -3  用的比较少 不做重点掌握</li>
+</ul>
+</li>
+</ul>
+<p>“””<br>找字符串的某个元素的索引是多少</p>
+<ul>
+<li>index(“ “) : 找到元素 返回索引值; 如果没有找到这个子元素，报错： ValueError: substring not found<ul>
+<li>找到的话返回找到的第一个元素下标</li>
+</ul>
+</li>
+<li>find(“D”) :找到元素 返回索引值;如果没有找到这个子元素，不会报错，返回-1；<ul>
+<li>不报错 所以后续的代码还会执行。找到的话返回找到的第一个元素下标<br>“””<br>“””<br>字符串的格式化输出<br>格式化输出： f”{}{}..{}”<br>print(f”{b}”)<br>“””<br>“””<br>join方法：把一些数据拼接 用特定的符号链接 ： 2024&#x2F;01&#x2F;03 2024-01-03</li>
+</ul>
+</li>
+<li>功能: 可以把列表&#x2F;元组的元素用指定的符号链接成为换一个新的字符串 “-“.join([year,mouth,day])<br>year &#x3D; “2024”<br>mouth &#x3D; “01”<br>day &#x3D; “03”<br>ts &#x3D; “-“.join([year,mouth,day,”21”,”22”,”34”])<br>必须是字符串，必须是可迭代元素列表<br>“””</li>
+</ul>
+<p>“””<br>split方法：把字符串的内容按照指定的分隔符进行分割成为多个子字符串 组成列表保存【每个子字符串都是列表的元素】。</p>
+<p>使用场景：<br>面试题： url &#x3D; “<a target="_blank" rel="noopener" href="http://www.lemonban.com/api/login%22,%E8%AF%B7%E4%BD%A0%E5%8F%96%E5%87%BA%E6%9D%A5%E8%BF%99%E4%B8%AAurl%E5%9C%B0%E5%9D%80%E9%87%8C%E7%9A%84%E5%9F%9F%E5%90%8D">http://www.lemonban.com/api/login&quot;,请你取出来这个url地址里的域名</a> （<a target="_blank" rel="noopener" href="http://www.lemonban.com)/">www.lemonban.com）</a><br>-思路： 先切割  然年再列表里取值<br>“””<br>“””<br>replace方法：替换字符串里的某个子字符串。</p>
+<ul>
+<li>注意： 字符串是一个不可变的数据类型，不能修改的里面的元素。所以这个replace方法不是对原字符串进行修改，<br>  而是修改后生成一个新的字符串,记得保存给一个新的变量存起来。</li>
+<li>a.replace(老子字符串,新子字符串,替换次数count),count不写默认全部替换</li>
+</ul>
+<p>思考： 如果要删除字符串里的某个元素，可以replace方法么？</p>
+<ul>
+<li>可以  替换为空字符串。</li>
+</ul>
+<p>b&#x3D;aa.replace(“s”,”火神山”,1)<br>“””<br>“””<br>strip方法：去除字符串里的某个元素，只能是前后的元素,不能是中间的。[字符串本身是不能被修改 随意重新新字符串]</p>
+<ul>
+<li>问题： 如果要删除中间的符号怎么办？ &#x3D;&#x3D; replace 替换掉。</li>
+</ul>
+<p>项目使用场景： 用户输入数据前后有一些空格符号  想要自动过滤掉这些符号 增加用户好友体验。</p>
+<ul>
+<li>从excel&#x2F;txt读取数据：可能包含一些其他的符号 【空格 换行符&#x2F;n】<br>“””<br>“””<br>字符串本身是不能被修改 随意重新新字符串。<br>lower ：把字符串的内容全部转化为小写的<br>upper： 把字符串的内容全部转化为大写的</li>
+</ul>
+<p>“””<br>“””<br>判断字符串是以xxx开头 结尾，用来做判断条件：&#x3D;&#x3D;做断言</p>
+<ul>
+<li>endswith: 结果是一个布尔值  True  False</li>
+<li>startswith: 结果是一个布尔值  True  False<br>uname &#x3D; (“asdakskhjd&#x2F;n”<br>   )</li>
+</ul>
+<p>print(uname.endswith(“n”))<br>print(uname.startswith(“s”))<br>“””</p>
+<p>字符串综合演练 （字符串索引和切片。注意位置和索引的区别）<br>my_hobby &#x3D; “Never stop learning!”<br>说明：“位置”指的是字符所处的位置（比如位置1，指的是第一个字符“N”）；<br>“索引”指的是字符的索引值（比如索引0， 代表的是第一个字符“N”）；<br>开始位置 ，是指字符串起始，即下标为0开始；末尾，是指字符串最后。 my_hobby[1:7]<br>1）截取从 位置2 ~ 位置6 的字符串(含 位置2和6)  1 5<br>2）截取完整的字符串<br>3）从 索引3 开始，每2个字符中取一个字符(含索引3，步长为2)<br>4）截取字符串末尾两个字符<br>5）字符串的倒序<br>参考答案：<br>my_hobby &#x3D; “Never stop learning!”</p>
+<h1 id="截取从位置2-位置6的字符串-含位置2和6"><a href="#截取从位置2-位置6的字符串-含位置2和6" class="headerlink" title="截取从位置2 ~ 位置6的字符串(含位置2和6)"></a>截取从位置2 ~ 位置6的字符串(含位置2和6)</h1><p>print(my_hobby[1:6])</p>
+<h1 id="截取完整的字符串"><a href="#截取完整的字符串" class="headerlink" title="截取完整的字符串"></a>截取完整的字符串</h1><p>print(my_hobby[:])a</p>
+<h1 id="从索引3开始，每2个字符中取一个字符-含索引3，步长为2"><a href="#从索引3开始，每2个字符中取一个字符-含索引3，步长为2" class="headerlink" title="从索引3开始，每2个字符中取一个字符(含索引3，步长为2)"></a>从索引3开始，每2个字符中取一个字符(含索引3，步长为2)</h1><p>print(my_hobby[3::2])</p>
+<h1 id="截取字符串末尾两个字符-【-2-1-是否可以取到最后两位？–-1尾-取不到】"><a href="#截取字符串末尾两个字符-【-2-1-是否可以取到最后两位？–-1尾-取不到】" class="headerlink" title="截取字符串末尾两个字符 【[-2:-1] 是否可以取到最后两位？– -1尾 取不到】"></a>截取字符串末尾两个字符 【[-2:-1] 是否可以取到最后两位？– -1尾 取不到】</h1><p>print(my_hobby[-2:])</p>
+<h1 id="字符串的倒序"><a href="#字符串的倒序" class="headerlink" title="字符串的倒序"></a>字符串的倒序</h1><p>print(my_hobby[::-1])</p>
+<p>“””<br>列表-list ： 是[]包裹的内容<br>1、可变的数据复合数据类型 ，可以有多个元素 逗号隔开，<br>2、元素是可为任何的数据类型 ： int float bool str list tuple dict set</p>
+<ul>
+<li>注意： 但是在工作场景里 大部分时候都是单一类型数据比较多。–字符串 + 数字<br>3、取值 切片 ： 跟字符串一样的。</li>
+<li>取值： 索引取值, 取值数据定义在列表里 取出来就是什么数据类型<ul>
+<li>超出索引范围会报错： IndexError: list index out of range</li>
+</ul>
+</li>
+<li>切片：索引头：索引尾：步长<ul>
+<li>列表切片结果是一个列表，就算是一个元素也是列表 空列表<br>4、列表的是可变的数据类型，所以可以增删改操作</li>
+</ul>
+</li>
+<li>对列表的操作修改列表本身数据。确认结果查看原列表 【对比字符串操作生成新的字符串 不能对原字符串进行修改】</li>
+<li>append： 直接追加到列表的末尾   </li>
+<li>insert: 指定索引插入元素到指定位置</li>
+<li>extend: 批量加多个元素，本质上 对两个列表合并。</li>
+</ul>
+<h1 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h1><ul>
+<li>pop() : 默认删除最后一个元素，也可以指定索引删除元素。返回这个删除的元素 可以用变量接受这个删除元素</li>
+<li>remove(): 指定元素本身进行删除,如果有多个 删除第一个。如果没有找到元素 报错。ValueError: list.remove(x): x not in list</li>
+</ul>
+<p>5、列表的元素是可以重复的： 统计一个重复元素个数:count(元素)<br>6、len(): 统计数据类型长度的  元素个数 &#x3D;&#x3D;通用<br>7、求和sum() max() min() : 求数字列表</p>
+<ul>
+<li>列表的排序</li>
+</ul>
+<h1 id="定义列表-：-py66富豪榜"><a href="#定义列表-：-py66富豪榜" class="headerlink" title="定义列表 ： py66富豪榜"></a>定义列表 ： py66富豪榜</h1><p>rich &#x3D; [“@_@”,”卷起来”,”花非花”,”芒果”,12,3.14,True,[1,2,3,4,5]]</p>
+<h1 id="增加元素"><a href="#增加元素" class="headerlink" title="增加元素"></a>增加元素</h1><p>rich.append(“and so on”)  # 直接追加到列表的末尾<br>print(rich)<br>rich.insert(1,”耶耶耶耶”) # 指定索引插入元素到指定位置<br>print(rich)<br>rich.extend([“Cassie”,”幻影”,”play”])<br>print(rich)</p>
+<h1 id="删除元素-1"><a href="#删除元素-1" class="headerlink" title="删除元素"></a>删除元素</h1><p>a &#x3D; rich.pop(6) # 默认删除最后一个元素，也可以指定索引删除元素。<br>print(rich)<br>print(a) # 返回这个删除的元素 可以用变量接受这个删除元素<br>rich.remove(True) # 指定元素本身进行删除,如果有多个 删除第一个。如果没有找到元素 报错。ValueError: list.remove(x): x not in list<br>print(rich)</p>
+<h1 id="修改元素-：-先取值再赋新值"><a href="#修改元素-：-先取值再赋新值" class="headerlink" title="修改元素 ： 先取值再赋新值"></a>修改元素 ： 先取值再赋新值</h1><p>rich[5] &#x3D; “小孩”<br>print(rich)</p>
+<h1 id="列表相同元素"><a href="#列表相同元素" class="headerlink" title="列表相同元素"></a>列表相同元素</h1><h1 id="print-rich-count-“耶耶耶耶”"><a href="#print-rich-count-“耶耶耶耶”" class="headerlink" title="print(rich.count(“耶耶耶耶”))"></a>print(rich.count(“耶耶耶耶”))</h1><h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="统计列表的元素个数"><a href="#统计列表的元素个数" class="headerlink" title="# 统计列表的元素个数"></a># 统计列表的元素个数</h1><h1 id="print-len-rich"><a href="#print-len-rich" class="headerlink" title="print(len(rich))"></a>print(len(rich))</h1><p>8、sort 和reverse ： 排序和逆序<br>sort：最好是最数字列表排序【如果是非数字 ASCII A-Za-z】</p>
+<ul>
+<li>注意：不能同时对数字和字母一起排序</li>
+<li>默认按照升序排列</li>
+<li>也可以指定参数 进行降序排列 ： a.sort(reverse&#x3D;True)</li>
+</ul>
+<p>reverse: 对原列表进行逆序排列 对原列表进行修改</p>
+<ul>
+<li>对比 切片的 步长-1 逆序 ： a[::-1]  # 不会对原列表进行修改 得到新的列表<br>“””</li>
+</ul>
+<p>“””<br>元组-tuple ： 是()包裹的内容<br>1、不可变的数据复合数据类型 ，可以有多个元素 逗号隔开，<br>2、元素是可为任何的数据类型 ： int float bool str list tuple dict set</p>
+<ul>
+<li>注意： 但是在工作场景里 大部分时候都是单一类型数据比较多。–字符串 + 数字<br>3、取值 切片 ： 跟字符串一样的。</li>
+<li>取值： 索引取值, 取值数据定义在列表里 取出来就是什么数据类型<ul>
+<li>超出索引范围会报错： IndexError: list index out of range</li>
+</ul>
+</li>
+<li>切片：索引头：索引尾：步长<ul>
+<li>切片结果是一个列表，就算是一个元素也是元组 空元组<br>4、元组是不可变的数据类型，所以不可以增删改操作  没有对应的方法。</li>
+</ul>
+</li>
+</ul>
+<p>5、元组的元素是可以重复的： 统计一个重复元素个数:count(元素)<br>6、len(): 统计数据类型长度的  元素个数 &#x3D;&#x3D;通用<br>7、求和sum() max() min() : 求数字元组  &#x3D;&#x3D;内置函数<br>8、元组定义： 如果只有一个元素的时候，定义要加逗号 ; 否则就是相当于没有括号。<br>9、元组的定义的括号可以省略： 我们自己写代码很少用 但是要能看懂别人代码。</p>
+<ul>
+<li>解包： 元组元素一一拆出来 复制给变量 【列表可以】<br>“””<br>rich &#x3D; (“@_@”,”卷起来”,”花非花”,”芒果”)</li>
+</ul>
+<h1 id="修改元素-–报错-：TypeError-‘tuple’-object-does-not-support-item-assignment"><a href="#修改元素-–报错-：TypeError-‘tuple’-object-does-not-support-item-assignment" class="headerlink" title="修改元素  –报错 ：TypeError: ‘tuple’ object does not support item assignment"></a>修改元素  –报错 ：TypeError: ‘tuple’ object does not support item assignment</h1><h1 id="rich-3-“小孩”"><a href="#rich-3-“小孩”" class="headerlink" title="rich[3] &#x3D; “小孩”"></a>rich[3] &#x3D; “小孩”</h1><h1 id="print-rich"><a href="#print-rich" class="headerlink" title="print(rich)"></a>print(rich)</h1><p>“””<br>字典：dict，用花括号包裹的键值对 ，元素是键值对  &#x3D;&#x3D; 类比 json数据 {“name”:”Cassie”,”age”:18}<br>1、元素是键值对，key:value</p>
+<ul>
+<li>key: key不能修改的 【key不能是可变的数据类型：列表 字典 集合， 其他的类型都可以】但是一般都是字符串。<ul>
+<li>key不能够重复。 如果重复了 会替换掉原来的值。</li>
+</ul>
+</li>
+<li>value: 没有任何限制。 可以嵌套字典</li>
+</ul>
+<p>2、字典取值： 不同通过索引取值</p>
+<ul>
+<li>通过key取值value</li>
+<li>字典嵌套取值: print(case[“data”][“pwd”])</li>
+</ul>
+<p>3、字典是无序的 【Python3.6版本之前是无序的，每次打印结果都是顺序变化】，依然没有索引的。</p>
+<p>4、字典可变数据类型：可以做增加删除和修改操作的。&#x3D;&#x3D; key不可以变，修改针对的是value</p>
+<h1 id="增加键值对：-key的赋值操作-如果不存在的时候，进行新增操作"><a href="#增加键值对：-key的赋值操作-如果不存在的时候，进行新增操作" class="headerlink" title="增加键值对： key的赋值操作 &#x3D;&#x3D; 如果不存在的时候，进行新增操作"></a>增加键值对： key的赋值操作 &#x3D;&#x3D; 如果不存在的时候，进行新增操作</h1><p>case[“case_id”] &#x3D; 1<br>print(case)</p>
+<h1 id="增加多个键值对-–update-合并字典"><a href="#增加多个键值对-–update-合并字典" class="headerlink" title="增加多个键值对 –update 合并字典"></a>增加多个键值对 –update 合并字典</h1><p>case.update({“header”:”测试头部”,”url”:”<a target="_blank" rel="noopener" href="https://www.lemon.com"}/">https://www.lemon.com&quot;}</a>)<br>print(case)</p>
+<h1 id="修改键值对：-key的赋值操作-key存在的时候，进行修改value操作"><a href="#修改键值对：-key的赋值操作-key存在的时候，进行修改value操作" class="headerlink" title="修改键值对： key的赋值操作 &#x3D;&#x3D; key存在的时候，进行修改value操作"></a>修改键值对： key的赋值操作 &#x3D;&#x3D; key存在的时候，进行修改value操作</h1><p>case[“method”] &#x3D; “get”<br>print(case)</p>
+<h1 id="删除：-没有默认删除最后的说法-因为字典是无序的。-只能指定key删除键值对。"><a href="#删除：-没有默认删除最后的说法-因为字典是无序的。-只能指定key删除键值对。" class="headerlink" title="删除： 没有默认删除最后的说法 因为字典是无序的。 只能指定key删除键值对。"></a>删除： 没有默认删除最后的说法 因为字典是无序的。 只能指定key删除键值对。</h1><p>case.pop(“title”)<br>print(case)<br>“””</p>
+<p>“””<br>集合： set {}，元素是单个数据 不是键值对。<br>1、{} –  空字典；set()– 空集合<br>2、集合复合数据类型 可以有多个元素 逗号隔开<br>3、元素是不可以重复的。 如果重复了元素 自动去重。</p>
+<ul>
+<li>使用场景： 给列表去重。 【列表的元素可以重复 count方法统计重复元素个数】<br>4、集合是没有顺序的： 集合元素是没有索引的。 不能通过索引取值了。 –了解<br>5、可以变化的数据类型： 对元素进行增删改操作。 –了解</li>
+</ul>
+<p>“””</p>
+<h1 id="a-空字典"><a href="#a-空字典" class="headerlink" title="a &#x3D; {}  # 空字典"></a>a &#x3D; {}  # 空字典</h1><h1 id="b-set-空集合"><a href="#b-set-空集合" class="headerlink" title="b &#x3D; set()   # 空集合"></a>b &#x3D; set()   # 空集合</h1><h1 id="print-type-a-type-b"><a href="#print-type-a-type-b" class="headerlink" title="print(type(a),type(b))"></a>print(type(a),type(b))</h1><p>c &#x3D; {11,22,3,4,6,77,11,22,3}  # 集合</p>
+<h1 id="print-c-len-c"><a href="#print-c-len-c" class="headerlink" title="print(c,len(c))"></a>print(c,len(c))</h1><p>list1 &#x3D; [11,22,3,4,6,77,11,22,3]<br>print(list1)</p>
+<h1 id="对这个列表的元素进行去重-【求不重复的元素个数】：-列表–-集合【自动去重】–-转化回列表"><a href="#对这个列表的元素进行去重-【求不重复的元素个数】：-列表–-集合【自动去重】–-转化回列表" class="headerlink" title="对这个列表的元素进行去重 【求不重复的元素个数】： 列表–&gt; 集合【自动去重】–&gt;转化回列表"></a>对这个列表的元素进行去重 【求不重复的元素个数】： 列表–&gt; 集合【自动去重】–&gt;转化回列表</h1><h1 id="集合【自动去重】"><a href="#集合【自动去重】" class="headerlink" title="集合【自动去重】"></a>集合【自动去重】</h1><p>set1 &#x3D; set(list1)<br>print(set1)</p>
+<h1 id="转化回列表"><a href="#转化回列表" class="headerlink" title="转化回列表"></a>转化回列表</h1><p>list2 &#x3D; list(set1)<br>print(list2)</p>
+<h1 id="注意-区分字典和集合。"><a href="#注意-区分字典和集合。" class="headerlink" title="注意 区分字典和集合。"></a>注意 区分字典和集合。</h1><h1 id="d-‘“name”-”sds”‘-集合"><a href="#d-‘“name”-”sds”‘-集合" class="headerlink" title="d &#x3D; {‘“name”:”sds”‘}  # 集合"></a>d &#x3D; {‘“name”:”sds”‘}  # 集合</h1><h1 id="print-type-d"><a href="#print-type-d" class="headerlink" title="print(type(d))"></a>print(type(d))</h1><h1 id="d-“name”-“花非花”-key取value-报错：TypeError-‘set’-object-does-not-support-item-assignment"><a href="#d-“name”-“花非花”-key取value-报错：TypeError-‘set’-object-does-not-support-item-assignment" class="headerlink" title="d[“name”] &#x3D; “花非花”  # key取value 报错：TypeError: ‘set’ object does not support item assignment"></a>d[“name”] &#x3D; “花非花”  # key取value 报错：TypeError: ‘set’ object does not support item assignment</h1><h1 id="for循环字典：-取到的key-还是value"><a href="#for循环字典：-取到的key-还是value" class="headerlink" title="for循环字典： 取到的key 还是value"></a>for循环字典： 取到的key 还是value</h1><p>case &#x3D; {“title”:”login”, “data”:{“name”:”ITOP”,”pwd”:”123456”},<br>        “expected”:{“msg”:”ok”,”code”:”0”}, “method”:”post”}</p>
+<h1 id="for-i-in-case"><a href="#for-i-in-case" class="headerlink" title="for i in case:"></a>for i in case:</h1><h1 id="print-i-i默认取到的key"><a href="#print-i-i默认取到的key" class="headerlink" title="print(i)  # i默认取到的key"></a>print(i)  # i默认取到的key</h1><h1 id="print-case-i-然后再通过key-取值value"><a href="#print-case-i-然后再通过key-取值value" class="headerlink" title="print(case[i])  # 然后再通过key 取值value"></a>print(case[i])  # 然后再通过key 取值value</h1><h1 id="如果要value怎么做呢？"><a href="#如果要value怎么做呢？" class="headerlink" title="- 如果要value怎么做呢？"></a>- 如果要value怎么做呢？</h1><h1 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h1><h1 id="for-v-in-case-values"><a href="#for-v-in-case-values" class="headerlink" title="for v in case.values():"></a>for v in case.values():</h1><h1 id="print-v"><a href="#print-v" class="headerlink" title="print(v)"></a>print(v)</h1><h1 id="-1"><a href="#-1" class="headerlink" title=""></a></h1><h1 id="方法二："><a href="#方法二：" class="headerlink" title="# 方法二："></a># 方法二：</h1><h1 id="for-i-in-case-1"><a href="#for-i-in-case-1" class="headerlink" title="for i in case:"></a>for i in case:</h1><h1 id="print-i-i默认取到的key-1"><a href="#print-i-i默认取到的key-1" class="headerlink" title="print(i)  # i默认取到的key"></a>print(i)  # i默认取到的key</h1><h1 id="print-case-i-然后再通过key-取值value-1"><a href="#print-case-i-然后再通过key-取值value-1" class="headerlink" title="print(case[i])  # 然后再通过key 取值value"></a>print(case[i])  # 然后再通过key 取值value</h1><h1 id="方式三：-不仅仅需要value-可能需要value-和key"><a href="#方式三：-不仅仅需要value-可能需要value-和key" class="headerlink" title="方式三： 不仅仅需要value 可能需要value 和key"></a>方式三： 不仅仅需要value 可能需要value 和key</h1><h1 id="for-j-in-case-items"><a href="#for-j-in-case-items" class="headerlink" title="for j in case.items():"></a>for j in case.items():</h1><h1 id="print-j-键值对放在一个元组里-：-‘title’-‘login’-k-v-‘title’-‘login’"><a href="#print-j-键值对放在一个元组里-：-‘title’-‘login’-k-v-‘title’-‘login’" class="headerlink" title="print(j) # 键值对放在一个元组里 ：(‘title’, ‘login’) | k,v &#x3D; (‘title’, ‘login’)"></a>print(j) # 键值对放在一个元组里 ：(‘title’, ‘login’) | k,v &#x3D; (‘title’, ‘login’)</h1><p>for k,v in case.items():  # 可以分别直接拿到key 和value<br>    print(f”key是{k},value是{v}”)</p>
+<p>字符串的方法: str.find , .index .lower .upper .join .strip .replace .split .endswith .startswith 。。。<br>列表方法: .append .extexd .insert .pop .remove ,.count<br>字典方法: .update .get .keys .values .item() .pop</p>
+<p>“””<br>5、函数的定义和调用都需要加一个括号，这个括号是干啥的？</p>
+<ul>
+<li>问题： 函数定义里面，有些东西会变化的 【比如薪资提成奖金等这数据 依据每个人不一样】，能写死在函数里面么？</li>
+</ul>
+<p>函数的参数：函数里面一些变化的 不能写死在函数里面，进行参数化。– 变量代替这个值。</p>
+<ul>
+<li>形参： 本质上就是变量，写在函数的括号里面，表示这些会变化的数据。&#x3D;&#x3D; 形式上的参数 没有具体值</li>
+<li>实参： 实际的数据 真正参数的值。在调用函数的时候写在括号里，用来传入具体数据的值。</li>
+</ul>
+<p>定义函数的参数有几种类型：<br>1、必备参数： 定义了一定要传入，不然就会报错；<br>2、默认参数：如果有些参数在大部分的场景下都是同一个值，可以给这个参数在定义的时候设置一个默认值，简化传参。</p>
+<ul>
+<li>设置了默认值， 传参的时候可以不传,使用默认值作为数据</li>
+<li>也可以传值的，传了值就用传进入的数据<br>注意：同时设置了必备参数和默认参数的时候，默认参数必须在必备参数的后面。<br>3、不定长参数：不确定长度的参数，这个参数可以没有值，也可以有一个值或者多个值。【可变化的长度的参数】</li>
+<li>使用场景： 函数里面有一些数据不确定是否有 也不确定有几个的时候 定义为不定长参数接受。</li>
+<li>比如offer函数： 全勤奖，加班，bug之星，项目奖金，过节费… &#x3D;&#x3D; 定义为不定长参数</li>
+<li><ul>
+<li>和**是不能变的，arges kwargs 就是变量名 可以改的 但是习惯上都用这个 最好不要改。<br>*args：等前面的必备和默认参数都接受完了，剩下的实参都会被这个不定长参数接受</li>
+</ul>
+<ul>
+<li>用元组格式来保存。</li>
+</ul>
+</li>
+<li>*args的位置不一定要在最后，但是在的位置前面的参数接受完，剩下都会被他接受。</li>
+<li>是按照位置传参的方式来传递实参<br>**kwargs: keyword关键字 ，等前面的必备和默认参数都接受完了，剩下的实参都会被这个不定长参数接受</li>
+<li>并用字典的格式来保存。</li>
+<li>**kwargs的位置一定要在最后,否则会报语法错误</li>
+<li>是按照关键字传参的方式来传递实参</li>
+</ul>
+<p>传递函数的参数有几种类型：<br>1、位置传参： 形参和实参的位置一一对应的，如果顺序错误了，参数传递就给错人了。&#x3D;&#x3D; 会出问题</p>
+<ul>
+<li>参数比较多 类型多的时候 容易出错。&#x3D;&#x3D;不推荐<br>2、关键字传参： 带上形参去传递实参 不会跟位置相关了。 顺序无关 &#x3D;&#x3D; 参数比较多时候更常用和灵活。<br>注意： 可以混合用，但是不推荐。因为语法要求：就是关键字传参必须在位置传参后面。</li>
+</ul>
+<p>“””</p>
+<p>面试题: *args和**kwargs的参数区别有哪些?<br>*args:等前面的参数接受完，剩下的所有的参数都会被这个不定长参数接受 -并以元组格式保存。<br>– 不一定要放在最后，放的位置在哪里 前面的参数接受完 剩下的都归他。 – 位置传参的方式传递参数<br>**kwargs:等前面的参数接受完，剩下的所有的参数都会被这个不定长参数接 受<br>–并以字典格式保存。 –关键字的传参的方式传递参数<br>– 一定要放在最后的位置。否则会语法错误。</p>
+<p>函数的参数传入<br>      位置传参<br>      关键字传参<br>      混合传参</p>
+<p>“””<br>函数解包</p>
+<h1 id="简化–-元组解包-效果是-依次取元组的值-按照顺序传递给函数的参数"><a href="#简化–-元组解包-效果是-依次取元组的值-按照顺序传递给函数的参数" class="headerlink" title="简化– 元组解包 :效果是 依次取元组的值 按照顺序传递给函数的参数"></a>简化– 元组解包 :效果是 依次取元组的值 按照顺序传递给函数的参数</h1><p>result &#x3D; send_offer(*pare)<br>print(*result)</p>
+<h1 id="对于多个返回结果保存在元组里-也可以解包。"><a href="#对于多个返回结果保存在元组里-也可以解包。" class="headerlink" title="对于多个返回结果保存在元组里 也可以解包。"></a>对于多个返回结果保存在元组里 也可以解包。</h1><p>a,b &#x3D; result<br>print(a,b)</p>
+<h1 id="列表的解包-–-类比元组解包"><a href="#列表的解包-–-类比元组解包" class="headerlink" title="列表的解包 – 类比元组解包"></a>列表的解包 – 类比元组解包</h1><h1 id="pare-15000-2500-300"><a href="#pare-15000-2500-300" class="headerlink" title="pare &#x3D; [15000,2500,300]"></a>pare &#x3D; [15000,2500,300]</h1><h1 id="result-send-offer-pare"><a href="#result-send-offer-pare" class="headerlink" title="result &#x3D; send_offer(*pare)"></a>result &#x3D; send_offer(*pare)</h1><h1 id="print-result"><a href="#print-result" class="headerlink" title="print(result)"></a>print(result)</h1><h1 id="字典的解包–-没有顺序-效果-按照key作为关键字传参的key-，value作为参数值进行，跟顺序无关。"><a href="#字典的解包–-没有顺序-效果-按照key作为关键字传参的key-，value作为参数值进行，跟顺序无关。" class="headerlink" title="字典的解包– 没有顺序 : 效果  按照key作为关键字传参的key ，value作为参数值进行，跟顺序无关。"></a>字典的解包– 没有顺序 : 效果  按照key作为关键字传参的key ，value作为参数值进行，跟顺序无关。</h1><h1 id="注意：-字典的key-很形参的关键字保持一致。"><a href="#注意：-字典的key-很形参的关键字保持一致。" class="headerlink" title="注意： 字典的key 很形参的关键字保持一致。"></a>注意： 字典的key 很形参的关键字保持一致。</h1><h1 id="para-“bonus”-2500-”subsidy”-600-”salary”-17000"><a href="#para-“bonus”-2500-”subsidy”-600-”salary”-17000" class="headerlink" title="para &#x3D; {“bonus”:2500,”subsidy”:600,”salary”:17000}"></a>para &#x3D; {“bonus”:2500,”subsidy”:600,”salary”:17000}</h1><h1 id="result-send-offer-para"><a href="#result-send-offer-para" class="headerlink" title="result &#x3D; send_offer(**para)"></a>result &#x3D; send_offer(**para)</h1><p>“””</p>
+<p>“””<br>配置文件  日志记录等 存在文本里。代码需要操作文本【文字文本 图片】。</p>
+<ul>
+<li>打开文件</li>
+<li>读取数据</li>
+<li>写入数据</li>
+<li>关闭文件 ： 打开了文件 避免同时操作引起冲突出错 所以一定要关闭文件。</li>
+</ul>
+<p>文件操作：open()</p>
+<ul>
+<li>文件里有中文 没有加编码  就会报错</li>
+<li>所以，一般来说 处理文字文本 默认都会加上 utf8的编码。</li>
+</ul>
+<p>如果文件里有非英文：记得一定要机上编码格式为 utf8。</p>
+<ul>
+<li>原因： 语言都是美国人发明 只能处理英文【ASCII】，中文以及其他的语言都处理不了。需要用utf8编码处理更多的语言。</li>
+</ul>
+<p>“””</p>
+<h1 id="1、打开文件"><a href="#1、打开文件" class="headerlink" title="1、打开文件"></a>1、打开文件</h1><h1 id="f-open-“demo”"><a href="#f-open-“demo”" class="headerlink" title="f &#x3D; open(“demo”)"></a>f &#x3D; open(“demo”)</h1><h1 id="print-f-返回了对象"><a href="#print-f-返回了对象" class="headerlink" title="# print(f)  # 返回了对象"></a># print(f)  # 返回了对象</h1><h1 id="2、读取数据"><a href="#2、读取数据" class="headerlink" title="# 2、读取数据"></a># 2、读取数据</h1><h1 id="data-f-read-一次性读取所有的内容-返回读取到的值"><a href="#data-f-read-一次性读取所有的内容-返回读取到的值" class="headerlink" title="data &#x3D; f.read()  # 一次性读取所有的内容 返回读取到的值"></a>data &#x3D; f.read()  # 一次性读取所有的内容 返回读取到的值</h1><h1 id="print-data"><a href="#print-data" class="headerlink" title="print(data)"></a>print(data)</h1><h1 id="3、关闭文件"><a href="#3、关闭文件" class="headerlink" title="# 3、关闭文件"></a># 3、关闭文件</h1><h1 id="f-close"><a href="#f-close" class="headerlink" title="f.close()"></a>f.close()</h1><h1 id="如果有中文-open加上encoding-参数"><a href="#如果有中文-open加上encoding-参数" class="headerlink" title="如果有中文 open加上encoding 参数"></a>如果有中文 open加上encoding 参数</h1><p>f &#x3D; open(“demo”,encoding&#x3D;”UTF8”)<br>data &#x3D; f.read()<br>print(data)</p>
+<p>“””<br>zip(): 结果是一个可迭代的对象，可以转化为列表 或者字典</p>
+<ul>
+<li>把两组数据做一一对应的打包,以长度短的为准</li>
+</ul>
+<p>“””</p>
+<p>“””<br>文件操作因为涉及到多人操作的话容易冲突，所以打开一个文件一定要记得关闭这个文件。</p>
+<p>with 方式打开这个文件 默认自带关闭文件操作。 &#x3D;&#x3D;&#x3D; 推荐</p>
+<ul>
+<li>如此打开一个文件后 不需要再手动写close方法关闭文件。</li>
+</ul>
+<p>“””<br>with open(“datas&#x2F;demo”, encoding&#x3D;”UTF8”) as f:<br>    data &#x3D; f.read()<br>    print(data)</p>
+<p>路径处理工具： pathlib 功能库实。 – 内置库 【类比内置函数理解】</p>
+<ul>
+<li>功能库：包含了一组功能的  比内置函数强大和丰富。</li>
+<li>导入进来<br>1、获取我当前的文件的路径<br>2、获取父级的目录–上级 或者上级的上级 – parent<br>3、获取下级的目录</li>
+</ul>
+<p>这种方式获取的路径会自动化系统的盘符的方式，兼容mac Linux。<br>如果代码路径整个换了电脑存储位置，但是相当关系路径没有变化。</p>
+<h1 id="导功能库进来到py文件-这个文件就可以使用这个功能库"><a href="#导功能库进来到py文件-这个文件就可以使用这个功能库" class="headerlink" title="导功能库进来到py文件  这个文件就可以使用这个功能库"></a>导功能库进来到py文件  这个文件就可以使用这个功能库</h1><p>import pathlib</p>
+<h1 id="1、获取我当前的文件的路径-【动态获取当前文件的绝对路径】"><a href="#1、获取我当前的文件的路径-【动态获取当前文件的绝对路径】" class="headerlink" title="1、获取我当前的文件的路径 【动态获取当前文件的绝对路径】"></a>1、获取我当前的文件的路径 【动态获取当前文件的绝对路径】</h1><p>print(pathlib.Path(<strong>file</strong>).absolute())</p>
+<h1 id="2、获取父级的目录"><a href="#2、获取父级的目录" class="headerlink" title="2、获取父级的目录"></a>2、获取父级的目录</h1><p>print(pathlib.Path(<strong>file</strong>).absolute().parent.parent)</p>
+<h1 id="3、获取下级的目录："><a href="#3、获取下级的目录：" class="headerlink" title="3、获取下级的目录："></a>3、获取下级的目录：</h1><p>file_path &#x3D; pathlib.Path(<strong>file</strong>).absolute().parent.parent &#x2F; ‘day06_函数和内置函数’ &#x2F; “demo3”</p>
+<p>、包 ：package，代码包，包含多个py文件 【包包含多模块】，创建python package默认加一个init.py<br>    - 用来代码模块归类管理 &#x3D;&#x3D; 框架的代码分层里用上。<br>    - 里面的模块【py文件】可以直接进行导入 给别的模块使用。 –import<br>    - 和普通文件夹区别： 包会有init.py ， 包可以可以导入的。</p>
+<p>问题： 每次导入模块之后，源模块里面运行的代码都会被执行一次 【print 函数执行等】。但是并不是我想的。</p>
+<ul>
+<li>如果有代码只想在自己的模块里执行，不想背其他模块导入后再执行 就放在main里面。</li>
+<li>main函数实现。</li>
+<li>作用： 用来调试代码用的。检查一下代码是否功能正常。</li>
+</ul>
+<p>参数：</p>
+<ul>
+<li>sink：日志文件的名字,直接写当前的目录里生成一个名字的日志文件。<ul>
+<li>日志文件需要放在代码分层结构的 outputs&#x2F;logs层级里，要做路径处理 【相对路径-pathlib】</li>
+<li>在tools里handle_path处理日志的路径</li>
+<li>在使用日志模块 导入</li>
+</ul>
+</li>
+<li>encoding: 编码格式，日志需要有中文，日志编码设置为 utf8</li>
+<li>level: 级别一定要大写，INFO， ERROR<ul>
+<li>这里参数设置了一个级别之后，这个级别及其以上的级别的日志都会被记录到日志文件里。级别低的不会记录。</li>
+<li>优先级： critical &gt; error &gt; warning &gt; info &gt; debug</li>
+<li>一般会设置INFO，critical &gt; error &gt; warning &gt; info这几个级别都会被记录日志。</li>
+</ul>
+</li>
+<li>rotation: 进行日志文件分离的。一般会通过时间控制 | 文件大小控制。<ul>
+<li>rotation&#x3D;”12:00”: 按照时间分离，每天12点都会创建换一个新的日志文件</li>
+<li>rotation&#x3D;”1 week”: 按照时间分离，1周会创建换一个新的日志文件</li>
+<li>rotation&#x3D;”20 MB”: 按照文件大小分离，日志文件超过10MB会创建换一个新的日志文件 &#x3D;&#x3D; 更常见</li>
+</ul>
+</li>
+<li>retention: 限定日志文件的个数，超过限定的个数，旧的日志文件就会被删除。</li>
+</ul>
+<p>from loguru import logger<br>from tools.handle_path import log_path  # 导入日志的路径</p>
+<h1 id="2、日志写入到文件："><a href="#2、日志写入到文件：" class="headerlink" title="2、日志写入到文件："></a>2、日志写入到文件：</h1><p>logger.add(sink&#x3D;log_path&#x2F;“lemonapi.log”,<br>           encoding&#x3D;”UTF8”,<br>           level&#x3D;”INFO”,<br>           rotation&#x3D;”1kB”,<br>           retention&#x3D;20)</p>
+<p>#1、日志打印在控制台<br>logger.info(“日常记录日志”)</p>
+<p>– init函数： def <strong>init</strong>():</p>
+<ul>
+<li>名字固定的，不能改，也不要写错– int错的；</li>
+<li>对象的初始化的过程： 每次产生一个对象的过程，都会自动调用这个init初始化函数</li>
+<li>init函数不能设置返回值的，只能保留默认None返回。</li>
+<li>定义对象的属性的。–如何蒂尼实例属性，我们需要先搞清self。</li>
+</ul>
+<p>self：就是对象本身，在类里面表示一个对象。</p>
+<ul>
+<li>在类里面定义实例方法的时候，默认在括号里你加上self，表示这是一个对象的方法。</li>
+<li>车卖给你之前【my_car】 在车厂的车–付钱之后my_car ，是 同一辆车么?<br>  &#x3D;&#x3D;是同一辆车，在类里面叫做self ，实例化之后 my_car.&#x3D;&#x3D; 内存地址都是一样的 同一个对象本身。</li>
+<li>self： 变量名字可以换成其他的命名，se，但是习惯上都会使用self  不要改。</li>
+</ul>
+<p>#<strong>init</strong>(self):类初始化对象会调用<br>class Car:<br>    # 定义类属性，赋值 “True”<br>    wheel &#x3D; “True”<br>    engine &#x3D; “True”<br>    # 类里面定义一个方法：def语法 相当于类里面函数。–初始化方法 跟普通的函数有差异<br>    def <strong>init</strong>(self):<br>        print(“正在生成一辆车…”)</p>
+<h1 id="实例化对象"><a href="#实例化对象" class="headerlink" title="实例化对象"></a>实例化对象</h1><p>my_car &#x3D; Car()</p>
+<p>“””<br>方法： 类和对象的动作和行为</p>
+<ul>
+<li>类方法： 类共有的动作和行为 – 不掌握也可以，用的比较少。使用有很多局限性<ul>
+<li>在方法上面加上申明 @classmethod</li>
+<li>在类方法里只能调用类属性【cls.类属性】 不能调用实例属性</li>
+<li>在类方法里不能调用实例方法。</li>
+</ul>
+</li>
+<li>实例方法：某个具体的对象具备的动作和行为： 重点学习,类里面定义方法默认就是实例方法，所以这个用的最多。</li>
+<li>init函数也是一个方法，实例方法。–特殊的方法  自动调用</li>
+<li>静态方法： 用的更少 基本上。 普通函数 跟类和对象没啥关系。</li>
+</ul>
+<p>自己定义方法：默认就是实例方法</p>
+<ul>
+<li>可以通过对象调用</li>
+<li>不可以通过类调用</li>
+</ul>
+<p>1、实例方法里面调用实例属性。-必须通过self调用</p>
+<ul>
+<li>实例属性 是所有的实例的方法可以共享属性的值。</li>
+<li>实例方法里可以调用类属性，也是self.类实行</li>
+</ul>
+<p>2、实例方法可以实现相互之间的调动 &#x3D;&#x3D; 相当于函数相互调动</p>
+<ul>
+<li>self.实例方法进行调用。</li>
+<li>实例方法定义参数- 参数只有这个方法自己可以用 ，不能共享。</li>
+</ul>
+<p>“””<br>class Car:<br>    wheel &#x3D; “True”<br>    engine &#x3D; “True”<br>    def <strong>init</strong>(self,cl&#x3D;”黑色”,lg&#x3D;”法拉利”): # 参数- 形参,变量，跟属性名没有任何关系<br>        self.color &#x3D; cl  # 实例属性，实例方法里可以调用-共享<br>        self.logo &#x3D; lg<br>        print(“正在生成一辆车…”)</p>
+<pre><code class="hljs"># 定义实例方法 -- 函数 def
+def driving(self,test): # 默认加self 表示这是一个实例方法--self就是对象本身
+    print(&quot;正在开车...&quot;)
+    print(f&quot;开的车的颜色是&#123;self.color&#125;，开的车logo是&#123;self.logo&#125;&quot;,test)  # 通过self调用实例属性
+    # 调用充电的方法 --self调用
+    self.recharge()
+
+# 定义实例方法 -- 函数 def
+def recharge(self):
+    print(&quot;正在加油充电...&quot;)
+    print(f&quot;加油的车的颜色是&#123;self.color&#125;&quot;,self.wheel) # 实例方法里调动类属性 self.wheel
+
+# 定义类方法
+@classmethod  # 申明这个方法是类方法--装饰器 扩展函数的功能
+def get_engine(cls):  # 不再是self 是cls 代表这个类
+    print(f&quot;车的引擎是&#123;cls.engine&#125;&quot;) # 在类方法里调用类属性
+</code></pre>
+<h1 id="实例方法通过实例调动"><a href="#实例方法通过实例调动" class="headerlink" title="实例方法通过实例调动"></a>实例方法通过实例调动</h1><p>my_car &#x3D; Car(cl&#x3D;”红色”,lg&#x3D;”宝马”)<br>print(my_car.color) # my_car对象调调用实例属性<br>print(my_car.wheel)  #  my_car对象调用类属性<br>my_car.driving() #  my_car对象调用实例方法</p>
+<h1 id="my-car-recharge-my-car对象调用实例方法"><a href="#my-car-recharge-my-car对象调用实例方法" class="headerlink" title="my_car.recharge() #  my_car对象调用实例方法"></a>my_car.recharge() #  my_car对象调用实例方法</h1><p>“””<br>属性： 类属性 和实例属性 【特征和状态-天生的五官 手足；后天的-肤色，双眼皮，面容，性格】</p>
+<ul>
+<li>之前类属性和实例属性都是提前定义好了，这种就需要提前设计的时候就知道这个值是多少；</li>
+<li>但是再工作中有些属性没有办法提前知道，中间过程产生的数据。<ul>
+<li>比如： 登录之后接口鉴权，token &#x2F;cookies 【每次登录刷新 过期时间】</li>
+<li>比如注册用户名和手机号不能重复使用，不能提前写死，随机生成之后 动态传参。<ul>
+<li>【类比Jmeter的random，python的faker】，随机生成的， 不能提前知道。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>没有办法提前设定好的一些属性，需要后天动态生成属性和值。&#x3D;&#x3D;&#x3D; 动态属性。</p>
+<p>动态属性【反射】:就是用来给类或者对象设置属性&#x2F;获取属性&#x2F;删除属性&#x2F;判断是否有属性。&#x3D;&#x3D; 四个方法：内置函数<br>1）设置属性：setattr( 对象&#x2F;类，属性名，属性值)  &#x3D;&#x3D;重点</p>
+<ul>
+<li>属性名需要是字符串类型</li>
+<li>新增这个属性名字 -静态代码不能书别 会有提示，但是动态运行起来了之后就可以识别，所以不会报错的。<br>2）获取属性：getattr(对象&#x2F;类，属性名)  &#x3D;&#x3D;了解<br>3）判断是否存在属性：hasattr(对象&#x2F;类，属性名) &#x3D;&#x3D;知道</li>
+<li>结果是布尔值： True  False</li>
+<li>可以用来多if判断条件</li>
+<li>使用场景： 如果代码里需要使用某个属性，可以先做一个判断是否存在这个属性，再获取使用。避免报错。<br>4）删除属性: delattr(对象&#x2F;类，属性名)  –了解</li>
+<li>用的比较少 了解即可。</li>
+</ul>
+<p>“””</p>
+<h1 id="1）设置属性：setattr-对象-类，属性名，属性值-，新增或者修改属性-用的最多"><a href="#1）设置属性：setattr-对象-类，属性名，属性值-，新增或者修改属性-用的最多" class="headerlink" title="1）设置属性：setattr( 对象&#x2F;类，属性名，属性值) ，新增或者修改属性 &#x3D;&#x3D;用的最多"></a>1）设置属性：setattr( 对象&#x2F;类，属性名，属性值) ，新增或者修改属性 &#x3D;&#x3D;用的最多</h1><p>class Car:<br>    wheel &#x3D; “True”<br>    engine &#x3D; “True”<br>    def <strong>init</strong>(self,cl&#x3D;”黑色”,lg&#x3D;”法拉利”): # 参数- 形参,变量，跟属性名没有任何关系<br>        self.color &#x3D; cl  # 实例属性，实例方法里可以调用-共享<br>        self.logo &#x3D; lg<br>        print(“正在生成一辆车…”)</p>
+<h1 id="实例化对象-取名字-name"><a href="#实例化对象-取名字-name" class="headerlink" title="实例化对象 -取名字 -name"></a>实例化对象 -取名字 -name</h1><p>my_car &#x3D; Car()<br>setattr(my_car,”name”,”小可爱”)  # 动态设置属性name&#x3D;”小可爱” -实例属性<br>print(my_car.color)<br>print(my_car.name)<br>print(my_car.<strong>dict</strong>)  # 查看实例所有的属性 确认是否设置属性成功</p>
+<h1 id="设置类的属性"><a href="#设置类的属性" class="headerlink" title="设置类的属性"></a>设置类的属性</h1><p>setattr(Car,”name”,”大可爱”)<br>print(Car.<strong>dict</strong>) # 查看类所有的属性 确认是否设置属性成功</p>
+<h1 id="2）获取属性：getattr-对象-类，属性名"><a href="#2）获取属性：getattr-对象-类，属性名" class="headerlink" title="2）获取属性：getattr(对象&#x2F;类，属性名)"></a>2）获取属性：getattr(对象&#x2F;类，属性名)</h1><p>print(getattr(Car, “name”)) # 属性名存在的，直接返回属性值</p>
+<h1 id="print-getattr-Car-“age”-属性名不存在的，直接报错：AttributeError-type-object-‘Car’-has-no-attribute-‘age’"><a href="#print-getattr-Car-“age”-属性名不存在的，直接报错：AttributeError-type-object-‘Car’-has-no-attribute-‘age’" class="headerlink" title="print(getattr(Car, “age”)) # 属性名不存在的，直接报错：AttributeError: type object ‘Car’ has no attribute ‘age’"></a>print(getattr(Car, “age”)) # 属性名不存在的，直接报错：AttributeError: type object ‘Car’ has no attribute ‘age’</h1><h1 id="3）判断是否存在属性：hasattr-对象-类，属性名"><a href="#3）判断是否存在属性：hasattr-对象-类，属性名" class="headerlink" title="3）判断是否存在属性：hasattr(对象&#x2F;类，属性名)"></a>3）判断是否存在属性：hasattr(对象&#x2F;类，属性名)</h1><p>print(hasattr(Car, “age”))<br>if hasattr(Car, “age”):<br>    getattr(Car,”age”)<br>else:<br>    setattr(Car,”age”,”3”)<br>    print(getattr(Car,”age”))</p>
+<h1 id="4）删除属性-delattr-对象-类，属性名-–"><a href="#4）删除属性-delattr-对象-类，属性名-–" class="headerlink" title="4）删除属性: delattr(对象&#x2F;类，属性名) –"></a>4）删除属性: delattr(对象&#x2F;类，属性名) –</h1><p>print(Car.<strong>dict</strong>)<br>delattr(Car,”age”)<br>print(Car.<strong>dict</strong>)</p>
+<p>from openpyxl import load_workbook<br>from tools.handle_path import excel_path</p>
+<h1 id="第一步：-找到工作簿对象"><a href="#第一步：-找到工作簿对象" class="headerlink" title="第一步： 找到工作簿对象"></a>第一步： 找到工作簿对象</h1><p>wb &#x3D; load_workbook(excel_path)</p>
+<h1 id="第二步：找表单-sheet-方括号取值-表单的名字"><a href="#第二步：找表单-sheet-方括号取值-表单的名字" class="headerlink" title="第二步：找表单  sheet &#x3D;&#x3D; 方括号取值 表单的名字"></a>第二步：找表单  sheet &#x3D;&#x3D; 方括号取值 表单的名字</h1><p>sh &#x3D; wb[“login”]</p>
+<h1 id="可以获取excel表格所有数据-sh-values是一个生成器，for循环去遍历-或者list转化为嵌套元祖的列表"><a href="#可以获取excel表格所有数据-sh-values是一个生成器，for循环去遍历-或者list转化为嵌套元祖的列表" class="headerlink" title="可以获取excel表格所有数据- sh.values是一个生成器，for循环去遍历 或者list转化为嵌套元祖的列表"></a>可以获取excel表格所有数据- sh.values是一个生成器，for循环去遍历 或者list转化为嵌套元祖的列表</h1><h1 id="print-sh-values-生成器"><a href="#print-sh-values-生成器" class="headerlink" title="print(sh.values) # 生成器"></a>print(sh.values) # 生成器</h1><h1 id="print-list-sh-values-转化为列表之后，每行的数据是一个元组-列表嵌套元组。"><a href="#print-list-sh-values-转化为列表之后，每行的数据是一个元组-列表嵌套元组。" class="headerlink" title="# print(list(sh.values))  # 转化为列表之后，每行的数据是一个元组&#x3D;&#x3D;列表嵌套元组。"></a># print(list(sh.values))  # 转化为列表之后，每行的数据是一个元组&#x3D;&#x3D;列表嵌套元组。</h1><h1 id="for-data-in-sh-values-每次去到一行数据-元组保存的数据"><a href="#for-data-in-sh-values-每次去到一行数据-元组保存的数据" class="headerlink" title="for data in sh.values: # 每次去到一行数据-元组保存的数据"></a>for data in sh.values: # 每次去到一行数据-元组保存的数据</h1><h1 id="print-data-1"><a href="#print-data-1" class="headerlink" title="print(data)"></a>print(data)</h1><h1 id="for-i-in-data"><a href="#for-i-in-data" class="headerlink" title="for i in data:"></a>for i in data:</h1><h1 id="print-i"><a href="#print-i" class="headerlink" title="print(i)"></a>print(i)</h1><p>“””<br>任何一款工具操作连接数据库步骤一致：<br>第一步：连接上数据库</p>
+<ul>
+<li>连接数据库信息： ip&#x2F;域名，端口，数据库名字，用户名，密码<br>第二步：需要获取游标，然后执行查询操作【sql语句】</li>
+<li>游标：小朋友看书 手指着看过地方念文字： 读到 哪行手指向哪行。 &#x3D;&#x3D;手指</li>
+<li>数据库读取数据按照游标的位置开始读。前面如果已经读完数据，后面再次读取会从游标的位置开始读取数据。<br>第三步：真正执行sql语句 获取需要的执行结果：</li>
+<li>这个执行结果是数据的数量总数。 如果result &#x3D; 0 ，说明没有符合条件的数据。<br>第四步： 获取具体的查询的数据，结果是格式保存的元组的格式保存。&#x3D;&#x3D;不太方便，希望字典保存。？？</li>
+<li>注意问题： 游标问题<ul>
+<li>cursor.fetchone() :从查询结果里获取一条数据 &#x3D;&#x3D;做多</li>
+<li>cursor.fetchmany(size&#x3D;2): 从查询结果里获取多条数据，通过size参数进行自定义条数。<ul>
+<li>默认是元组嵌套元组，每行数据是一个元组。</li>
+</ul>
+</li>
+<li>cursor.fetchall(): 从查询结果里获取所有的数据<br>第五步：关闭数据库连接</li>
+<li>数据库连接数是有限制的，用完连接数用完了 后面数据库连接就连接不上。用完了数据一定要记得关闭数据库的链接和游标。</li>
+</ul>
+</li>
+</ul>
+<p>import pymysql<br>from pymysql.cursors import DictCursor</p>
+<h1 id="第一步：连接上数据库-获取连接对象"><a href="#第一步：连接上数据库-获取连接对象" class="headerlink" title="第一步：连接上数据库  获取连接对象"></a>第一步：连接上数据库  获取连接对象</h1><p>conn &#x3D; pymysql.connect(<br>    user&#x3D;”lemon_auto”,<br>    password&#x3D;”lemon!@123”,<br>    database&#x3D;”yami_shops”,<br>    port &#x3D; 3306,<br>    host &#x3D; “mall.lemonban.com”,<br>    charset&#x3D;”utf8mb4”,  # 支持中文字符集<br>    cursorclass&#x3D;DictCursor  # 读取的数据默认变成字典的格式<br>)</p>
+<h1 id="第二步：需要获取游标，存在一个变量里。"><a href="#第二步：需要获取游标，存在一个变量里。" class="headerlink" title="第二步：需要获取游标，存在一个变量里。"></a>第二步：需要获取游标，存在一个变量里。</h1><p>cursor &#x3D; conn.cursor()</p>
+<h1 id="第三步：真正执行sql语句-获取需要的执行结果："><a href="#第三步：真正执行sql语句-获取需要的执行结果：" class="headerlink" title="第三步：真正执行sql语句 获取需要的执行结果："></a>第三步：真正执行sql语句 获取需要的执行结果：</h1><p>sql &#x3D; ‘select user_phone,mobile_code from tz_sms_log where user_phone &#x3D; “13555554444” order by rec_date desc;’<br>result &#x3D; cursor.execute(sql)  # 用游标对象调用执行sql的方法<br>print(result)</p>
+<h1 id="第四步：-获取具体的查询的数据"><a href="#第四步：-获取具体的查询的数据" class="headerlink" title="第四步： 获取具体的查询的数据"></a>第四步： 获取具体的查询的数据</h1><h1 id="one-row-data-cursor-fetchone"><a href="#one-row-data-cursor-fetchone" class="headerlink" title="one_row_data &#x3D; cursor.fetchone()"></a>one_row_data &#x3D; cursor.fetchone()</h1><h1 id="print-“fetchone结果”-one-row-data"><a href="#print-“fetchone结果”-one-row-data" class="headerlink" title="print(“fetchone结果”,one_row_data)"></a>print(“fetchone结果”,one_row_data)</h1><p>many_row_data &#x3D; cursor.fetchmany(size&#x3D;None) # 默认就是一条数据<br>print(“fetchmany结果”,many_row_data)</p>
+<h1 id="all-row-data-cursor-fetchall"><a href="#all-row-data-cursor-fetchall" class="headerlink" title="all_row_data &#x3D; cursor.fetchall()"></a>all_row_data &#x3D; cursor.fetchall()</h1><h1 id="print-“fetchmany结果”-all-row-data"><a href="#print-“fetchmany结果”-all-row-data" class="headerlink" title="print(“fetchmany结果”,all_row_data)"></a>print(“fetchmany结果”,all_row_data)</h1><h1 id="第五步：关闭数据库连接"><a href="#第五步：关闭数据库连接" class="headerlink" title="第五步：关闭数据库连接"></a>第五步：关闭数据库连接</h1><p>cursor.close()  # 关闭游标<br>conn.close()  # 关闭连接</p>
+<p>“””<br>1、pytest用例语法规则：–绿色三角，可以执行用例<br>1） 测试函数的形式写：函数名要以test_开头  &#x3D;&#x3D;简单 更常用           NNN   NNNNNNN<br>2) 测试类的形式写： 类名要以Test开头，类里面的方法也要以test_开头 才会被识别为pytest的用例。</p>
+<p>class TestDemo:<br>    def test_02_demo(self):<br>        assert ger_ran() &gt; 10</p>
+<pre><code class="hljs">def test_03_demo(self):
+    assert ger_ran() &lt; 15
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/python/" class="category-chain-item">python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>python高阶</div>
+      <div>https://zn-zyl.github.io/2022/02/01/python/python高阶/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhounuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/16/CICD/shell%E5%91%BD%E4%BB%A4/" title="shell命令">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">shell命令</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
