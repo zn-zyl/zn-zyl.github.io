@@ -23,100 +23,100 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="JMeter常用操作">
 <meta property="og:url" content="https://zn-zyl.github.io/2022/06/17/PerformanceTesting/JMeter%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/index.html">
-<meta property="og:site_name" content="ZN Blog">
+<meta property="og:site_name" content="ZhouNuo Blog">
 <meta property="og:description" content="JMeter常用操作概念JMeter，一个100%的纯Java桌面应用，由Apache组织的开放源代码项目，它是功能和性能测试的工具。具有高可扩展性、支持Web(HTTP&#x2F;HTTPS)、SOAP、FTP、JAVA 等多种协议的特点。 官方网站:https:&#x2F;&#x2F;jmeter.apache.org&#x2F;  安装与配置 1.下载好jdk,本机配置好环境变量 2.官网下载压缩包，在任意目录下解压 3">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-02-32.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-05-56.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-08-29.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_17-10-40.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-10-01.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-12-41.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_21-28-27.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_17-57-10.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-22-03.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-27-02.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-29-50.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-35-01.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-43-39.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_10-36-01.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_10-52-26.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_10-53-02.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_12-15-07.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_10-39-51.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_12-08-25.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_12-12-06.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_12-05-10.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_11-10-52.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_15-07-39.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_15-32-35.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_17-18-46.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_17-19-21.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_17-03-27.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_17-42-43.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_18-17-45.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_18-36-04.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_18-48-25.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_18-59-43.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_19-02-20.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_19-32-43.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_14-15-01.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_19-51-58.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_14-41-10.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_14-52-21.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_14-53-04.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_15-54-49.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_16-14-57.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_16-11-29.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_17-43-26.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_17-47-47.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_17-48-34.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_18-20-49.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_18-24-52.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_21-56-35.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_22-52-59.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_14-17-36.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_14-23-06.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_14-26-20.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_17-51-14.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_18-07-21.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_18-09-25.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_19-55-41.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-24-19.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-21-46.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-18-03.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-44-30.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-45-47.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-58-54.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_20-24-19.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_21-20-01.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_21-30-16.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_13-11-57.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_13-43-19.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_13-37-32.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_13-40-01.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_14-05-05.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_14-03-06.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_14-06-13.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_14-20-30.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_18-21-51.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-05-10.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-07-03.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-09-15.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-10-23.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-11-20.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-11-49.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_21-12-07.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_20-02-32.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_20-05-56.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_20-08-29.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_17-10-40.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_20-10-01.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_20-12-41.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_21-28-27.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_17-57-10.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_20-22-03.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_20-27-02.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_20-29-50.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_20-35-01.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_20-43-39.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_10-36-01.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_10-52-26.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_10-53-02.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_12-15-07.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_10-39-51.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_12-08-25.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_12-12-06.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_12-05-10.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_11-10-52.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_15-07-39.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_15-32-35.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_17-18-46.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_17-19-21.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_17-03-27.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_17-42-43.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_18-17-45.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_18-36-04.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_18-48-25.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_18-59-43.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_19-02-20.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_19-32-43.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_14-15-01.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-10_19-51-58.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_14-41-10.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_14-52-21.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_14-53-04.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_15-54-49.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_16-14-57.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_16-11-29.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_17-43-26.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_17-47-47.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_17-48-34.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_18-20-49.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_18-24-52.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_21-56-35.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_22-52-59.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_14-17-36.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_14-23-06.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_14-26-20.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_17-51-14.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_18-07-21.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_18-09-25.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_19-55-41.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_20-24-19.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_20-21-46.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_20-18-03.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_20-44-30.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_20-45-47.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_20-58-54.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_20-24-19.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_21-20-01.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-16_21-30-16.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_13-11-57.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_13-43-19.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_13-37-32.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_13-40-01.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_14-05-05.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_14-03-06.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_14-06-13.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_14-20-30.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_18-21-51.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_21-05-10.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_21-07-03.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_21-09-15.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_21-10-23.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_21-11-20.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_21-11-49.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_21-12-07.png">
 <meta property="article:published_time" content="2022-06-16T21:23:35.000Z">
-<meta property="article:modified_time" content="2025-02-18T02:17:53.444Z">
+<meta property="article:modified_time" content="2025-02-18T07:52:10.077Z">
 <meta property="article:author" content="zhounuo">
 <meta property="article:tag" content="PerformanceTesting">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-09_20-02-32.png">
+<meta name="twitter:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-09_20-02-32.png">
   
   
   
-  <title>JMeter常用操作 - ZN Blog</title>
+  <title>JMeter常用操作 - ZhouNuo Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -372,12 +372,12 @@
 <li>线程组：一组用户</li>
 <li>线程数：用户数</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-02-32.png" srcset="/img/loading.gif" lazyload>  </p>
+<p><img src="/picture/Snipaste_2021-06-09_20-02-32.png" srcset="/img/loading.gif" lazyload>  </p>
 <h3 id="JMeter基本元件-http请求"><a href="#JMeter基本元件-http请求" class="headerlink" title="JMeter基本元件-http请求"></a>JMeter基本元件-http请求</h3><p>添加http请求： 线程组下添加 - sample取样器 - http请求  </p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-05-56.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="JMeter超时处理"><a href="#JMeter超时处理" class="headerlink" title="JMeter超时处理"></a>JMeter超时处理</h3><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-08-29.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_17-10-40.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="查看结果树"><a href="#查看结果树" class="headerlink" title="查看结果树"></a>查看结果树</h3><p>添加查看结果树：监听器-查看结果树<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-10-01.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-09_20-05-56.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="JMeter超时处理"><a href="#JMeter超时处理" class="headerlink" title="JMeter超时处理"></a>JMeter超时处理</h3><p><img src="/picture/Snipaste_2021-06-09_20-08-29.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-09_17-10-40.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="查看结果树"><a href="#查看结果树" class="headerlink" title="查看结果树"></a>查看结果树</h3><p>添加查看结果树：监听器-查看结果树<br><img src="/picture/Snipaste_2021-06-09_20-10-01.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="响应断言-无论服务器返回的是什么都可以使用响应断言"><a href="#响应断言-无论服务器返回的是什么都可以使用响应断言" class="headerlink" title="响应断言 无论服务器返回的是什么都可以使用响应断言"></a>响应断言 无论服务器返回的是什么都可以使用响应断言</h3><p>添加-断言-响应断言<br>响应断言模式匹配规则</p>
 <ul>
 <li>包括（contains):如果响应中包含了指定的字符串，判断为成功，支持正则表达式</li>
@@ -386,23 +386,23 @@
 <li>子字符串（substring):如果响应中包含了指定的字符串，判断为成功，不支持正则表达式</li>
 </ul>
 <p>一般常用的测试字段是 响应文本 响应代码 响应头<br>注意：拷贝接口返回值到“测试模式”下进行断言时，要注意切换回text模式再复制，因为json有美化作用，可能有空格。导致断言失败</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-12-41.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-09_20-12-41.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4><h3 id="json断言-针对返回数据是json的判断"><a href="#json断言-针对返回数据是json的判断" class="headerlink" title="json断言 针对返回数据是json的判断"></a>json断言 针对返回数据是json的判断</h3><p>添加断言-json断言</p>
 <ul>
 <li>Assert JSON Path exists : $.code  $ 被认为是接口返回的json字符串本身</li>
 <li>Expected Value : 期望值 0 即代表 $.code &#x3D; 0</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_21-28-27.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-09_21-28-27.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="json路径表达式"><a href="#json路径表达式" class="headerlink" title="json路径表达式"></a>json路径表达式</h4><p>详细用法可参考 <a target="_blank" rel="noopener" href="https://github.com/json-path/JsonPath">https://github.com/json-path/JsonPath</a></p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_17-57-10.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-09_17-57-10.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="参数化"><a href="#参数化" class="headerlink" title="参数化"></a>参数化</h2><h3 id="定义全局变量"><a href="#定义全局变量" class="headerlink" title="定义全局变量"></a>定义全局变量</h3><p>测试计划-用户定义的变量  </p>
 <p>调用参数的方法： ${参数名}  ${ip}</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-22-03.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-09_20-22-03.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="常用的参数化方式-随机数"><a href="#常用的参数化方式-随机数" class="headerlink" title="常用的参数化方式-随机数"></a>常用的参数化方式-随机数</h3><p>可以通过函数助手 生成各种函数  </p>
 <p>生成随机数： _Random函数  </p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-27-02.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-09_20-27-02.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="常用的参数化方式-随机字符串"><a href="#常用的参数化方式-随机字符串" class="headerlink" title="常用的参数化方式-随机字符串"></a>常用的参数化方式-随机字符串</h3><p>生成随机字符串函数 _RandomString  </p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-29-50.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-09_20-29-50.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="常用的参数化方式-CSVRead-根据用户数来进行分配的"><a href="#常用的参数化方式-CSVRead-根据用户数来进行分配的" class="headerlink" title="常用的参数化方式-CSVRead 根据用户数来进行分配的"></a>常用的参数化方式-CSVRead 根据用户数来进行分配的</h3><p>从文本文件中读取数据 _CSVRead  </p>
 <ul>
 <li>绝对路径</li>
@@ -410,7 +410,7 @@
 <li>CSV取值机制：不论循环多少次，是根据用户数来进行分配的。 如果只有一个用户，那么循环四次也只会取文件里的第一行数据执行。如果有4个用户，循环四次，那么每个用户都会取一行数据，执行4次，总共执行16次。</li>
 <li>使用场景:一个用户分一条数据 比如先注册 后登陆</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-35-01.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-09_20-35-01.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="参数化文件-CSVDataSetConfig-按照循环次数顺序分配，循环多少次分配多少条"><a href="#参数化文件-CSVDataSetConfig-按照循环次数顺序分配，循环多少次分配多少条" class="headerlink" title="参数化文件 CSVDataSetConfig 按照循环次数顺序分配，循环多少次分配多少条"></a>参数化文件 CSVDataSetConfig 按照循环次数顺序分配，循环多少次分配多少条</h3><p>添加CSVDataSetConfig: 线程组 -添加- 配置元件 - CSV Data Set Config  </p>
 <ul>
 <li>文件编码 有中文选择utf-8</li>
@@ -439,7 +439,7 @@
 <td>唯一</td>
 </tr>
 </tbody></table>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-09_20-43-39.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-09_20-43-39.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="参数化函数"><a href="#参数化函数" class="headerlink" title="参数化函数"></a>参数化函数</h3><ul>
 <li>CSV文件读取：${_CSVRead(D:\a.text,0,)}   </li>
 <li>随机数：${_Random(1,100,)} </li>
@@ -461,13 +461,13 @@
 <li>json路径： jsonpath表达式</li>
 <li>匹配数字：  0代表随机，n代表具体的数字，-1代表所有</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_10-36-01.png" srcset="/img/loading.gif" lazyload>  </p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_10-52-26.png" srcset="/img/loading.gif" lazyload>  </p>
+<p><img src="/picture/Snipaste_2021-06-10_10-36-01.png" srcset="/img/loading.gif" lazyload>  </p>
+<p><img src="/picture/Snipaste_2021-06-10_10-52-26.png" srcset="/img/loading.gif" lazyload>  </p>
 <p>当 MathchNo为-1时。调试取样器里查看到返回数据组里的所有值</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_10-53-02.png" srcset="/img/loading.gif" lazyload></p>
-<p>返回数据：<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_12-15-07.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_10-53-02.png" srcset="/img/loading.gif" lazyload></p>
+<p>返回数据：<br><img src="/picture/Snipaste_2021-06-10_12-15-07.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="添加调试取样器"><a href="#添加调试取样器" class="headerlink" title="添加调试取样器"></a>添加调试取样器</h3><p>线程组上添加 -  取样器 - debugsample<br>可以打印出来Jmeter运行过程中保存下来的参数，需要配合查看结果树使用</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_10-39-51.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_10-39-51.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="后置处理器-正则表达式提取器"><a href="#后置处理器-正则表达式提取器" class="headerlink" title="后置处理器-正则表达式提取器"></a>后置处理器-正则表达式提取器</h3><p>可以通过正则表达式来获取http请求返回的数据<br>引用名称：匹配后的结果，保存到一个参数中 如param</p>
 <p>正则表达式三步走：</p>
 <ul>
@@ -480,12 +480,12 @@
 <li>模板:$1$表示取匹配到的第一组数据，$2$为第二组 </li>
 <li>匹配数字:当某组数据中包含多少个参数时，0代表随机，1代表该组的第一个参数，2表示第二 个。。。-1代表获取全部的参数，这个时候，引用名称就变成了参数数组，可以通过param_n来 获取指定的参数，当有多组数据时，第一组为param_1_g1，第二组为param_1_g2</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_12-08-25.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_12-08-25.png" srcset="/img/loading.gif" lazyload></p>
 <p>如果要匹配的数据没有右边界的话，可以用\n \r \n\r 试一试肯定有一个能取到</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_12-12-06.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_12-05-10.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_12-12-06.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_12-05-10.png" srcset="/img/loading.gif" lazyload></p>
 <p>常用正则表达式</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_11-10-52.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_11-10-52.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="JMeter结果统计"><a href="#JMeter结果统计" class="headerlink" title="JMeter结果统计"></a>JMeter结果统计</h2><h3 id="JMeter结果统计-聚合报告"><a href="#JMeter结果统计-聚合报告" class="headerlink" title="JMeter结果统计-聚合报告"></a>JMeter结果统计-聚合报告</h3><p>添加 -  监听器 - 聚合报告</p>
 <ul>
 <li>samples 样本 代表接口请求了多少次</li>
@@ -493,8 +493,8 @@
 <li>Median  中位数  tp50响应时间</li>
 <li>吞吐量  默认情况下表示每秒完成的请求</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_15-07-39.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="线程组设置"><a href="#线程组设置" class="headerlink" title="线程组设置"></a>线程组设置</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_15-32-35.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_15-07-39.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="线程组设置"><a href="#线程组设置" class="headerlink" title="线程组设置"></a>线程组设置</h4><p><img src="/picture/Snipaste_2021-06-10_15-32-35.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="JMeter图形化插件"><a href="#JMeter图形化插件" class="headerlink" title="JMeter图形化插件"></a>JMeter图形化插件</h2><p>插件官网地址：<a target="_blank" rel="noopener" href="https://jmeter-plugins.org/install/Install/">https://jmeter-plugins.org/install/Install/</a>  </p>
 <p>使用JMeter插件管理器，可以自动下载并安装插件，更加方便简单</p>
 <h4 id="使用方法："><a href="#使用方法：" class="headerlink" title="使用方法："></a>使用方法：</h4><ul>
@@ -511,11 +511,11 @@
 <li>6&gt; Dummy Sampler</li>
 </ul>
 <h4 id="图形化插件的使用-TPS"><a href="#图形化插件的使用-TPS" class="headerlink" title="图形化插件的使用-TPS"></a>图形化插件的使用-TPS</h4><p>添加tps监听器:事务控制器 - 添加- 监听器 -  jp@gc – Transaction per Second</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_17-18-46.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_17-18-46.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="图形化插件的使用-平均响应时间"><a href="#图形化插件的使用-平均响应时间" class="headerlink" title="图形化插件的使用-平均响应时间"></a>图形化插件的使用-平均响应时间</h4><p>添加响应时间:事务控制器- 添加 - 监听器 - jp@gc – Response Times Over Time</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_17-19-21.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_17-19-21.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="图形化插件的使用-并发数"><a href="#图形化插件的使用-并发数" class="headerlink" title="图形化插件的使用-并发数"></a>图形化插件的使用-并发数</h4><p>添加响应时间:事务控制器- 添加 - 监听器 - jp@gc – Active Threads Over Time</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_17-03-27.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_17-03-27.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><p>JMeter中的定时器类似于LoadRunner中的pacing值和think_time </p>
 <ul>
 <li>1)定时器是在每个sampler(采样器)之前执行的，而不是之后 </li>
@@ -528,7 +528,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_17-42-43.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_17-42-43.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>2，同步定时器(synchronizing timer): 集合点  <ul>
 <li>在该定时器处，使线程等待，一直到指定的线程个数达到 后，再一起释放。可以在瞬间制造出很大的压力。它和LoadRunner的集合点差不多的功能     </li>
@@ -536,7 +536,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_18-17-45.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_18-17-45.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>3、统一随机定时器<ul>
 <li>使用场景：线上压测时，怕把系统压挂，所以上一个保险</li>
@@ -545,52 +545,52 @@
 </ul>
 </li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_18-36-04.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_18-36-04.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="JMeter逻辑控制器"><a href="#JMeter逻辑控制器" class="headerlink" title="JMeter逻辑控制器"></a>JMeter逻辑控制器</h2><h3 id="常用的逻辑控制器"><a href="#常用的逻辑控制器" class="headerlink" title="常用的逻辑控制器"></a>常用的逻辑控制器</h3><h4 id="1、循环控制器"><a href="#1、循环控制器" class="headerlink" title="1、循环控制器:"></a>1、循环控制器:</h4><p>可以设置该控制器内的sampler执行的次数，循环次数与线程的循环次数各自独立。</p>
 <ul>
 <li>添加：线程组添加 - 控制器  - 循环控制器</li>
 <li>应用场景：第一个接口执行一次，第二个接口执行三次，可以把第二个接口内添加到循环控制器</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_18-48-25.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_18-48-25.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="2、if控制器-根据判断条件决定是否执行该控制器内的请求，如果是字符串比较条件，参数和字符串都需要加引-号"><a href="#2、if控制器-根据判断条件决定是否执行该控制器内的请求，如果是字符串比较条件，参数和字符串都需要加引-号" class="headerlink" title="2、if控制器:根据判断条件决定是否执行该控制器内的请求，如果是字符串比较条件，参数和字符串都需要加引 号"></a>2、if控制器:根据判断条件决定是否执行该控制器内的请求，如果是字符串比较条件，参数和字符串都需要加引 号</h4><ul>
 <li>条件格式:<br>${__jexl3(条件表达式)}<br>如:${__jexl3(${num} &gt; 10)}、 ${__jexl3(“${num}” &#x3D;&#x3D; “10”)}</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_18-59-43.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_18-59-43.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="3、仅一次控制器-该控制器内的请求只执行一次，无论线程循环多少次"><a href="#3、仅一次控制器-该控制器内的请求只执行一次，无论线程循环多少次" class="headerlink" title="3、仅一次控制器:该控制器内的请求只执行一次，无论线程循环多少次"></a>3、仅一次控制器:该控制器内的请求只执行一次，无论线程循环多少次</h4><p>使用场景： 登录</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_19-02-20.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="4、foreach控制器，可以遍历某个参数数组，循环获取数组中的参数。压测用的不多，接口测试时用。取出来多少数据，接下来调用的接口就会执行多少次"><a href="#4、foreach控制器，可以遍历某个参数数组，循环获取数组中的参数。压测用的不多，接口测试时用。取出来多少数据，接下来调用的接口就会执行多少次" class="headerlink" title="4、foreach控制器，可以遍历某个参数数组，循环获取数组中的参数。压测用的不多，接口测试时用。取出来多少数据，接下来调用的接口就会执行多少次"></a>4、foreach控制器，可以遍历某个参数数组，循环获取数组中的参数。压测用的不多，接口测试时用。取出来多少数据，接下来调用的接口就会执行多少次</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_19-32-43.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-10_19-02-20.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="4、foreach控制器，可以遍历某个参数数组，循环获取数组中的参数。压测用的不多，接口测试时用。取出来多少数据，接下来调用的接口就会执行多少次"><a href="#4、foreach控制器，可以遍历某个参数数组，循环获取数组中的参数。压测用的不多，接口测试时用。取出来多少数据，接下来调用的接口就会执行多少次" class="headerlink" title="4、foreach控制器，可以遍历某个参数数组，循环获取数组中的参数。压测用的不多，接口测试时用。取出来多少数据，接下来调用的接口就会执行多少次"></a>4、foreach控制器，可以遍历某个参数数组，循环获取数组中的参数。压测用的不多，接口测试时用。取出来多少数据，接下来调用的接口就会执行多少次</h4><p><img src="/picture/Snipaste_2021-06-10_19-32-43.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="配置元件-cookie管理器"><a href="#配置元件-cookie管理器" class="headerlink" title="配置元件 - cookie管理器"></a>配置元件 - cookie管理器</h2><p>JMeter自动处理cookie，只需要添加一个空的cookie处理器</p>
-<h4 id="cookie-session-token"><a href="#cookie-session-token" class="headerlink" title="cookie session token"></a>cookie session token</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_14-15-01.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="cookie和session的关系"><a href="#cookie和session的关系" class="headerlink" title="cookie和session的关系"></a>cookie和session的关系</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_19-51-58.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="cookie-session-token"><a href="#cookie-session-token" class="headerlink" title="cookie session token"></a>cookie session token</h4><p><img src="/picture/Snipaste_2021-06-11_14-15-01.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="cookie和session的关系"><a href="#cookie和session的关系" class="headerlink" title="cookie和session的关系"></a>cookie和session的关系</h4><p><img src="/picture/Snipaste_2021-06-10_19-51-58.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="http-cookie管理器"><a href="#http-cookie管理器" class="headerlink" title="http cookie管理器"></a>http cookie管理器</h4><p>可以在浏览器中抓取到cookie信息，然后通过http cookie管理器为http请求添加cookie信息</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_14-41-10.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-11_14-41-10.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="JMeter中的cookie处理机制"><a href="#JMeter中的cookie处理机制" class="headerlink" title="JMeter中的cookie处理机制"></a>JMeter中的cookie处理机制</h4><p>和Loadrunner一样，Jmeter可以自动处理cookie,但是需要再线程组内添加一个空的cookie管理器</p>
 <h2 id="配置元件-header管理器"><a href="#配置元件-header管理器" class="headerlink" title="配置元件 - header管理器"></a>配置元件 - header管理器</h2><p>添加 - 配置元件 - header管理器  JMeter需要手动处理token</p>
 <ul>
 <li>1.利用json提取器 提起登录接口的json值</li>
 <li>2.利用HTTP信息头管理器 添加引用的token值</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_14-52-21.png" srcset="/img/loading.gif" lazyload><br><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_14-53-04.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-11_14-52-21.png" srcset="/img/loading.gif" lazyload><br><img src="/picture/Snipaste_2021-06-11_14-53-04.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="JMeter上传和下载"><a href="#JMeter上传和下载" class="headerlink" title="JMeter上传和下载"></a>JMeter上传和下载</h2><h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><ul>
 <li>上传文件的本质是浏览器读取本地文件的内容，以二进制数据方式传输到服务端，服务端新建 一个文件，将获取到的数据复制到文件中。</li>
 <li>POST请求</li>
 <li>同请求一起发送文件里，填写文件名称，参数名称 </li>
 <li>MIME类型: application&#x2F;octet-stream</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_15-54-49.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-11_15-54-49.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h3><p>下载文件的本质是服务端读取文件内容，传输到浏览器端，浏览器在本地新建一个 文件，将内容保存进去<br>不用真正的下载文件，只需要判断下载下来的文件size大于原来的文件size即可</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_16-14-57.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-11_16-14-57.png" srcset="/img/loading.gif" lazyload></p>
 <p>添加 - 断言 - 大小断言</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_16-11-29.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-11_16-11-29.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="JMeter请求webservice接口"><a href="#JMeter请求webservice接口" class="headerlink" title="JMeter请求webservice接口"></a>JMeter请求webservice接口</h2><p>关键点:</p>
 <ul>
 <li>1、添加http post请求 </li>
 <li>2、添加header:Content-type:text&#x2F;xml</li>
 <li>参考接口:<a target="_blank" rel="noopener" href="http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx">http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx</a></li>
 </ul>
-<h4 id="1-添加http请求，请求方法为post-且xml格式的数据放在消息体数据中发起请求"><a href="#1-添加http请求，请求方法为post-且xml格式的数据放在消息体数据中发起请求" class="headerlink" title="1.添加http请求，请求方法为post,且xml格式的数据放在消息体数据中发起请求"></a>1.添加http请求，请求方法为post,且xml格式的数据放在消息体数据中发起请求</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_17-43-26.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="2-需要添加请求头"><a href="#2-需要添加请求头" class="headerlink" title="2.需要添加请求头"></a>2.需要添加请求头</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_17-47-47.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="3-接口返回数据会把入参返回，直接用入参做断言即可"><a href="#3-接口返回数据会把入参返回，直接用入参做断言即可" class="headerlink" title="3.接口返回数据会把入参返回，直接用入参做断言即可"></a>3.接口返回数据会把入参返回，直接用入参做断言即可</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_17-48-34.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="1-添加http请求，请求方法为post-且xml格式的数据放在消息体数据中发起请求"><a href="#1-添加http请求，请求方法为post-且xml格式的数据放在消息体数据中发起请求" class="headerlink" title="1.添加http请求，请求方法为post,且xml格式的数据放在消息体数据中发起请求"></a>1.添加http请求，请求方法为post,且xml格式的数据放在消息体数据中发起请求</h4><p><img src="/picture/Snipaste_2021-06-11_17-43-26.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="2-需要添加请求头"><a href="#2-需要添加请求头" class="headerlink" title="2.需要添加请求头"></a>2.需要添加请求头</h4><p><img src="/picture/Snipaste_2021-06-11_17-47-47.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="3-接口返回数据会把入参返回，直接用入参做断言即可"><a href="#3-接口返回数据会把入参返回，直接用入参做断言即可" class="headerlink" title="3.接口返回数据会把入参返回，直接用入参做断言即可"></a>3.接口返回数据会把入参返回，直接用入参做断言即可</h4><p><img src="/picture/Snipaste_2021-06-11_17-48-34.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="TCP取样器"><a href="#TCP取样器" class="headerlink" title="TCP取样器"></a>TCP取样器</h2><ul>
 <li>服务器名称或IP:填写socket接口的ip</li>
 <li>端口号:写socket接口的端口号</li>
@@ -599,11 +599,11 @@
 <li>End of line byte value（行尾字节值）:socket接口返回的数据结尾标识符的ascii码</li>
 </ul>
 <p>添加 - 取样器 - TCP取样器</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_18-20-49.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-11_18-20-49.png" srcset="/img/loading.gif" lazyload></p>
 <p>断言</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_18-24-52.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-11_18-24-52.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h2><p>JDBC(Java Data Base Connectivity,java数据库连接)是一种用于执行SQL语句的Java API， 可以为多种关系数据库提供统一访问，它由一组用Java语言编写的类和接口组成。JDBC提供了 一种基准，据此可以构建更高级的工具和接口，使数据库开发人员能够编写数据库应用程序</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_21-56-35.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-16_21-56-35.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="java代码连接数据库执行sql语句步骤"><a href="#java代码连接数据库执行sql语句步骤" class="headerlink" title="java代码连接数据库执行sql语句步骤"></a>java代码连接数据库执行sql语句步骤</h3><ul>
 <li>注册驱动</li>
 <li>通过用户名，密码，数据库url等信息，获取jdbc链接Connection </li>
@@ -621,21 +621,21 @@
 </ul>
 </li>
 </ul>
-<h5 id="把mysql驱动包放到lib目录下后-还需要File-Project-Structure-Libraries-点击-选择java-把整个lib加入到工程依赖库里才能够识别驱动包"><a href="#把mysql驱动包放到lib目录下后-还需要File-Project-Structure-Libraries-点击-选择java-把整个lib加入到工程依赖库里才能够识别驱动包" class="headerlink" title="把mysql驱动包放到lib目录下后 还需要File - Project Structure - Libraries - 点击+ 选择java 把整个lib加入到工程依赖库里才能够识别驱动包"></a>把mysql驱动包放到lib目录下后 还需要File - Project Structure - Libraries - 点击+ 选择java 把整个lib加入到工程依赖库里才能够识别驱动包</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_22-52-59.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="把mysql驱动包放到lib目录下后-还需要File-Project-Structure-Libraries-点击-选择java-把整个lib加入到工程依赖库里才能够识别驱动包"><a href="#把mysql驱动包放到lib目录下后-还需要File-Project-Structure-Libraries-点击-选择java-把整个lib加入到工程依赖库里才能够识别驱动包" class="headerlink" title="把mysql驱动包放到lib目录下后 还需要File - Project Structure - Libraries - 点击+ 选择java 把整个lib加入到工程依赖库里才能够识别驱动包"></a>把mysql驱动包放到lib目录下后 还需要File - Project Structure - Libraries - 点击+ 选择java 把整个lib加入到工程依赖库里才能够识别驱动包</h5><p><img src="/picture/Snipaste_2021-06-16_22-52-59.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="JDBC请求"><a href="#JDBC请求" class="headerlink" title="JDBC请求"></a>JDBC请求</h2><h4 id="1-先添加数据库Jar包（2种方式）"><a href="#1-先添加数据库Jar包（2种方式）" class="headerlink" title="1.先添加数据库Jar包（2种方式）"></a>1.先添加数据库Jar包（2种方式）</h4><ul>
 <li>拷贝mysql驱动包到jmeter&#x2F;lib目录下或者在测试计划处添加驱动包</li>
 <li>驱动包和mysql版本匹配</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_14-17-36.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-16_14-17-36.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="2-配置数据库连接信息"><a href="#2-配置数据库连接信息" class="headerlink" title="2.配置数据库连接信息"></a>2.配置数据库连接信息</h4><p>添加 - 配置元件 - JDBC Connection Configuration<br>需要配置项</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_14-23-06.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-16_14-23-06.png" srcset="/img/loading.gif" lazyload></p>
 <p>URL:jdbc:mysql:&#x2F;&#x2F;{ip}:{port}&#x2F;{dbname}?useUnicode&#x3D;true&amp;characterEncoding&#x3D;utf8</p>
 <h4 id="3-创建JDBC-sample发起JDBE-request请求"><a href="#3-创建JDBC-sample发起JDBE-request请求" class="headerlink" title="3.创建JDBC sample发起JDBE request请求"></a>3.创建JDBC sample发起JDBE request请求</h4><p>SQL语句类型</p>
 <ul>
 <li>select</li>
 <li>update</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_14-26-20.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-16_14-26-20.png" srcset="/img/loading.gif" lazyload></p>
 <p>执行方式分类</p>
 <ul>
 <li>普通SQL</li>
@@ -647,9 +647,9 @@
 </li>
 </ul>
 <h4 id="Prepared-Update-Statement-预编译-做压测时性能更好"><a href="#Prepared-Update-Statement-预编译-做压测时性能更好" class="headerlink" title="Prepared Update Statement 预编译 做压测时性能更好"></a>Prepared Update Statement 预编译 做压测时性能更好</h4><p>对于性能要求比较高的情况下，为了提高sql语句执行效率，需要做参数化的字段写成？</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_17-51-14.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="Prepared-Select-Statement"><a href="#Prepared-Select-Statement" class="headerlink" title="Prepared Select Statement"></a>Prepared Select Statement</h4><p>查询出来的字段可以保存在变量中<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_18-07-21.png" srcset="/img/loading.gif" lazyload></p>
-<p>字段已保存为变量<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_18-09-25.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-16_17-51-14.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="Prepared-Select-Statement"><a href="#Prepared-Select-Statement" class="headerlink" title="Prepared Select Statement"></a>Prepared Select Statement</h4><p>查询出来的字段可以保存在变量中<br><img src="/picture/Snipaste_2021-06-16_18-07-21.png" srcset="/img/loading.gif" lazyload></p>
+<p>字段已保存为变量<br><img src="/picture/Snipaste_2021-06-16_18-09-25.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="beanshell"><a href="#beanshell" class="headerlink" title="beanshell"></a>beanshell</h2><ul>
 <li>BeanShell是一种完全符合Java语法规范的脚本语言,并且又拥有自己的一些语法和方法;</li>
 <li>BeanShell是一种松散类型的脚本语言(这点和JS类似);</li>
@@ -673,34 +673,34 @@
 <li>getResponseDataAsString():获取响应信息 </li>
 <li>getResponseCode():获取响应code</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_19-55-41.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-16_19-55-41.png" srcset="/img/loading.gif" lazyload></p>
 <p>更多内置变量参考 <a target="_blank" rel="noopener" href="https://jmeter.apache.org/">https://jmeter.apache.org/</a></p>
 <h4 id="BeanShell使用方式一-BeanShell面板上写脚本"><a href="#BeanShell使用方式一-BeanShell面板上写脚本" class="headerlink" title="BeanShell使用方式一 BeanShell面板上写脚本"></a>BeanShell使用方式一 BeanShell面板上写脚本</h4><p>需求:</p>
 <ul>
 <li>1、调用接口获取sku信息 </li>
 <li>2、判断库存，如果库存大于500，调用buy接口购买10个商品，否则购买5个商品<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">// 获取接口返回的库存值</span><br><span class="hljs-built_in">String</span> myStock = vars.<span class="hljs-keyword">get</span>(“p_stock”); <span class="hljs-comment">// 转换为整数</span><br><span class="hljs-built_in">int</span> iStock = Integer.parseInt(myStock); <span class="hljs-comment">// 判断库存</span><br><span class="hljs-keyword">if</span> (iStock &gt; <span class="hljs-number">500</span>)&#123;<br><span class="hljs-comment">// 重新保存参数</span><br>vars.put(“buyNum”,<span class="hljs-string">&quot;10&quot;</span>); &#125;<span class="hljs-keyword">else</span>&#123;<br>vars.put(“buyNum”,”<span class="hljs-number">5</span>”)<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h5 id="1-通过json提取器获取前一个接口的返回值"><a href="#1-通过json提取器获取前一个接口的返回值" class="headerlink" title="1.通过json提取器获取前一个接口的返回值"></a>1.通过json提取器获取前一个接口的返回值</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-24-19.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="2-在后一个接口的预处理程序中-获取返回值并进行相应逻辑处理"><a href="#2-在后一个接口的预处理程序中-获取返回值并进行相应逻辑处理" class="headerlink" title="2.在后一个接口的预处理程序中 获取返回值并进行相应逻辑处理"></a>2.在后一个接口的预处理程序中 获取返回值并进行相应逻辑处理</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-21-46.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="3-在后一个接口中引用处理后的值作为入参"><a href="#3-在后一个接口中引用处理后的值作为入参" class="headerlink" title="3.在后一个接口中引用处理后的值作为入参"></a>3.在后一个接口中引用处理后的值作为入参</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-18-03.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="1-通过json提取器获取前一个接口的返回值"><a href="#1-通过json提取器获取前一个接口的返回值" class="headerlink" title="1.通过json提取器获取前一个接口的返回值"></a>1.通过json提取器获取前一个接口的返回值</h5><p><img src="/picture/Snipaste_2021-06-16_20-24-19.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="2-在后一个接口的预处理程序中-获取返回值并进行相应逻辑处理"><a href="#2-在后一个接口的预处理程序中-获取返回值并进行相应逻辑处理" class="headerlink" title="2.在后一个接口的预处理程序中 获取返回值并进行相应逻辑处理"></a>2.在后一个接口的预处理程序中 获取返回值并进行相应逻辑处理</h5><p><img src="/picture/Snipaste_2021-06-16_20-21-46.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="3-在后一个接口中引用处理后的值作为入参"><a href="#3-在后一个接口中引用处理后的值作为入参" class="headerlink" title="3.在后一个接口中引用处理后的值作为入参"></a>3.在后一个接口中引用处理后的值作为入参</h5><p><img src="/picture/Snipaste_2021-06-16_20-18-03.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="BeanShell使用方式二-引用外部java源文件"><a href="#BeanShell使用方式二-引用外部java源文件" class="headerlink" title="BeanShell使用方式二 引用外部java源文件"></a>BeanShell使用方式二 引用外部java源文件</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-comment">// 引入源代码</span><br>source(“D:/Md5Util.java”);<br><span class="hljs-comment">// 生成随机手机号,</span><br><span class="hljs-built_in">String</span> phone = <span class="hljs-string">&quot;135<span class="hljs-subst">$&#123;__Random(<span class="hljs-number">10000000</span>,<span class="hljs-number">99999999</span>,myPhone)&#125;</span>&quot;</span>;  # 可以直接调用JMeter内置函数<br><span class="hljs-built_in">String</span> code = <span class="hljs-string">&quot;testfan&quot;</span>;<br><span class="hljs-comment">// 生成时间戳</span><br><span class="hljs-built_in">String</span> time = <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;__time(,myTime)&#125;</span>&quot;</span>;<br><span class="hljs-comment">// 调用外部函数进行加密</span><br><span class="hljs-built_in">String</span> md5 = Md5Util.getMd5Hex(phone+code+time); # 直接调用文件中的函数<br><span class="hljs-comment">// 将数据另存为新的变量</span><br>vars.put(<span class="hljs-string">&quot;phone&quot;</span>,phone);<br>vars.put(<span class="hljs-string">&quot;md5&quot;</span>,md5);<br>vars.put(<span class="hljs-string">&quot;time&quot;</span>,time);<br></code></pre></td></tr></table></figure>
-<h5 id="1-添加前置beanshell处理器-处理入参"><a href="#1-添加前置beanshell处理器-处理入参" class="headerlink" title="1.添加前置beanshell处理器 处理入参"></a>1.添加前置beanshell处理器 处理入参</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-44-30.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="1-添加前置beanshell处理器-处理入参"><a href="#1-添加前置beanshell处理器-处理入参" class="headerlink" title="1.添加前置beanshell处理器 处理入参"></a>1.添加前置beanshell处理器 处理入参</h5><p><img src="/picture/Snipaste_2021-06-16_20-44-30.png" srcset="/img/loading.gif" lazyload></p>
 <h5 id="2-发起请求"><a href="#2-发起请求" class="headerlink" title="2.发起请求"></a>2.发起请求</h5><h3 id="BeanShell使用方式三-调用jar包"><a href="#BeanShell使用方式三-调用jar包" class="headerlink" title="BeanShell使用方式三-调用jar包"></a>BeanShell使用方式三-调用jar包</h3><p>调用jar包</p>
-<h5 id="1、测试计划，Add-directory-or-jar-to-classpath"><a href="#1、测试计划，Add-directory-or-jar-to-classpath" class="headerlink" title="1、测试计划，Add directory or jar to classpath"></a>1、测试计划，Add directory or jar to classpath</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-45-47.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="1、测试计划，Add-directory-or-jar-to-classpath"><a href="#1、测试计划，Add-directory-or-jar-to-classpath" class="headerlink" title="1、测试计划，Add directory or jar to classpath"></a>1、测试计划，Add directory or jar to classpath</h5><p><img src="/picture/Snipaste_2021-06-16_20-45-47.png" srcset="/img/loading.gif" lazyload></p>
 <h5 id="2、import-所需要的类名"><a href="#2、import-所需要的类名" class="headerlink" title="2、import 所需要的类名"></a>2、import 所需要的类名</h5><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">import</span> com.lee.util.Md5Util  jar包需要导入<br><span class="hljs-comment">// 生成随机手机号,8</span><br><span class="hljs-built_in">String</span> phone = <span class="hljs-string">&quot;135<span class="hljs-subst">$&#123;__Random(<span class="hljs-number">10000000</span>,<span class="hljs-number">99999999</span>,myPhone)&#125;</span>&quot;</span>; <span class="hljs-built_in">String</span> code = <span class="hljs-string">&quot;testfan&quot;</span>;<br><span class="hljs-comment">// 生成时间戳</span><br><span class="hljs-built_in">String</span> time = <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;__time(,myTime)&#125;</span>&quot;</span>;<br><span class="hljs-comment">// 调用外部函数进行加密</span><br><span class="hljs-built_in">String</span> md5 = Md5Util.getMd5Hex(phone+code+time);<br><span class="hljs-comment">// 将数据另存为新的变量</span><br>vars.put(<span class="hljs-string">&quot;phone&quot;</span>,phone);<br>vars.put(<span class="hljs-string">&quot;md5&quot;</span>,md5)<br></code></pre></td></tr></table></figure>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-58-54.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-16_20-58-54.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="beanshell断言"><a href="#beanshell断言" class="headerlink" title="beanshell断言"></a>beanshell断言</h3><p>内置变量</p>
 <ul>
 <li>Failure:是否失败，boolean类型 </li>
 <li>FailureMessage:失败日志，在断言失败时显示<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-type">int</span> iStock = <span class="hljs-type">Integer</span>.parseInt(vars.<span class="hljs-keyword">get</span>(&quot;p_stock&quot;)); <span class="hljs-keyword">if</span> (iStock &gt; <span class="hljs-number">1500</span>)&#123;<br>Failure = <span class="hljs-keyword">true</span>;<br>FailureMessage = &quot;库存数量超过了1500&quot;;<br>// ResponseData是服务器返回的byte[]类型的数据<br>// 如果想打印接口返回值，必须转换为String类型的，用<span class="hljs-built_in">new</span> String(ResponseData) <br><span class="hljs-keyword">log</span>.<span class="hljs-keyword">info</span>(<span class="hljs-built_in">new</span> String(ResponseData));<br>//打印当前请求的url, SamplerData是String类型的数据 <br><span class="hljs-keyword">log</span>.<span class="hljs-keyword">info</span>(SamplerData);<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h5 id="json提取器提取出返回值"><a href="#json提取器提取出返回值" class="headerlink" title="json提取器提取出返回值"></a>json提取器提取出返回值</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_20-24-19.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="断言-beanshell断言-对json提取器取出的值进行逻辑判断"><a href="#断言-beanshell断言-对json提取器取出的值进行逻辑判断" class="headerlink" title="断言-beanshell断言 对json提取器取出的值进行逻辑判断"></a>断言-beanshell断言 对json提取器取出的值进行逻辑判断</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_21-20-01.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="json提取器提取出返回值"><a href="#json提取器提取出返回值" class="headerlink" title="json提取器提取出返回值"></a>json提取器提取出返回值</h5><p><img src="/picture/Snipaste_2021-06-16_20-24-19.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="断言-beanshell断言-对json提取器取出的值进行逻辑判断"><a href="#断言-beanshell断言-对json提取器取出的值进行逻辑判断" class="headerlink" title="断言-beanshell断言 对json提取器取出的值进行逻辑判断"></a>断言-beanshell断言 对json提取器取出的值进行逻辑判断</h5><p><img src="/picture/Snipaste_2021-06-16_21-20-01.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="BeanShell写数据到文件"><a href="#BeanShell写数据到文件" class="headerlink" title="BeanShell写数据到文件"></a>BeanShell写数据到文件</h3><ul>
 <li>1、调用登录接口，获取token值 </li>
 <li>2、将token值保存到一个文件里<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">String</span> line = vars.<span class="hljs-keyword">get</span>(“userName<span class="hljs-string">&quot;)+&quot;</span>,<span class="hljs-string">&quot;+vars.get(“token&quot;</span>); <span class="hljs-meta"># 拼接需要写入的数据</span><br><span class="hljs-keyword">try</span> &#123;<br>    BufferedWriter writer = <span class="hljs-keyword">new</span><span class="hljs-type"></span> BufferedWriter(<span class="hljs-keyword">new</span><span class="hljs-type"></span> FileWriter(“C:<span class="hljs-type"></span>\\output.txt”,<span class="hljs-literal">true</span>));<span class="hljs-comment">//追加，否则覆盖 </span><br>    writer.write(line);<br>    writer.newLine();<span class="hljs-comment">//换行</span><br>    writer.close();<br>&#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>    e.printStackTrace(); <br>    &#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h5 id="仅红字标出部分需要替换"><a href="#仅红字标出部分需要替换" class="headerlink" title="仅红字标出部分需要替换"></a>仅红字标出部分需要替换</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_21-30-16.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="仅红字标出部分需要替换"><a href="#仅红字标出部分需要替换" class="headerlink" title="仅红字标出部分需要替换"></a>仅红字标出部分需要替换</h5><p><img src="/picture/Snipaste_2021-06-16_21-30-16.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="JMeter中的JAVA请求"><a href="#JMeter中的JAVA请求" class="headerlink" title="JMeter中的JAVA请求"></a>JMeter中的JAVA请求</h2><h3 id="1-使用JMeter运行java脚本，需要用到Jmeter提供的框架jar包（分别在jmeter目录下的lib和ext目录下）"><a href="#1-使用JMeter运行java脚本，需要用到Jmeter提供的框架jar包（分别在jmeter目录下的lib和ext目录下）" class="headerlink" title="1.使用JMeter运行java脚本，需要用到Jmeter提供的框架jar包（分别在jmeter目录下的lib和ext目录下）"></a>1.使用JMeter运行java脚本，需要用到Jmeter提供的框架jar包（分别在jmeter目录下的lib和ext目录下）</h3><ul>
 <li>ApacheJMeter_core.jar</li>
 <li>ApacheJMeter_java.jar</li>
@@ -708,37 +708,37 @@
 <li>jorphan.jar </li>
 <li>oro-2.0.8.jar (高版本JMeter需要额外加入)</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_13-11-57.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-17_13-11-57.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="2-Jmeter脚本要点"><a href="#2-Jmeter脚本要点" class="headerlink" title="2.Jmeter脚本要点"></a>2.Jmeter脚本要点</h3><h5 id="1，实现JavaSamplerClient接口-规范定义在java接口中，JMeter通过接口来执行脚本"><a href="#1，实现JavaSamplerClient接口-规范定义在java接口中，JMeter通过接口来执行脚本" class="headerlink" title="1，实现JavaSamplerClient接口 规范定义在java接口中，JMeter通过接口来执行脚本"></a>1，实现JavaSamplerClient接口 规范定义在java接口中，JMeter通过接口来执行脚本</h5><h5 id="2，四个方法"><a href="#2，四个方法" class="headerlink" title="2，四个方法:"></a>2，四个方法:</h5><ul>
 <li>getDefaultParameters:获取参数，设置的参数会在Jmeter的参数面板上显示出来 </li>
 <li>setupTest:初始化方法，每个并发用户只执行一次，跟LR里的init方法一样的，用于建立链接 </li>
 <li>runTest:每个并发用户执行N次，处理业务 </li>
 <li>teardownTest:结束方法，每个并发用户只执行一次，LR里的end方法是一样的，用于释放资源</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_13-43-19.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-17_13-43-19.png" srcset="/img/loading.gif" lazyload></p>
 <p>打成jar包</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_13-37-32.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-17_13-37-32.png" srcset="/img/loading.gif" lazyload></p>
 <h5 id="3，导出JMeter的java脚本"><a href="#3，导出JMeter的java脚本" class="headerlink" title="3，导出JMeter的java脚本"></a>3，导出JMeter的java脚本</h5><ul>
 <li>1&gt; 将导出的xxx.jar 和xxx_lib文件夹放到JMeter的lib&#x2F;ext目录下  重启JMeter</li>
 <li>2&gt; 添加JAVA请求，类名称选择jar包，运行</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_13-40-01.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="JAVA请求脚本参数化"><a href="#JAVA请求脚本参数化" class="headerlink" title="JAVA请求脚本参数化"></a>JAVA请求脚本参数化</h3><h5 id="1-需要现在代码里定义"><a href="#1-需要现在代码里定义" class="headerlink" title="1.需要现在代码里定义"></a>1.需要现在代码里定义</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_14-05-05.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="2-重新打成jar包放到JMeter的lib目录下重启JMeter后可以看到入参"><a href="#2-重新打成jar包放到JMeter的lib目录下重启JMeter后可以看到入参" class="headerlink" title="2.重新打成jar包放到JMeter的lib目录下重启JMeter后可以看到入参"></a>2.重新打成jar包放到JMeter的lib目录下重启JMeter后可以看到入参</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_14-03-06.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="3-对入参进行CSV参数化，从文件中读取数据"><a href="#3-对入参进行CSV参数化，从文件中读取数据" class="headerlink" title="3.对入参进行CSV参数化，从文件中读取数据"></a>3.对入参进行CSV参数化，从文件中读取数据</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_14-06-13.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="4-JMeter参数化获取的数据保存在JavaSamplerContext中，调用其方法获取即可"><a href="#4-JMeter参数化获取的数据保存在JavaSamplerContext中，调用其方法获取即可" class="headerlink" title="4.JMeter参数化获取的数据保存在JavaSamplerContext中，调用其方法获取即可"></a>4.JMeter参数化获取的数据保存在JavaSamplerContext中，调用其方法获取即可</h5><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_14-20-30.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-17_13-40-01.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="JAVA请求脚本参数化"><a href="#JAVA请求脚本参数化" class="headerlink" title="JAVA请求脚本参数化"></a>JAVA请求脚本参数化</h3><h5 id="1-需要现在代码里定义"><a href="#1-需要现在代码里定义" class="headerlink" title="1.需要现在代码里定义"></a>1.需要现在代码里定义</h5><p><img src="/picture/Snipaste_2021-06-17_14-05-05.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="2-重新打成jar包放到JMeter的lib目录下重启JMeter后可以看到入参"><a href="#2-重新打成jar包放到JMeter的lib目录下重启JMeter后可以看到入参" class="headerlink" title="2.重新打成jar包放到JMeter的lib目录下重启JMeter后可以看到入参"></a>2.重新打成jar包放到JMeter的lib目录下重启JMeter后可以看到入参</h5><p><img src="/picture/Snipaste_2021-06-17_14-03-06.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="3-对入参进行CSV参数化，从文件中读取数据"><a href="#3-对入参进行CSV参数化，从文件中读取数据" class="headerlink" title="3.对入参进行CSV参数化，从文件中读取数据"></a>3.对入参进行CSV参数化，从文件中读取数据</h5><p><img src="/picture/Snipaste_2021-06-17_14-06-13.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="4-JMeter参数化获取的数据保存在JavaSamplerContext中，调用其方法获取即可"><a href="#4-JMeter参数化获取的数据保存在JavaSamplerContext中，调用其方法获取即可" class="headerlink" title="4.JMeter参数化获取的数据保存在JavaSamplerContext中，调用其方法获取即可"></a>4.JMeter参数化获取的数据保存在JavaSamplerContext中，调用其方法获取即可</h5><p><img src="/picture/Snipaste_2021-06-17_14-20-30.png" srcset="/img/loading.gif" lazyload></p>
 <p>Java编写sql查询脚本在JMeter运行</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_18-21-51.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="websocket请求"><a href="#websocket请求" class="headerlink" title="websocket请求"></a>websocket请求</h2><h3 id="websocket请求应用场景：客服客服消息发送"><a href="#websocket请求应用场景：客服客服消息发送" class="headerlink" title="websocket请求应用场景：客服客服消息发送"></a>websocket请求应用场景：客服客服消息发送</h3><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-05-10.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="插件库里下载-Websocket-samples-by-Peter-Doorm"><a href="#插件库里下载-Websocket-samples-by-Peter-Doorm" class="headerlink" title="插件库里下载 Websocket samples by Peter Doorm"></a>插件库里下载 Websocket samples by Peter Doorm</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-07-03.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-17_18-21-51.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="websocket请求"><a href="#websocket请求" class="headerlink" title="websocket请求"></a>websocket请求</h2><h3 id="websocket请求应用场景：客服客服消息发送"><a href="#websocket请求应用场景：客服客服消息发送" class="headerlink" title="websocket请求应用场景：客服客服消息发送"></a>websocket请求应用场景：客服客服消息发送</h3><p><img src="/picture/Snipaste_2021-06-17_21-05-10.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="插件库里下载-Websocket-samples-by-Peter-Doorm"><a href="#插件库里下载-Websocket-samples-by-Peter-Doorm" class="headerlink" title="插件库里下载 Websocket samples by Peter Doorm"></a>插件库里下载 Websocket samples by Peter Doorm</h4><p><img src="/picture/Snipaste_2021-06-17_21-07-03.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="1-添加-取样器-websocket-open-connection"><a href="#1-添加-取样器-websocket-open-connection" class="headerlink" title="1.添加 - 取样器 - websocket open connection"></a>1.添加 - 取样器 - websocket open connection</h4><ul>
 <li>内网选择ws</li>
-<li>公网选择wss<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-09-15.png" srcset="/img/loading.gif" lazyload></li>
+<li>公网选择wss<br><img src="/picture/Snipaste_2021-06-17_21-09-15.png" srcset="/img/loading.gif" lazyload></li>
 </ul>
-<h4 id="2-发送匹配请求-提取返回值里的msgId-给后续接口调用"><a href="#2-发送匹配请求-提取返回值里的msgId-给后续接口调用" class="headerlink" title="2.发送匹配请求 提取返回值里的msgId 给后续接口调用"></a>2.发送匹配请求 提取返回值里的msgId 给后续接口调用</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-10-23.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="3-循环发送消息和接收服务器回执消息5次-间隔300ms发送一次"><a href="#3-循环发送消息和接收服务器回执消息5次-间隔300ms发送一次" class="headerlink" title="3.循环发送消息和接收服务器回执消息5次 间隔300ms发送一次"></a>3.循环发送消息和接收服务器回执消息5次 间隔300ms发送一次</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-11-20.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-11-49.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="4-关闭连接"><a href="#4-关闭连接" class="headerlink" title="4.关闭连接"></a>4.关闭连接</h4><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_21-12-07.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="2-发送匹配请求-提取返回值里的msgId-给后续接口调用"><a href="#2-发送匹配请求-提取返回值里的msgId-给后续接口调用" class="headerlink" title="2.发送匹配请求 提取返回值里的msgId 给后续接口调用"></a>2.发送匹配请求 提取返回值里的msgId 给后续接口调用</h4><p><img src="/picture/Snipaste_2021-06-17_21-10-23.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="3-循环发送消息和接收服务器回执消息5次-间隔300ms发送一次"><a href="#3-循环发送消息和接收服务器回执消息5次-间隔300ms发送一次" class="headerlink" title="3.循环发送消息和接收服务器回执消息5次 间隔300ms发送一次"></a>3.循环发送消息和接收服务器回执消息5次 间隔300ms发送一次</h4><p><img src="/picture/Snipaste_2021-06-17_21-11-20.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-17_21-11-49.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="4-关闭连接"><a href="#4-关闭连接" class="headerlink" title="4.关闭连接"></a>4.关闭连接</h4><p><img src="/picture/Snipaste_2021-06-17_21-12-07.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>

@@ -23,35 +23,35 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="JMeter压测">
 <meta property="og:url" content="https://zn-zyl.github.io/2022/08/17/PerformanceTesting/JMeter%E5%8E%8B%E6%B5%8B/index.html">
-<meta property="og:site_name" content="ZN Blog">
+<meta property="og:site_name" content="ZhouNuo Blog">
 <meta property="og:description" content="JMeter压测JMeter单机压测JMeter线程组运行模式 1.按照运行次数运行:线程组设置循环x次  2.按照运行时间运行（用的比较多） 1&gt; 线程组设置循环永远 2&gt; 勾选调度器，设置持续时间，单位秒    线程组和请求的运行逻辑  线程组和请求的设置逻辑关键逻辑 一个线程组内的多个请求是顺序执行的  不同线程组内的请求是并行执行的  实际工作中如何设置线程组和请求的关系? 如">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_15-34-15.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_23-03-26.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_15-58-43.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_16-01-37.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_23-30-06.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_16-29-33.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_17-51-48.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_22-36-21.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_22-57-24.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_23-05-47.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_23-17-35.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-19_11-33-34.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-19_12-01-33.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-19_11-13-37.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-19_12-09-20.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-19_12-17-33.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_15-34-15.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-17_23-03-26.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-18_15-58-43.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-18_16-01-37.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-18_23-30-06.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-18_16-29-33.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-18_17-51-48.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-18_22-36-21.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-18_22-57-24.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-18_23-05-47.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-18_23-17-35.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-19_11-33-34.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-19_12-01-33.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-19_11-13-37.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-19_12-09-20.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-19_12-17-33.png">
 <meta property="article:published_time" content="2022-08-17T15:14:06.000Z">
-<meta property="article:modified_time" content="2025-02-18T02:17:53.428Z">
+<meta property="article:modified_time" content="2025-02-18T07:49:18.682Z">
 <meta property="article:author" content="zhounuo">
 <meta property="article:tag" content="PerformanceTesting">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_15-34-15.png">
+<meta name="twitter:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-11_15-34-15.png">
   
   
   
-  <title>JMeter压测 - ZN Blog</title>
+  <title>JMeter压测 - ZhouNuo Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -289,8 +289,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="线程组和请求的运行逻辑"><a href="#线程组和请求的运行逻辑" class="headerlink" title="线程组和请求的运行逻辑"></a>线程组和请求的运行逻辑</h2><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_15-34-15.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_23-03-26.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="线程组和请求的运行逻辑"><a href="#线程组和请求的运行逻辑" class="headerlink" title="线程组和请求的运行逻辑"></a>线程组和请求的运行逻辑</h2><p><img src="/picture/Snipaste_2021-06-11_15-34-15.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-17_23-03-26.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="线程组和请求的设置逻辑"><a href="#线程组和请求的设置逻辑" class="headerlink" title="线程组和请求的设置逻辑"></a>线程组和请求的设置逻辑</h2><h5 id="关键逻辑"><a href="#关键逻辑" class="headerlink" title="关键逻辑"></a>关键逻辑</h5><ul>
 <li>一个线程组内的多个请求是顺序执行的 </li>
 <li>不同线程组内的请求是并行执行的</li>
@@ -318,15 +318,15 @@
 </ul>
 </li>
 </ul>
-<h2 id="JMeter命令行模式-概要日志"><a href="#JMeter命令行模式-概要日志" class="headerlink" title="JMeter命令行模式-概要日志"></a>JMeter命令行模式-概要日志</h2><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_15-58-43.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="JMeter命令行模式-概要日志"><a href="#JMeter命令行模式-概要日志" class="headerlink" title="JMeter命令行模式-概要日志"></a>JMeter命令行模式-概要日志</h2><p><img src="/picture/Snipaste_2021-06-18_15-58-43.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="JMeter参数优化"><a href="#JMeter参数优化" class="headerlink" title="JMeter参数优化"></a>JMeter参数优化</h3><ul>
 <li>1，控制台取样间隔的设置<br>summariser.interval&#x3D;10，默认为30s，最低可修改为6s 一般设置为10s 修改JMeter的bin目录下jmeter.properties文件</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_16-01-37.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-18_16-01-37.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>2，Jvm参数优化 不要超过物理内存的四分之一<br>jmeter&#x2F;bin目录下，vi jmeter，修改HEAP的size大小，默认1024M，可以设置成2048M<br>HEAP&#x3D;”-Xms2g -Xmx2g -XX:MaxMetaspaceSize&#x3D;256m”</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_23-30-06.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-18_23-30-06.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>3，默认编码修改 sampleresult.default.encoding</li>
 </ul>
@@ -344,9 +344,9 @@
 <li>4，执行命令:jmeter –g result.jtl –o .&#x2F;reports</li>
 <li>5.对整个reports文件夹进行压缩<br>其中:<br>-g 指定jtl文件的路径<br>-o 指定html报表生成到哪个文件夹下<br>注意:只有Jmeter3.0版本以上支持此功能</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_16-29-33.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-18_16-29-33.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="Controller和压力机"><a href="#Controller和压力机" class="headerlink" title="Controller和压力机"></a>Controller和压力机</h2><p>压力机：产生压力的机器 可以是windows系统或者linux系统。<br>压力机可以和服务器数量持平。可以先申请一半机器先尝试</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_17-51-48.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-18_17-51-48.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="如何判断压力机不够？"><a href="#如何判断压力机不够？" class="headerlink" title="如何判断压力机不够？"></a>如何判断压力机不够？</h4><p>压力机比较消耗CPU和内存，CPU使用率超过80%就需要增加机器</p>
 <h2 id="JMeter命令行模式-分布式"><a href="#JMeter命令行模式-分布式" class="headerlink" title="JMeter命令行模式-分布式"></a>JMeter命令行模式-分布式</h2><ul>
 <li>1.硬件环境准备</li>
@@ -361,12 +361,12 @@
 <li>4，bin目录下修改jmeter.properties文件，ssl.disable&#x3D;true(去掉注释) </li>
 <li>5，在每台机器上进入到jmeter的bin目录下，都启动nohup .&#x2F;jmeter-server &amp; (后台启动jmeter-server服务)  分布式之间的通信机制通过jmeter server</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_22-36-21.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-18_22-36-21.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>6，在主jmeter的bin目录下，修改jmeter.properties，将其中的remote_hosts修改为作为压力机的两台机器ip， remote_hosts&#x3D;127.0.0.1,192.168.0.102</li>
 <li>7，在主jmeter的机器上，执行jmeter -n -t pinter.jmx -l result.jtl -r -r是单机压测和分布式压测的区别</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_22-57-24.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-18_22-57-24.png" srcset="/img/loading.gif" lazyload></p>
 <h5 id="分布式启动失败原因："><a href="#分布式启动失败原因：" class="headerlink" title="分布式启动失败原因："></a>分布式启动失败原因：</h5><ul>
 <li>防火墙没关</li>
 <li>上一次在主jmeter上做了CTRL+C的操作</li>
@@ -378,14 +378,14 @@
 <li>2、如果是Java脚本，在每一台机器上都得有脚本文件和依赖的</li>
 </ul>
 <h3 id="命令行压测，排查报错"><a href="#命令行压测，排查报错" class="headerlink" title="### 命令行压测，排查报错"></a>### 命令行压测，排查报错</h3><p>压测过程中如果有报错的话，可以通过察看结果树来察看<br>配置好以后需要重新上传jmeter脚本</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_23-05-47.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-18_23-05-47.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="排查步骤"><a href="#排查步骤" class="headerlink" title="排查步骤"></a>排查步骤</h4><ul>
 <li>1.脚本当前目录下会有jmeter.log 查看是否有错误日志</li>
 <li>2.如果是分布式压测 在jmeter&#x2F;bin目录下检查jmeter-server.log 是否有报错信息 tail -100 erro.xml</li>
 <li>3.如果配置了查看结果树保存报错信息，可以将报错xml在查看结果树中打开，进行分析</li>
 <li>4.也可以去jtl文件中查看是否有错误提示信息</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_23-17-35.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-18_23-17-35.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="性能测试的目的"><a href="#性能测试的目的" class="headerlink" title="性能测试的目的"></a>性能测试的目的</h2><h4 id="测试系统最大处理能力"><a href="#测试系统最大处理能力" class="headerlink" title="测试系统最大处理能力"></a>测试系统最大处理能力</h4><p>寻找系统最大的TPS,判断TPS和对应响应时间是否满足预期</p>
 <h4 id="测试系统支持最高并发"><a href="#测试系统支持最高并发" class="headerlink" title="测试系统支持最高并发"></a>测试系统支持最高并发</h4><p>寻找系统最高能支持多少并发，当系统出现宕机，进程崩溃，报错率持续上升，响应时间超过可忍受范围，程序无响应任意情况，即认可系统达到了可支持的最高并发</p>
 <h2 id="性能测试场景"><a href="#性能测试场景" class="headerlink" title="性能测试场景"></a>性能测试场景</h2><h3 id="三个基本压测场景"><a href="#三个基本压测场景" class="headerlink" title="三个基本压测场景"></a>三个基本压测场景</h3><ul>
@@ -397,7 +397,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-19_11-33-34.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-19_11-33-34.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li><h4 id="2-再按照一定的并发比例，进行多接口混合测试"><a href="#2-再按照一定的并发比例，进行多接口混合测试" class="headerlink" title="2.再按照一定的并发比例，进行多接口混合测试"></a>2.再按照一定的并发比例，进行多接口混合测试</h4><ul>
 <li>大部分公司按照用户比例进行混合 按照并发的比例去设置 </li>
@@ -406,7 +406,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-19_12-01-33.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-19_12-01-33.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li><h4 id="3-最好按照混合场景比例，进行长时间稳定性测试"><a href="#3-最好按照混合场景比例，进行长时间稳定性测试" class="headerlink" title="3.最好按照混合场景比例，进行长时间稳定性测试"></a>3.最好按照混合场景比例，进行长时间稳定性测试</h4><ul>
 <li>以混合场景为基础 以拐点并发数为准按比例划分</li>
@@ -419,16 +419,16 @@
 <p>根据自己的业务情况，选择不同业务场景的压测</p>
 <h2 id="性能测试执行策略"><a href="#性能测试执行策略" class="headerlink" title="性能测试执行策略"></a>性能测试执行策略</h2><h3 id="加压策略"><a href="#加压策略" class="headerlink" title="加压策略"></a>加压策略</h3><p>从小并发开始，逐步增加并发，寻找性能拐点</p>
 <h3 id="执行测试"><a href="#执行测试" class="headerlink" title="执行测试"></a>执行测试</h3><p>试压阶段：寻找拐点，记录拐点数据<br>收集数据：选择拐点前后5组数据，按照固定时间（3-5分钟）重新跑一次，记录详细数据</p>
-<h2 id="性能拐点"><a href="#性能拐点" class="headerlink" title="性能拐点"></a>性能拐点</h2><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-19_11-13-37.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="性能拐点"><a href="#性能拐点" class="headerlink" title="性能拐点"></a>性能拐点</h2><p><img src="/picture/Snipaste_2021-06-19_11-13-37.png" srcset="/img/loading.gif" lazyload></p>
 <p>经过梯度压测，40并发时TPS达到拐点，所以40并发是本系统的最佳并发数。<br>最终在测试报告中，记录下20、30、40、50、60五组数据即</p>
 <h2 id="再谈TPS、响应时间、并发"><a href="#再谈TPS、响应时间、并发" class="headerlink" title="再谈TPS、响应时间、并发"></a>再谈TPS、响应时间、并发</h2><ul>
 <li>并发：真实并发用户和服务端并发用户  </li>
 <li>服务端并发 &lt; 真实并发用户 因为请求会陆陆续续到达</li>
 <li>支持600个服务端并发，到底多少个用户不知道。</li>
 </ul>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-19_12-09-20.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-19_12-09-20.png" srcset="/img/loading.gif" lazyload></p>
 <p>决定性能好坏的不是并发数 而是处理能力即TPS<br>系统性能受限于硬件配置:CPU、内存<br>当CPU使用率和内存使用率接近100%的时候，系统会达到极限</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-19_12-17-33.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-19_12-17-33.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
 <li>在压测工具中设置的并发数，其实就是服务端的并发数</li>
 <li>不需要关注真实用户并发，关注服务端并发即可</li>

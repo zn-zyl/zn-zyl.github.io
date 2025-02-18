@@ -23,18 +23,18 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL知识">
 <meta property="og:url" content="https://zn-zyl.github.io/2020/02/19/testbasic/sql/index.html">
-<meta property="og:site_name" content="ZN Blog">
+<meta property="og:site_name" content="ZhouNuo Blog">
 <meta property="og:description" content="sql基础常见数据库类型介绍关系型数据库Codd提出了关系模型算法，为关系型数据库的诞生奠定了基础 1.1 市面上的数据库产品介绍用二维表存储数据 Oracle、Mysql、postgre、SQL server、DB2、Informix-Online、… 1.1.1 Oracle在OL TP&#x2F;AP（在线事务管理&#x2F;访问管理）都很优秀） 1.1.2 Mysql是一个轻量级的数据库服">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-18T21:36:49.000Z">
-<meta property="article:modified_time" content="2025-02-18T06:40:01.569Z">
+<meta property="article:modified_time" content="2025-02-18T07:50:32.894Z">
 <meta property="article:author" content="zhounuo">
 <meta property="article:tag" content="testbasic">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>SQL知识 - ZN Blog</title>
+  <title>SQL知识 - ZhouNuo Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -334,7 +334,7 @@
 <p>&#x2F;*<br>select t1.RegName,t1.MobilePhone,t2.Amount,t2.CreateTime<br> from member as t1,invest as t2<br>where t1.id &#x3D; t2.MemberID<br>and t2.Amount&gt;10000;<br><em>&#x2F;<br>&#x2F;</em><br>select t1.RegName,t1.MobilePhone,t2.Amount,t2.CreateTime<br>from member t1,invest t2<br>where t1.id &#x3D; t2.MemberID<br>and t2.Amount&gt;10000;<br><em>&#x2F;<br>&#x2F;</em><br>select t1.RegName as  用户名,t1.MobilePhone  as 手机号码,<br>t2.Amount as  投资金额 ,t2.CreateTime  as 投资时间<br>from member  as t1,invest  as t2<br>where t1.id &#x3D; t2.MemberID<br>and t2.Amount&gt;10000;<br>*&#x2F;</p>
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs clean">### 排序<br>-- 查询投资金额大于<span class="hljs-number">10000</span>的信息，显示用户名、手机号、投资金额、投资时间 ，按投资金额降序、升序排序<br>#### 降序：DESC、升序： ASC（默认为ASC）<br></code></pre></td></tr></table></figure>
 <p>select t1.Id as 用户id,t1.RegName as  用户名,t1.MobilePhone  as 手机号码,<br>t2.Amount as  投资金额 ,t2.CreateTime  as 投资时间<br>from member  as t1,invest  as t2<br>where t1.id &#x3D; t2.MemberID<br>and t2.Amount&gt;10000<br>order by 投资金额 DESC;</p>
-<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs subunit">## 左连接右连接<br>![](../.vuepress/public/picture/Snipaste_2021<span class="hljs-string">-06</span><span class="hljs-string">-09</span>_11<span class="hljs-string">-32</span><span class="hljs-string">-18</span>.png)<br></code></pre></td></tr></table></figure>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs subunit">## 左连接右连接<br>![](/picture/Snipaste_2021<span class="hljs-string">-06</span><span class="hljs-string">-09</span>_11<span class="hljs-string">-32</span><span class="hljs-string">-18</span>.png)<br></code></pre></td></tr></table></figure>
 <p>、select * from girls t1 inner join boys t2 on t1.matchNum &#x3D; t2.matchNum;<br>   select * from girls t1 join boys t2 on  t1.matchNum &#x3D; t2.matchNum;<br> select - from girls cross join boys  &#x2F;&#x2F;笛卡儿积 叉乘<br> <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs clean"><br>### 连接两个语句连接用union，且字段名要相同才可以显示  所以要取别名<br></code></pre></td></tr></table></figure><br>select t1.id,t1.girjNum num from girls t1 left join boys t2 on   t1.matchNum &#x3D; t2.matchNum where t2.id is null<br>union<br>select t2.id,t2.boyNum num from girls t1 right  join boys t2 on   t1.matchNum &#x3D; t2.matchNum where t1.id is null;</p>
 <pre><code class="hljs">
 ## 子查询
