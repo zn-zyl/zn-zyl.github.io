@@ -1,0 +1,817 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhounuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="restful接口1. 基本概念 1）restful是一种开发风格而非标准  2）Representational State Transfer，具象状态传输  3）每一个url代表一种资源：json格式数据、text文本、图片视频等  4）客户端与服务器之间，传递这种资源的某种表现形式   ​	 · 通过请求头中Content-Type来指明传给服务端的参数类型 “text&#x2F;plain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="restful接口">
+<meta property="og:url" content="https://zn-zyl.github.io/2023/05/17/django/restful%E6%8E%A5%E5%8F%A3/index.html">
+<meta property="og:site_name" content="ZN Blog">
+<meta property="og:description" content="restful接口1. 基本概念 1）restful是一种开发风格而非标准  2）Representational State Transfer，具象状态传输  3）每一个url代表一种资源：json格式数据、text文本、图片视频等  4）客户端与服务器之间，传递这种资源的某种表现形式   ​	 · 通过请求头中Content-Type来指明传给服务端的参数类型 “text&#x2F;plain">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-16T18:58:18.000Z">
+<meta property="article:modified_time" content="2025-02-18T02:17:53.488Z">
+<meta property="article:author" content="zhounuo">
+<meta property="article:tag" content="django">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>restful接口 - ZN Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zn-zyl.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zn&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="restful接口"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-17 02:58" pubdate>
+          2023年5月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          893 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">restful接口</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="restful接口"><a href="#restful接口" class="headerlink" title="restful接口"></a>restful接口</h1><h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h2><ul>
+<li><p>1）restful是一种开发风格而非标准</p>
+</li>
+<li><p>2）Representational State Transfer，具象状态传输</p>
+</li>
+<li><p>3）每一个url代表一种资源：json格式数据、text文本、图片视频等</p>
+</li>
+<li><p>4）客户端与服务器之间，传递这种资源的某种表现形式</p>
+</li>
+</ul>
+<p>​	 · 通过请求头中Content-Type来指明传给服务端的参数类型</p>
+<p>“text&#x2F;plain”、”application&#x2F;xml”、”text&#x2F;html”、”application&#x2F;json”、”image&#x2F;gif”、”image&#x2F;jpeg”、”application&#x2F;x-www-form-urlencoded”</p>
+<p>​	 · 通过请求头中Accept来指明希望接受服务端的数据类型</p>
+<p>Accept: application&#x2F;json,application&#x2F;xml;q&#x3D;0.9,*&#x2F; *;q&#x3D;0.8</p>
+<ul>
+<li>5）客户端通过HTTP动词，指明对服务器端资源要进行的操作</li>
+</ul>
+<p>	</p>
+<table>
+<thead>
+<tr>
+<th>HTTP METHOD</th>
+<th>CRUD</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POST</td>
+<td>Create</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>Search</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>Update&#x2F;Replace</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>Partial Update&#x2F;Modify</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>Delete</td>
+</tr>
+</tbody></table>
+<h2 id="2-REST常用设计规则"><a href="#2-REST常用设计规则" class="headerlink" title="2. REST常用设计规则"></a>2. REST常用设计规则</h2><h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><p>一般使用Https协议</p>
+<h3 id="路径命名"><a href="#路径命名" class="headerlink" title="路径命名"></a>路径命名</h3><p>​- 尽量用名词复数形式</p>
+<p>​- 往往与数据库表明对应</p>
+<p>​	 - 如：&#x2F;getProjects、&#x2F;users、&#x2F;testcaseById?Id&#x3D;6</p>
+<h3 id="过滤信息"><a href="#过滤信息" class="headerlink" title="过滤信息"></a>过滤信息</h3><p>若记录数量很多，服务器不可能将所有数据都返回给前端</p>
+<ul>
+<li><p>?limit&#x3D;10：指定返回记录的数量</p>
+</li>
+<li><p>?offset&#x3D;10：指定返回记录的开始位置</p>
+</li>
+<li><p>?page&#x3D;2&amp;size&#x3D;10：指定第几页和每页的数据条数</p>
+</li>
+<li><p>?sort&#x3D;name：指定返回结果按照哪个属性排序，以及排序顺序</p>
+</li>
+</ul>
+<h3 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h3><p>​	尽量使用专用域名：<a target="_blank" rel="noopener" href="http://api.er.site/">http://api.er.site</a></p>
+<h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><p>​	- 在URL中呈现版本号：<a target="_blank" rel="noopener" href="http://api.er.site/app/0.1/">http://api.er.site/app/0.1/</a></p>
+<p>​	- 在请求头中呈现版本号：Accept：application&#x2F;vnd.example+json;version&#x3D;1.1</p>
+<h3 id="Http请求动词"><a href="#Http请求动词" class="headerlink" title="Http请求动词"></a>Http请求动词</h3><p>含义</p>
+<table>
+<thead>
+<tr>
+<th>GET</th>
+<th>从服务器获取资源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POST</td>
+<td>服务器中新建资源</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>在服务器更新资源</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>从服务器删除资源</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>在服务器部分更新资源</td>
+</tr>
+<tr>
+<td>HEAD</td>
+<td>获取资源的元数据</td>
+</tr>
+<tr>
+<td>OPTIONS</td>
+<td>获取关于资源的哪些属性是客户端可以改变的信息</td>
+</tr>
+</tbody></table>
+<p>例</p>
+<table>
+<thead>
+<tr>
+<th>GET　&#x2F;projects</th>
+<th>获取所有项目信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POST　&#x2F;projects</td>
+<td>创建一个新项目</td>
+</tr>
+<tr>
+<td>GET　&#x2F;projects&#x2F;6</td>
+<td>获取ID为6的项目信息</td>
+</tr>
+<tr>
+<td>PUT　&#x2F;projects&#x2F;6</td>
+<td>更新ID为6的项目信息（全更新）</td>
+</tr>
+<tr>
+<td>PATCH　&#x2F;projects&#x2F;6</td>
+<td>更新ID为6的项目信息（部分更新）</td>
+</tr>
+<tr>
+<td>DELETE　&#x2F;projects&#x2F;6</td>
+<td>删除ID为６的项目</td>
+</tr>
+<tr>
+<td>GET　&#x2F;projects&#x2F;6&#x2F;interfaces</td>
+<td>获取ID为6的项目信息中所有的接口信息</td>
+</tr>
+<tr>
+<td>GET　&#x2F;projects&#x2F;6&#x2F;interfaces&#x2F;1</td>
+<td>获取ID为6的所有项目信息中ID为1的接口信息</td>
+</tr>
+</tbody></table>
+<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><p>200	ok - [GET]：服务器返回用户请求的数据</p>
+<p>201	CREATED - [POST&#x2F;PUT&#x2F;PATCH]：用户新建或修改数据成功</p>
+<p>204	No Content - [DELETE]：用户删除数据成功</p>
+<p>400	INVAILD REQUEST - [POST&#x2F;PUT&#x2F;PATCH]：用户请求有误（请求参数有误）</p>
+<p>401	Unauthorized - [*]：表示用户没有权限</p>
+<p>403	Forbidden - [*]：表示用户得到授权，但是访问被禁止</p>
+<p>404	Not Found - [*]：用户请求的路径不存在</p>
+<p>406	用户请求的格式错误</p>
+<p>500	Internal Server Error - [*]：服务器发生错误</p>
+<h3 id="返回结果"><a href="#返回结果" class="headerlink" title="返回结果"></a>返回结果</h3><table>
+<thead>
+<tr>
+<th>GET　&#x2F;projects</th>
+<th>返回所有项目列表（json数组</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POST　&#x2F;projects</td>
+<td>返回新创建的项目信息（单个json</td>
+</tr>
+<tr>
+<td>GET　&#x2F;projects&#x2F;6</td>
+<td>返回单个项目信息 (单个json</td>
+</tr>
+<tr>
+<td>PUT　&#x2F;projects&#x2F;6</td>
+<td>返回更新之后，完整的项目信息（单个json</td>
+</tr>
+<tr>
+<td>PATCH　&#x2F;projects&#x2F;6</td>
+<td>返回更新之后，完整的项目信息（单个json</td>
+</tr>
+<tr>
+<td>DELETE　&#x2F;projects&#x2F;6</td>
+<td>返回空</td>
+</tr>
+<tr>
+<td>GET　&#x2F;projects&#x2F;6&#x2F;interfaces&#x2F;1</td>
+<td>返回单个接口信息（单个json</td>
+</tr>
+</tbody></table>
+<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>当请求有误时，需将错误信息以json格式返回</p>
+<p>{“error”:”xxx错误”,”status_code”:401}</p>
+<h3 id="Hypermedia-API"><a href="#Hypermedia-API" class="headerlink" title="Hypermedia API"></a>Hypermedia API</h3><p>超链接API，返回结果中提供链接</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&#123;<span class="hljs-string">&quot;link&quot;</span>: &#123;<br>  <span class="hljs-string">&quot;rel&quot;</span>:   <span class="hljs-string">&quot;collection https://www.example.com/zoos&quot;</span>,<br>  <span class="hljs-string">&quot;href&quot;</span>:  <span class="hljs-string">&quot;https://api.example.com/zoos&quot;</span>,<br>  <span class="hljs-string">&quot;title&quot;</span>: <span class="hljs-string">&quot;List of zoos&quot;</span>,<br>  <span class="hljs-string">&quot;type&quot;</span>:  <span class="hljs-string">&quot;application/vnd.yourformat+json&quot;</span><br>&#125;&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/django/" class="category-chain-item">django</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/django/" class="print-no-link">#django</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>restful接口</div>
+      <div>https://zn-zyl.github.io/2023/05/17/django/restful接口/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhounuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/17/django/DRF/" title="DRF">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DRF</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/17/django/django%E5%9F%BA%E7%A1%80/" title="django基础">
+                        <span class="hidden-mobile">django基础</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,693 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhounuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="httprunner介绍面向https 协议的通用开源测试框架，支持三种格式用例 YAML JSON PYTEST,不支持 websocket dubbo.httprunner可以直接写pytest风格的测试用例   安装pip install httprunner 创建项目hrun –startproject (项目名） 执行用例在terminal控制台下执行 hrun yaml  配置文件（j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="httprunner">
+<meta property="og:url" content="https://zn-zyl.github.io/2023/04/17/AutoTest/httprunner/index.html">
+<meta property="og:site_name" content="ZN Blog">
+<meta property="og:description" content="httprunner介绍面向https 协议的通用开源测试框架，支持三种格式用例 YAML JSON PYTEST,不支持 websocket dubbo.httprunner可以直接写pytest风格的测试用例   安装pip install httprunner 创建项目hrun –startproject (项目名） 执行用例在terminal控制台下执行 hrun yaml  配置文件（j">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/httprunner3.png">
+<meta property="article:published_time" content="2023-04-16T16:21:41.000Z">
+<meta property="article:modified_time" content="2025-02-18T02:17:53.613Z">
+<meta property="article:author" content="zhounuo">
+<meta property="article:tag" content="AutoTest">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zn-zyl.github.io/the-nuo/picture/httprunner3.png">
+  
+  
+  
+  <title>httprunner - ZN Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zn-zyl.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zn&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="httprunner"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-17 00:21" pubdate>
+          2023年4月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          866 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">httprunner</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="httprunner"><a href="#httprunner" class="headerlink" title="httprunner"></a>httprunner</h1><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>面向https 协议的通用开源测试框架，支持三种格式用例 YAML JSON PYTEST,不支持 websocket dubbo.<br>httprunner可以直接写pytest风格的测试用例</p>
+<p><img src="/the-nuo/picture/httprunner3.png" srcset="/img/loading.gif" lazyload> </p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>pip install httprunner</p>
+<h4 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h4><p>hrun –startproject (项目名）</p>
+<h4 id="执行用例"><a href="#执行用例" class="headerlink" title="执行用例"></a>执行用例</h4><p>在terminal控制台下执行 hrun yaml  配置文件（json配置文件）的相对路径或绝对路径</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>1.接口自动化测试（unittest等）</li>
+<li>2.接口进行压测（locust等）</li>
+<li>3.持续继承</li>
+<li>4.日志器</li>
+<li>5.轻轻松松进行接口测试平台化</li>
+<li>6.UI自动化测试（较弱）</li>
+</ul>
+<h2 id="HttpRunner-2-x工程目录结构"><a href="#HttpRunner-2-x工程目录结构" class="headerlink" title="HttpRunner 2.x工程目录结构"></a>HttpRunner 2.x工程目录结构</h2><ul>
+<li>1.api目录<ul>
+<li>主要存放接口的最小执行单元（正向用例）</li>
+</ul>
+</li>
+<li>2.reports目录<ul>
+<li>主要存放测试报告</li>
+</ul>
+</li>
+<li>3.testcases目录<ul>
+<li>接口复杂的执行逻辑（处理接口依赖）</li>
+</ul>
+</li>
+<li>4.testsuites目录<ul>
+<li>批量执行测试（参数化处理）</li>
+</ul>
+</li>
+<li>5.env目录<ul>
+<li>存放全局环境变量 比如管理员账号密码</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>debugtalk文件<ul>
+<li>主要用于处理动态参数（接口参数的动态化，测试数据的动态化）</li>
+</ul>
+</li>
+</ol>
+<h2 id="yaml文件用例编写规则"><a href="#yaml文件用例编写规则" class="headerlink" title="yaml文件用例编写规则"></a>yaml文件用例编写规则</h2><ul>
+<li>a.yaml配置文件（json文件类似），主要用于实现测试数据存储或者测试的执行逻辑</li>
+<li>b.强缩进的格式，默认缩进4个空格</li>
+<li>c.冒号前面为key,冒号后面为value，如key: value</li>
+<li>d.缩进一致的且没有’-‘，往往为嵌套的字典，如果有’-‘,那么为列表</li>
+<li>e.yaml中所有的key不可以加引号，value如果加单引号或者双引号，那么一定为字符串类型</li>
+<li>f.如果值为数字或小数，那么为int或float类型，如果值中有字母符号，那么一定为字符串类型</li>
+</ul>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-comment"># name固定 指定当前接口名称</span><br><br><span class="hljs-params">name:</span> 项目的列表信息接口<br><br><span class="hljs-params">base_url:</span> http:<span class="hljs-operator">//</span>api.keyou.site:<span class="hljs-number">8000</span><br><br><span class="hljs-comment"># 指定当前用例需要用到的变量</span><br><br><span class="hljs-params">variables:</span><br><br>    <span class="hljs-comment"># 定义两个变量 变量名可以随便定义</span><br>    <span class="hljs-comment"># 变量名：变量值</span><br>    <span class="hljs-comment"># 定义变量后可以在定义语句的下方任意地方调用 使用$变量名</span><br><br>    <span class="hljs-params">uname:</span> <span class="hljs-string">&quot;lemon3333&quot;</span><br>    <span class="hljs-params">passwd:</span> <span class="hljs-string">&quot;123456&quot;</span><br>    <span class="hljs-params">token:</span> <span class="hljs-string">&quot;$token&quot;</span><br><br><span class="hljs-comment"># 指定接口的请求信息</span><br><br><span class="hljs-params">request:</span><br>    <span class="hljs-comment"># 指定请求的url路径</span><br>    <span class="hljs-params">url:</span> <span class="hljs-operator">/</span>projects<span class="hljs-symbol">/</span><br><br>    <span class="hljs-comment"># 指定请求方式 大写小写都可以 get post put</span><br>    <span class="hljs-params">method:</span> GET<br><br>    <span class="hljs-comment"># 指定请求头信息</span><br>    <span class="hljs-params">headers:</span><br>        <span class="hljs-params">User-Agent:</span> <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;get_random_user_agent()&#125;</span>&quot;</span><br>        <span class="hljs-params">Authorization:</span> <span class="hljs-string">&quot;JWT $token&quot;</span><br>    <br>    <span class="hljs-comment"># json区域来指定json格式请求参数</span><br>    <span class="hljs-comment"># data区域来指定form表单请求参数</span><br>    <span class="hljs-comment"># params区域来指定查询字符串参数</span><br>    <span class="hljs-comment"># files指定文件请求参数</span><br>    <span class="hljs-comment"># 可以查看request库传参 一模一样</span><br>    <span class="hljs-params">params:</span><br>        <span class="hljs-params">page:</span> <span class="hljs-number">1</span><br>        <span class="hljs-params">size:</span> <span class="hljs-number">3</span><br><br><br><span class="hljs-comment"># 指定断言方式</span><br><span class="hljs-params">validate:</span><br><br>      <span class="hljs-comment"># eq指定做相等断言 [实际值,期望值]</span><br>      <span class="hljs-comment"># 默认能使用的属性有：status_code, cookies, elapsed, headers, content, text, json, encoding, ok, reason, url</span><br>      <span class="hljs-comment"># headers为响应头、content 字节,text 字符串, json 都为响应体数据（如果响应数据为json格式的话，那么会自动转化为字典）</span><br>      <span class="hljs-comment"># 字典获取值：content或text或json.字典key</span><br>      <span class="hljs-comment"># 列表获取值：content或text或json.数字索引值.字典key  content.0.username</span><br><br>     <span class="hljs-operator">-</span> <span class="hljs-params">eq:</span> [<span class="hljs-string">&quot;status_code&quot;</span>, <span class="hljs-number">200</span>]<br>     <span class="hljs-operator">-</span> <span class="hljs-params">eq:</span> [<span class="hljs-string">&quot;content.username&quot;</span>, <span class="hljs-string">&quot;keyou1&quot;</span>]<br>     <span class="hljs-operator">-</span> <span class="hljs-params">contains:</span> [<span class="hljs-string">&quot;content.username&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>]<br>     <span class="hljs-operator">-</span> &#123;<span class="hljs-string">&quot;check&quot;</span>: <span class="hljs-string">&quot;status_code&quot;</span>, <span class="hljs-string">&quot;comparator&quot;</span>: <span class="hljs-string">&quot;eq&quot;</span>, <span class="hljs-string">&quot;expect&quot;</span>: <span class="hljs-number">200</span>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="env文件下定义全局环境变量，可以在任何地方调用"><a href="#env文件下定义全局环境变量，可以在任何地方调用" class="headerlink" title=".env文件下定义全局环境变量，可以在任何地方调用"></a>.env文件下定义全局环境变量，可以在任何地方调用</h3><p>语法：${ENV(环境变量名)}</p>
+<p>调用：${ENV(USERNAME)}</p>
+<p>.env文件：<br>USERNAME&#x3D;lemon1<br>PASSWORD&#x3D;123456</p>
+<h3 id="动态变化的参数"><a href="#动态变化的参数" class="headerlink" title="动态变化的参数"></a>动态变化的参数</h3><p>语法： ${方法名()}</p>
+<p>调用： ${get_random_topic_name()}</p>
+<p>debugtalk文件下定义函数</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function">def <span class="hljs-title">get_random_topic_name</span>():</span><br><span class="hljs-function">    </span><br><span class="hljs-function">    H</span> = <span class="hljs-string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#x27;</span><br><br>    topic_name = <span class="hljs-string">&#x27;&#x27;</span><br>    <span class="hljs-function"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-title">range</span>(<span class="hljs-params"><span class="hljs-number">5</span></span>):</span><br><span class="hljs-function">        topic_name +</span>= random.choice(H)<br><br>    <span class="hljs-keyword">return</span> topic_name<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AutoTest/" class="category-chain-item">AutoTest</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AutoTest/" class="print-no-link">#AutoTest</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>httprunner</div>
+      <div>https://zn-zyl.github.io/2023/04/17/AutoTest/httprunner/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhounuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/17/django/django%E5%9F%BA%E7%A1%80/" title="django基础">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">django基础</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/03/17/AutoTest/APP%E8%87%AA%E5%8A%A8%E5%8C%96/" title="APP自动化">
+                        <span class="hidden-mobile">APP自动化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

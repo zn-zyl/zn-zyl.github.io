@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhounuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="测试用例设计方法总结背景软件测试的核心是测试用例的编写，测试用例的编写对软件测试的过程来说十分重要。黑盒测试和白盒测试是两类不同的测试方法。  1.我们为什么要做好测试用例设计 1）测试用例的好坏，直接关系着最根本的测试质量和测试效率的优劣 2）测试用例设计能力的好坏，直接影响了开发人员对测试第一印象的好坏   2.好的测试用例有什么共性？ 1）测试设计结构组织合理（根据需求说明书和主要模块，有侧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="测试用例设计方法总结">
+<meta property="og:url" content="https://zn-zyl.github.io/2020/02/17/testbasic/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="ZN Blog">
+<meta property="og:description" content="测试用例设计方法总结背景软件测试的核心是测试用例的编写，测试用例的编写对软件测试的过程来说十分重要。黑盒测试和白盒测试是两类不同的测试方法。  1.我们为什么要做好测试用例设计 1）测试用例的好坏，直接关系着最根本的测试质量和测试效率的优劣 2）测试用例设计能力的好坏，直接影响了开发人员对测试第一印象的好坏   2.好的测试用例有什么共性？ 1）测试设计结构组织合理（根据需求说明书和主要模块，有侧">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_10-38-44.png">
+<meta property="article:published_time" content="2020-02-16T23:30:53.000Z">
+<meta property="article:modified_time" content="2025-02-18T02:17:53.455Z">
+<meta property="article:author" content="zhounuo">
+<meta property="article:tag" content="testbasic">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-16_10-38-44.png">
+  
+  
+  
+  <title>测试用例设计方法总结 - ZN Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zn-zyl.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zn&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="测试用例设计方法总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-02-17 07:30" pubdate>
+          2020年2月17日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">测试用例设计方法总结</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="测试用例设计方法总结"><a href="#测试用例设计方法总结" class="headerlink" title="测试用例设计方法总结"></a>测试用例设计方法总结</h1><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>软件测试的核心是测试用例的编写，测试用例的编写对软件测试的过程来说十分重要。<br>黑盒测试和白盒测试是两类不同的测试方法。</p>
+<ul>
+<li>1.我们为什么要做好测试用例设计<ul>
+<li>1）测试用例的好坏，直接关系着最根本的测试质量和测试效率的优劣</li>
+<li>2）测试用例设计能力的好坏，直接影响了开发人员对测试第一印象的好坏</li>
+</ul>
+</li>
+<li>2.好的测试用例有什么共性？<ul>
+<li>1）测试设计结构组织合理（根据需求说明书和主要模块，有侧重点能抓住最主要的测试点和测试范围)</li>
+<li>2)设计用例设计覆盖全面且不冗余(用专业经典的描述，最少的测试用例来尽可能多的覆盖更多测试点)</li>
+<li>3）测试用例设计具有可执行，可判定，可再现的特点。(逐步细化第一步明确一条用例的测试需求点。然后写测试步骤，  测试步骤要明确，好执行。不要一开始就进入细节容易本末倒置逻辑混乱。测试力度要适中，精简测试用例。)</li>
+</ul>
+</li>
+</ul>
+<h2 id="黑盒测试的测试用例设计方法"><a href="#黑盒测试的测试用例设计方法" class="headerlink" title="黑盒测试的测试用例设计方法"></a>黑盒测试的测试用例设计方法</h2><h2 id="1-等价类划分法"><a href="#1-等价类划分法" class="headerlink" title="1.等价类划分法"></a>1.等价类划分法</h2><p>等价类划分法是指某个输入域的子集合。在该子集合中，所有的输入数据对于揭露软件中的错误都      是等效的</p>
+<ul>
+<li>有效等价类：对于系统的规格说明是合理的，有意义的输入（符合需求规格说明书要求的输入）</li>
+<li>无效等价类：对于系统的规格说明是不合理的，无意义的输入（不符合需求规格说明书要求的输入）<br>具体案例：<br>邮件地址                     @163.com(6~18个字符可使用字母，数字，下划线，需以字母开头）</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-16_10-38-44.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="分析步骤："><a href="#分析步骤：" class="headerlink" title="分析步骤："></a>分析步骤：</h4><ul>
+<li>1.测试点：邮件地址</li>
+<li>2.关注点：1 字符数   2.组成<br>关注点1 字符数：<br>有效等价类和无效等价类<br>关注点2 组成<br>有效等价类和无效等价类</li>
+<li>3.设计用例 有效等价类尽可能多的覆盖，交叉设计<br>  无效等价类一个用例只能一个测试点，好判断错误原因</li>
+</ul>
+<h2 id="2-边界值分析法"><a href="#2-边界值分析法" class="headerlink" title="2.边界值分析法"></a>2.边界值分析法</h2><ul>
+<li>1.定义：边界值分析法是对等价类划分法的一个补充，边界值一般都是从等价类的边缘值去找。<br>       边界值分析的基本思想：正好等于，刚刚大于，刚刚小于边界的值作为测试数据</li>
+<li>2.边界值的作用：基本功能容易在边界附近出问题，而不是在输入范围的内部<br> 如：边界类型数值太小，输入的数值的范围<br>  - 字串长短：Null-max-max+1(150个字符以为 Null 150 150+1)<br>  - 内容有无 (是否）<br>  - 支持与否（保留字符，特殊字符，计划外字符）</li>
+<li>3.边界值应用范围：如果需求规定了取值范围或规定了取值的个数时，可利用边界值进行测试</li>
+</ul>
+<h2 id="3-场景法（flow图，这个比较熟悉，无需多关注）"><a href="#3-场景法（flow图，这个比较熟悉，无需多关注）" class="headerlink" title="3.场景法（flow图，这个比较熟悉，无需多关注）"></a>3.场景法（flow图，这个比较熟悉，无需多关注）</h2><ul>
+<li>1.定义：通过场景描述的业务流程（业务逻辑）也就是flow图，设计用例来遍历场景，验证系功能</li>
+</ul>
+<p>重点是测试流程，每个流程下来用一个用例验证即可。流程测试没有问题并不能说明系统没有问题，只能说是流程没有问题，还需要func测试和ope操作测试，只有单个功能和流程都没有问题才可以。</p>
+<h4 id="如何使用场景法"><a href="#如何使用场景法" class="headerlink" title="如何使用场景法"></a>如何使用场景法</h4><p>1.画出业务流程图</p>
+<h2 id="4-错误推测法"><a href="#4-错误推测法" class="headerlink" title="4.错误推测法"></a>4.错误推测法</h2><p>基于经验和直觉推测程序中所有可能存在的各种错误，他的要素有三点：经验，知识，直觉。</p>
+<ul>
+<li>1.列举程序中所有可能有的错误和容易发生错误的特殊情况</li>
+<li>2.根据他们选择测试用例</li>
+</ul>
+<h2 id="测试用例选择方法"><a href="#测试用例选择方法" class="headerlink" title="测试用例选择方法"></a>测试用例选择方法</h2><ul>
+<li>任何情况下都要使用边界值分析法，这种方法设计出的测试用例发现程序错误的能力最强  </li>
+<li>必要时用等价类补充一些测试用例  </li>
+<li>先使用其它设计方法编写用例，再使用错误猜测法补充用例  </li>
+<li>对照程序逻辑，检查已设计出的测试用例的逻辑覆盖度，如果没达到要求的覆盖标准，应再补足足够的测试用例。</li>
+</ul>
+<h4 id="编写测试用例会用到什么方法；"><a href="#编写测试用例会用到什么方法；" class="headerlink" title="编写测试用例会用到什么方法；"></a>编写测试用例会用到什么方法；</h4><p>等价类划分法，边界值分析法，错误推测法，场景法等</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/testbasic/" class="category-chain-item">testbasic</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/testbasic/" class="print-no-link">#testbasic</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>测试用例设计方法总结</div>
+      <div>https://zn-zyl.github.io/2020/02/17/testbasic/测试用例设计方法总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhounuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年2月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/02/17/testbasic/%E6%B5%8B%E8%AF%95%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/" title="测试需求分析">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">测试需求分析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/10/17/java/java%E8%BF%90%E7%AE%97%E7%AC%A6/" title="java运算符">
+                        <span class="hidden-mobile">java运算符</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

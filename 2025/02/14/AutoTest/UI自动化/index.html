@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhounuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="UI自动化知识树订正：JS处理滚动条-移动到页面顶部 driver.execute_script(“window.scrollTo(document.body.scrollHeight,0)”)   processon地址：     项目中开展web自动化测试流程 web自动化架构 有哪些因素可提高或影响脚本稳定性外部因素 1.系统环境 依赖的系统里的数据 2.网络 设备  代码因素 1.元素定位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UI自动化">
+<meta property="og:url" content="https://zn-zyl.github.io/2025/02/14/AutoTest/UI%E8%87%AA%E5%8A%A8%E5%8C%96/index.html">
+<meta property="og:site_name" content="ZN Blog">
+<meta property="og:description" content="UI自动化知识树订正：JS处理滚动条-移动到页面顶部 driver.execute_script(“window.scrollTo(document.body.scrollHeight,0)”)   processon地址：     项目中开展web自动化测试流程 web自动化架构 有哪些因素可提高或影响脚本稳定性外部因素 1.系统环境 依赖的系统里的数据 2.网络 设备  代码因素 1.元素定位">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/Snipaste_2021-05-18_23-07-36.png">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/Snipaste_2021-05-18_23-09-36.png">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/Snipaste_2021-05-18_23-10-16.png">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/Snipaste_2021-05-21_14-02-36.png">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/QQ20210523-0.jpg">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/Snipaste_2021-05-19_11-16-22.png">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/Snipaste_2021-05-20_15-17-44.png">
+<meta property="og:image" content="https://zn-zyl.github.io/the-nuo/picture/pytest.png">
+<meta property="article:published_time" content="2025-02-13T23:33:45.000Z">
+<meta property="article:modified_time" content="2025-02-18T02:21:08.427Z">
+<meta property="article:author" content="zhounuo">
+<meta property="article:tag" content="AutoTest">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zn-zyl.github.io/the-nuo/picture/Snipaste_2021-05-18_23-07-36.png">
+  
+  
+  
+  <title>UI自动化 - ZN Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zn-zyl.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zn&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="UI自动化"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-14 07:33" pubdate>
+          2025年2月14日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          58 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">UI自动化</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="UI自动化"><a href="#UI自动化" class="headerlink" title="UI自动化"></a>UI自动化</h1><h2 id="知识树"><a href="#知识树" class="headerlink" title="知识树"></a>知识树</h2><p><img src="/the-nuo/picture/Snipaste_2021-05-18_23-07-36.png" srcset="/img/loading.gif" lazyload><br><img src="/the-nuo/picture/Snipaste_2021-05-18_23-09-36.png" srcset="/img/loading.gif" lazyload><br><img src="/the-nuo/picture/Snipaste_2021-05-18_23-10-16.png" srcset="/img/loading.gif" lazyload><br>订正：JS处理滚动条-移动到页面顶部 driver.execute_script(“window.scrollTo(document.body.scrollHeight,0)”)  </p>
+<p>processon地址：  </p>
+<iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:525px; height:245px;" src="https://www.processon.com/embed/5d81c22ce4b04c14c4e758e3"></iframe>
+
+<h2 id="项目中开展web自动化测试流程"><a href="#项目中开展web自动化测试流程" class="headerlink" title="项目中开展web自动化测试流程"></a>项目中开展web自动化测试流程</h2><p><img src="/the-nuo/picture/Snipaste_2021-05-21_14-02-36.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="web自动化架构"><a href="#web自动化架构" class="headerlink" title="web自动化架构"></a>web自动化架构</h2><p><img src="/the-nuo/picture/QQ20210523-0.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="有哪些因素可提高或影响脚本稳定性"><a href="#有哪些因素可提高或影响脚本稳定性" class="headerlink" title="有哪些因素可提高或影响脚本稳定性"></a>有哪些因素可提高或影响脚本稳定性</h3><h4 id="外部因素"><a href="#外部因素" class="headerlink" title="外部因素"></a>外部因素</h4><ul>
+<li>1.系统环境 依赖的系统里的数据</li>
+<li>2.网络 设备</li>
+</ul>
+<h4 id="代码因素"><a href="#代码因素" class="headerlink" title="代码因素"></a>代码因素</h4><ul>
+<li>1.元素定位</li>
+<li>2.等待</li>
+<li>3.用例复杂度 独立性 用例选择</li>
+</ul>
+<h4 id="辅助手段"><a href="#辅助手段" class="headerlink" title="辅助手段"></a>辅助手段</h4><ul>
+<li>1.重运行</li>
+<li>2.jenkis集成</li>
+</ul>
+<h2 id="自动化用例设计原则"><a href="#自动化用例设计原则" class="headerlink" title="自动化用例设计原则"></a>自动化用例设计原则</h2><ul>
+<li>1.不是所有的手工用例都要转为自动化用例</li>
+<li>2.考虑到脚本开发的成本，不要选择流程太复杂的用例，如有必要，可以考虑把流程拆分成多个用例来实现脚本</li>
+<li>3.选择的用例最好可以构建成场景 例如一个功能模块 分多个用例 多个用例使用同一个场景</li>
+<li>4.选择的用例可以带有目的性。例如一部分做冒烟测试一部分做回归测试，会存在重叠关系，如果当前的用例不能满足需求，可以修改用例来适应脚本和需求</li>
+<li>5.选取的用例可以是你认为是重复执行很繁琐的部分，例如字段验证，提示信息验证这类。这部分适用于回归测试</li>
+<li>6.选取的用例可以是主体流程，这部分适用于冒烟测试</li>
+<li>7.自动化测试也可以用来做配置检查，数据库检查，这些可能超越了手工用例，但也算用例拓展的一部分。可以有选择增加</li>
+<li>8.平时在手工测试中，如果需要构造一些复杂的数据或重复一些简单的机械性动作，可以由自动化脚本来做</li>
+</ul>
+<h3 id="在编写自动化测试用例应遵循以下原则"><a href="#在编写自动化测试用例应遵循以下原则" class="headerlink" title="在编写自动化测试用例应遵循以下原则"></a>在编写自动化测试用例应遵循以下原则</h3><ul>
+<li>1.一个用例为一个完整的场景。从用户登录到最终退出关闭浏览器</li>
+<li>2.一个用例只验证一个功能点，不要试图在用户登录系统后把所有的功能都验证一遍</li>
+<li>3.尽量少的写逆向逻辑用例，一方面因为逆向逻辑用例很多（例如手机号输错有几十种情况），另一方面自动化脚本本身脆弱，对于复杂的逆向逻辑用例实现麻烦且容易出错。最重要的是用例的稳定性</li>
+<li>4.用例与用例之间尽量避免产生依赖</li>
+<li>5.一条用例完成测试之后需要对测试场景进行还原，以免影响其他用例的执行-数据清理。可以执行自动化脚本没在测试系统里删除产生的数据。</li>
+</ul>
+<h2 id="web自动化用例设计三步骤"><a href="#web自动化用例设计三步骤" class="headerlink" title="web自动化用例设计三步骤"></a>web自动化用例设计三步骤</h2><ul>
+<li>1.前置(准备工作-)  通过代码来创建前置 - 尽量少的依赖环境数据例如通过接口准备一些前置数据  </li>
+<li>2.步骤(用户页面操作)  </li>
+<li>3.断言(页面操作)</li>
+</ul>
+<h2 id="selenium"><a href="#selenium" class="headerlink" title="selenium"></a>selenium</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li>pip install -U selenium</li>
+<li>安装chrome浏览器 和chromedriver,浏览器版本和driver版本要匹配</li>
+</ul>
+<h4 id="selenium-webdriver原理"><a href="#selenium-webdriver原理" class="headerlink" title="selenium webdriver原理"></a>selenium webdriver原理</h4><ul>
+<li>1.webdriver启动浏览器驱动程序，并设置侦听端口号</li>
+<li>2.webdriver客户端与浏览器服务端即驱动建立连接，发送HTTP请求</li>
+<li>3.连接成功后，python selenium webdriver客户端和浏览器服务端之间通过http通信传递命令，驱动收到指令后，驱动浏览器去执行命令</li>
+<li>4.驱动把执行结果返回给selenim webdriver客户端</li>
+<li>5.继续发下一个http请求</li>
+<li>最后 断开连接 关闭驱动服务 关闭浏览器<br><img src="/the-nuo/picture/Snipaste_2021-05-19_11-16-22.png" srcset="/img/loading.gif" lazyload alt="seleniumwebdriver"></li>
+</ul>
+<h3 id="元素定位"><a href="#元素定位" class="headerlink" title="元素定位"></a>元素定位</h3><ul>
+<li>driver.finde_element(by&#x3D;BY.XPATH,表达式)</li>
+<li>driver.finde_elements(by&#x3D;BY.XPATH,表达式)</li>
+<li>driver.find_elemnt_by_xpath(表达式)</li>
+</ul>
+<h4 id="xpath定位补充"><a href="#xpath定位补充" class="headerlink" title="xpath定位补充"></a>xpath定位补充</h4><ul>
+<li>1.逻辑运算 and or<br>&#x2F;&#x2F;标签名[@属性&#x3D;值 and @属性&#x3D;值 and contains(@属性&#x2F;text(),值)] <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">//<span class="hljs-keyword">a</span>[<span class="hljs-keyword">text</span>()=<span class="hljs-string">&quot;公告&quot;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">contains</span>(@href,<span class="hljs-string">&quot;/index/courseid/&quot;</span>)]<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="轴定位-分析元素之间的关系-页面结构"><a href="#轴定位-分析元素之间的关系-页面结构" class="headerlink" title="轴定位 分析元素之间的关系 页面结构"></a>轴定位 分析元素之间的关系 页面结构</h4><p>应用场景：页面显示为一个表格样式的数据列，需要通过组合来定位元素<br>注意：  后面接的是轴定位表达式前面是用&#x2F;<br>语法：  已知元素&#x2F;轴名称::标签名[@属性&#x3D;值]</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">/p[@title=&quot;路飞&quot;]/preceding</span>-sibling::p[<span class="hljs-variable">@class</span>=<span class="hljs-string">&quot;stuo&quot;</span>]<br>/<span class="hljs-regexp">/p[@title=&quot;路飞&quot;]/parent</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:*/preceding-sibling</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:li//p</span>[<span class="hljs-variable">@class</span>=<span class="hljs-string">&quot;sss&quot;</span>]<br></code></pre></td></tr></table></figure>
+<h3 id="等待"><a href="#等待" class="headerlink" title="等待"></a>等待</h3><p>原则： 显性等待为主配合强制等待sleep保持用例稳定性</p>
+<ul>
+<li>强制等待 sleep</li>
+<li>隐性等待<br>应用场景：元素存在 &#x2F; 1条命令执行完成<br>    每个会话中，只需要被调用一次。一般写在打开浏览器后</li>
+<li>显性等待<br>应用场景：等待元素可见，等待元素可用，等待新的窗口出现，在你需要的地方使用显性等待</li>
+</ul>
+<h3 id="窗口切换"><a href="#窗口切换" class="headerlink" title="窗口切换"></a>窗口切换</h3><h4 id="什么情况下需要窗口切换？"><a href="#什么情况下需要窗口切换？" class="headerlink" title="什么情况下需要窗口切换？"></a>什么情况下需要窗口切换？</h4><p>  页面的操作，打开了一个新的窗口，你需要在新的窗口中进行下一步操作</p>
+<h4 id="怎么知道要切换到哪一个窗口？代码怎么知道哪个窗口是新的窗口？"><a href="#怎么知道要切换到哪一个窗口？代码怎么知道哪个窗口是新的窗口？" class="headerlink" title="怎么知道要切换到哪一个窗口？代码怎么知道哪个窗口是新的窗口？"></a>怎么知道要切换到哪一个窗口？代码怎么知道哪个窗口是新的窗口？</h4><ul>
+<li>1.得到当前打开的所有窗口 获取句柄 每个窗口都有一个句柄，句柄是一个列表，先出现的先追加到列表，最新的窗口，在列表的最后，最先打开的窗口在列表第一个<br>wins &#x3D; driver.window_handles</li>
+<li>2.切换窗口<br>driver.switch_to.window(wins[-1])</li>
+</ul>
+<h3 id="iframe切换"><a href="#iframe切换" class="headerlink" title="iframe切换"></a>iframe切换</h3><p>driver.switch_to.iframe()<br>参数支持3种方式来确定切换到哪一个iframe</p>
+<ul>
+<li><ol>
+<li>iframe下标，从0开始 driver.switch_to.frame(3)</li>
+</ol>
+</li>
+<li>2.iframe元素的name属性 driver.switch_to.frame(“login_frame_qq)</li>
+<li>3.iframe的这个webElement元素 driver.switch_to.frame(driver.find_element_by_xpath(‘&#x2F;&#x2F;iframe[@name&#x3D;”login”]’))<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">嵌套iframe回到上一级<br>driver<span class="hljs-selector-class">.switch_to</span><span class="hljs-selector-class">.parent_frame</span>()<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="鼠标操作-ActionChaims"><a href="#鼠标操作-ActionChaims" class="headerlink" title="鼠标操作 ActionChaims"></a>鼠标操作 ActionChaims</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">from</span> selenium.webdriver.common.action_chains <span class="hljs-keyword">import</span> ActionChains<br>#  <span class="hljs-number">1.</span>找到鼠标要操作的元素<br>loc = (<span class="hljs-keyword">BY</span>.XPATH,<span class="hljs-string">&#x27;//div[@id=&quot;ui&quot;]//a[@name=&quot;setting&quot;]&#x27;</span>)  <br>ele = driver.find_element(*loc)<br># <span class="hljs-number">2.</span>实例化ActionChaims类<br>ac = ActionChaims(driver)<br># <span class="hljs-number">3.</span>调用鼠标行为执行鼠标动作<br>ac.move_to_element(ele).<span class="hljs-keyword">perform</span>()<br># <span class="hljs-number">4.</span>等待下拉列表中的元素可见<br>loc=(<span class="hljs-keyword">By</span>.XPATH,<span class="hljs-string">&#x27;/A[text()=&quot;高级搜索&quot;]&#x27;</span>)<br>WebDriverWait(driver,<span class="hljs-number">10</span>).<span class="hljs-keyword">until</span>(EC.visibility_of_element_located(loc))<br># <span class="hljs-number">5.</span>选择元素点击<br>driver.find_element(*loc).click()<br></code></pre></td></tr></table></figure>
+<h3 id="键盘操作-Keys"><a href="#键盘操作-Keys" class="headerlink" title="键盘操作 Keys"></a>键盘操作 Keys</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stylus">driver = webdriver<span class="hljs-selector-class">.Chrome</span>()<br>driver<span class="hljs-selector-class">.get</span>(<span class="hljs-string">&quot;https://www.baidu.com&quot;</span>)<br>element = driver<span class="hljs-selector-class">.find_element_by_id</span>(<span class="hljs-string">&quot;kw&quot;</span>)<br>element<span class="hljs-selector-class">.send_keys</span>(<span class="hljs-string">&quot;selenium&quot;</span>,Keys.ENTER)<br><br>element<span class="hljs-selector-class">.send_keys</span>(Keys<span class="hljs-selector-class">.CONTROL</span>,<span class="hljs-string">&quot;c&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="js处理日历控件"><a href="#js处理日历控件" class="headerlink" title="js处理日历控件"></a>js处理日历控件</h3><h4 id="修改readonly属性为false-输入"><a href="#修改readonly属性为false-输入" class="headerlink" title="修改readonly属性为false 输入"></a>修改readonly属性为false 输入</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs makefile">from selenium import webdriver<br>driver = webdriver.Chrome()<br>loc =(<span class="hljs-string">&quot;xpath&quot;</span>,<span class="hljs-string">&quot;//*[@id=&#x27;train_date&#x27;]&quot;</span>)<br>ele = driver.find_elemnt(*loc)<br>now_time = time.datetime()<br><span class="hljs-comment"># 准备js语句</span><br>js = <span class="hljs-string">&quot;var a = arguments[0];a.readOnly=false;a.value=arguments[1]&quot;</span><br><span class="hljs-comment"># 传入js语句和要传入的参数。arguments接收一个参数列表，以下标来取数</span><br>driver.execute_script(js,ele,now_time)<br></code></pre></td></tr></table></figure>
+<h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><h4 id="1-pywin32仅支持windows"><a href="#1-pywin32仅支持windows" class="headerlink" title="1.pywin32仅支持windows"></a>1.pywin32仅支持windows</h4><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs hsp">import win32gui                                                                     <br>import win32con                                                                     <br>                                                                                                                          <br>                                                                                    <br><span class="hljs-meta"># <span class="hljs-number">1</span> 找到输入框和打开按钮 元素；</span><br>  <span class="hljs-number">2</span> 输入地址，点击打开。                                                      <br>                                                                                    <br><span class="hljs-meta"># 前提 ：windows上传窗口已经出现。sleep1<span class="hljs-number">-2</span>秒等待弹出的出现。  </span><br><br>def upload(filePath,browser_type=<span class="hljs-string">&quot;chrome&quot;</span>):                                         <br>    <span class="hljs-keyword">if</span> browser_type == <span class="hljs-string">&quot;chrome&quot;</span>:                                                    <br>        <span class="hljs-keyword">title</span> = <span class="hljs-string">&quot;打开&quot;</span>                                                                <br>    <span class="hljs-keyword">else</span>:                                                                           <br>        <span class="hljs-keyword">title</span> = <span class="hljs-string">&quot;&quot;</span>                                                                  <br>                                                                                    <br>    <span class="hljs-meta">#找元素                                                                            </span><br>    <span class="hljs-meta">#一级窗口<span class="hljs-string">&quot;#32770&quot;</span>,<span class="hljs-string">&quot;打开&quot;</span>                                                              </span><br>    <span class="hljs-keyword">dialog</span> = win32gui.FindWindow(<span class="hljs-string">&quot;#32770&quot;</span>,<span class="hljs-keyword">title</span>)                                    <br>    <span class="hljs-meta">#                                                                               </span><br>    ComboBoxEx32 = win32gui.FindWindowEx(<span class="hljs-keyword">dialog</span>,<span class="hljs-number">0</span>,<span class="hljs-string">&quot;ComboBoxEx32&quot;</span>,None)  <span class="hljs-meta">#二级         </span><br>    comboBox = win32gui.FindWindowEx(ComboBoxEx32,<span class="hljs-number">0</span>,<span class="hljs-string">&quot;ComboBox&quot;</span>,None)   <span class="hljs-meta">#三级          </span><br>    <span class="hljs-meta">#编辑按钮                                                                           </span><br>    edit = win32gui.FindWindowEx(comboBox,<span class="hljs-number">0</span>,<span class="hljs-string">&#x27;Edit&#x27;</span>,None)    <span class="hljs-meta">#四级                     </span><br>    <span class="hljs-meta">#打开按钮                                                                           </span><br>    <span class="hljs-keyword">button</span> = win32gui.FindWindowEx(<span class="hljs-keyword">dialog</span>,<span class="hljs-number">0</span>,<span class="hljs-string">&#x27;Button&#x27;</span>,<span class="hljs-string">&quot;打开(&amp;O)&quot;</span>)   <span class="hljs-meta">#二级                </span><br>                                                                                    <br>                                                                                    <br>    <span class="hljs-meta">#往编辑当中，输入文件路径 。                                                                 </span><br>    win32gui.SendMessage(edit,win32con.WM_SETTEXT,None,filePath)    <span class="hljs-meta">#发送文件路径         </span><br>    win32gui.SendMessage(<span class="hljs-keyword">dialog</span>, win32con.WM_COMMAND, <span class="hljs-number">1</span>, <span class="hljs-keyword">button</span>)    <span class="hljs-meta">#点击打开按钮         </span><br>                                                                                    <br>                                                                                    <br>==============运行=========                                                          <br><span class="hljs-meta"># ## 前提：上传窗口弹出来 -- 页面操作。</span><br>driver.find_element().click()                             <br><span class="hljs-meta"># time.sleep(<span class="hljs-number">2</span>) # 必须等待                                                             </span><br><span class="hljs-meta"># upload(<span class="hljs-string">&quot;D:\\chromedriver.log&#x27; &#x27;D:\\chromedriver_server.log&quot;</span>)                      </span><br>                                                                                    <br>                                                                                    <br></code></pre></td></tr></table></figure>
+<h4 id="2-pywinauto"><a href="#2-pywinauto" class="headerlink" title="2.pywinauto"></a>2.pywinauto</h4><p>pywinauto 的使用介绍<br>关于文件上传的弹窗，在 python 中可以通过 pywinauto 模块来进行操作，pywinauto 是 python 中用来做的 PC 端自动化的一个库。PC 端的所有窗口都可以使用它来进行操作。<br>需要先学习下pywinauto的控件定位。在进行文件上传的时候，我们需要这个窗口进行操作的一共是三个步骤：</p>
+<p>操作步骤：</p>
+<ul>
+<li>1、文件路径填写</li>
+<li>2、文件名填写</li>
+<li>3、点击打开<br>在进行操作之前，我们就需要定位到这几个控件  </li>
+<li>1、路径输入框</li>
+<li>2、文件输入框</li>
+<li>3、打开按钮<br>关于控件定位操作的具体细节，大家可以去自行学习 pywinauto 的使用<br>具体定位代码如下：<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-keyword">import</span> pywinauto<br><br><span class="hljs-meta"># 使用pywinautoc创建一个操作桌面窗口的对象</span><br><span class="hljs-title">app</span> = pywinauto.<span class="hljs-type">Desktop</span>()<br><span class="hljs-meta"># 选中文件上传的窗口</span><br><span class="hljs-title">dlg</span> = app[<span class="hljs-string">&quot;打开&quot;</span>]<br><br><span class="hljs-meta"># 选中文件地址输入框</span><br><span class="hljs-title">dlg</span>[<span class="hljs-string">&quot;Toolbar3&quot;</span>]<br><br><span class="hljs-meta"># 选中文件名输入框</span><br><span class="hljs-title">dlg</span>[<span class="hljs-string">&quot;文件名(&amp;N):Edit&quot;</span>]<br><br><span class="hljs-meta"># 选择打开按钮</span><br><span class="hljs-title">dlg</span>[<span class="hljs-string">&quot;打开(&amp;O)&quot;</span>]<br></code></pre></td></tr></table></figure>
+文件上传小案例<br>小编事先找好了一个文件上传的地址，这边给大家来演示一个案例</li>
+</ul>
+<p>第一步通过 selenium 打开文件上传的地址，点击上传文件</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-keyword">from</span> selenium import webdriver<br><br>url= <span class="hljs-string">&quot;https://www.layui.com/demo/upload.html&quot;</span><br>browser = webdriver.Chrome()<br><span class="hljs-comment"># 访问图片上传的网页地址</span><br>browser.<span class="hljs-built_in">get</span>(<span class="hljs-attribute">url</span>=url)<br><span class="hljs-comment"># 点击图片上传按钮，打开文件选择窗口</span><br>browser.find_element_by_xpath(<span class="hljs-string">&quot;//button[@id=&#x27;test2&#x27;]&quot;</span>).click()<br><br></code></pre></td></tr></table></figure>
+<p><img src="/the-nuo/picture/Snipaste_2021-05-20_15-17-44.png" srcset="/img/loading.gif" lazyload><br>2.通过 pywinauto 选择上传文件，点击进行上传</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-built_in">import</span> pywinauto<br>from pywinauto.keyboard <span class="hljs-built_in">import</span> send_keys<br><span class="hljs-comment"># 使用pywinauto来选择文件</span><br>a<span class="hljs-attr">pp</span> <span class="hljs-operator">=</span> pywinauto.Desktop()<br><span class="hljs-comment"># 选择文件上传的窗口</span><br>d<span class="hljs-attr">lg</span> <span class="hljs-operator">=</span> app[<span class="hljs-string">&quot;打开&quot;</span>]<br><br><span class="hljs-comment"># 选择文件地址输入框，点击激活</span><br>dlg[<span class="hljs-string">&quot;Toolbar3&quot;</span>].click()<br><span class="hljs-comment"># 键盘输入上传文件的路径</span><br>send_keys(<span class="hljs-string">&quot;C:<span class="hljs-char escape_">\课</span>件<span class="hljs-char escape_">\i</span>mages&quot;</span>)<br><span class="hljs-comment"># 键盘输入回车，打开该路径</span><br>send_keys(<span class="hljs-string">&quot;&#123;VK_RETURN&#125;&quot;</span>)<br><br><span class="hljs-comment"># 选中文件名输入框，输入文件名</span><br>dlg[<span class="hljs-string">&quot;文件名(&amp;N):Edit&quot;</span>].type_keys(<span class="hljs-string">&quot;9.png&quot;</span>)<br><br><span class="hljs-comment"># 点击打开</span><br>dlg[<span class="hljs-string">&quot;打开(&amp;O)&quot;</span>].click()<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="PO设计模式"><a href="#PO设计模式" class="headerlink" title="PO设计模式"></a>PO设计模式</h2><h3 id="核心思想：测试对象（页面），测试用例（页面操作-测试数据）彻底分离"><a href="#核心思想：测试对象（页面），测试用例（页面操作-测试数据）彻底分离" class="headerlink" title="核心思想：测试对象（页面），测试用例（页面操作+测试数据）彻底分离"></a>核心思想：测试对象（页面），测试用例（页面操作+测试数据）彻底分离</h3><p>在做web 测试时，无论是什么业务，都是在页面上去操作，即所有的测试用例都是在页面中操作的。比如一个用例是由5个页面的功能串行组成的。<br>假设一个产品有30个页面，有500个功能测试用例。那么这500个功能测试用例就是有30个页面的功能组成。<br>如此，如果能够把30个页面的功能封装起来，500个用例按照业务场景从30个页面当中调用需要的页面即可。  </p>
+<p>这种方式叫做PO模式，全称 Page object ,页面对象模型。  </p>
+<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><ul>
+<li>1.将页面的元素定位和元素行为封装成一个 page 类。 </li>
+<li>2.用例中直接调用页面当中的页面操作，实现页面对象和测试用例分离。 用例中看不到元素定位和操作</li>
+</ul>
+<p>在测试用例中，调用所需页面对象中的行为，组成测试用例。  </p>
+<h3 id="PO设计模式优势"><a href="#PO设计模式优势" class="headerlink" title="PO设计模式优势"></a>PO设计模式优势</h3><ul>
+<li>1、当某个页面的元素发生变化，只需要修改该页面对象中的代码即可，测试用例不需要修改。</li>
+<li>2、提高代码重用率。结构清晰，维护代码更容易。</li>
+<li>3、测试用例发生变化时，不需要或者只需要修改少数页面对象代码即可</li>
+</ul>
+<h2 id="Pytest"><a href="#Pytest" class="headerlink" title="Pytest"></a>Pytest</h2><h3 id="pytest和unittest区别"><a href="#pytest和unittest区别" class="headerlink" title="pytest和unittest区别"></a>pytest和unittest区别</h3><ul>
+<li>1.表达用例 unittest:定义一个类，继承unittest.TestCase pytest:类&#x2F;函数</li>
+<li>2.断言的表达 unitest:self.assert() pytest:assert 表达式（结果为True断言成功否则断言失败）逻辑&#x2F;成员&#x2F;函数返回值&#x2F;比较</li>
+<li>3.用例收集 unittest:TestLoader类+TestSuite类，discover收集用例 pytest:自动收集用例</li>
+<li>4.fixture前置后置：unittest:setup&#x2F;teardown  setupClass&#x2F;teardownClass (名称固定)<br>             pytest:function(用例)class(测试类)Module(.py模块)Session(会话）</li>
+<li>5.插件:unittest:无 pytest:700+ <a target="_blank" rel="noopener" href="http://plugincompat.herokuapp.com/">http://plugincompat.herokuapp.com/</a> html插件 allure报告</li>
+</ul>
+<h3 id="pytest用例收集机制"><a href="#pytest用例收集机制" class="headerlink" title="pytest用例收集机制"></a>pytest用例收集机制</h3><ul>
+<li>1.目录：pytest命令在哪个目录下执行，那就默认从哪个目录下开始搜索用例    </li>
+<li>2.文件&#x2F;子包python package：1）.py结尾 2）文件名以test_开头或者以_test结尾  </li>
+<li>3.用例名称：以test_开头的函数，或者以Test开头的类名下（不含__init__)，以test_开头的方法</li>
+</ul>
+<h3 id="pytest用例执行顺序"><a href="#pytest用例执行顺序" class="headerlink" title="pytest用例执行顺序"></a>pytest用例执行顺序</h3><ul>
+<li>1.文件名称顺序 -ASCII顺序 哪个文件先识别，哪个文件下的用例，先执行</li>
+<li>2.文件内部：代码的先后顺序 从上到下</li>
+</ul>
+<h3 id="pytest常用命令"><a href="#pytest常用命令" class="headerlink" title="pytest常用命令"></a>pytest常用命令</h3><p>pytest -h<br>命令行输入pytest -h，找到里面两个命令行参数： –lf 和 –ff  </p>
+<ul>
+<li>–lf, –last-failed   只重新运行上次运行失败的用例（或如果没有失败的话会全部跑）  </li>
+<li>–ff, –failed-first  运行所有测试，但首先运行上次运行失败的测试（这可能会重新测试，从而导致重复的fixture setup&#x2F;teardown）<br>pytest –lf<br>pytest –ff</li>
+</ul>
+<h3 id="分布式执行用例，用例设计原则："><a href="#分布式执行用例，用例设计原则：" class="headerlink" title="分布式执行用例，用例设计原则："></a>分布式执行用例，用例设计原则：</h3><p>1.用例之间都是独立的，<br>2.用例a不要去依赖用例b<br>3.用例执行没先后顺序<br>4.随机都能执行每个用例都能独立运行成功每个用例都能重复运行，不影响其它用例<br>这跟就我们平常多个人工测试一样，用例都是独立的，可以随机分配不同人员执行，互相不依赖，用例之间也不存在先后顺序。<br>pytest-xdist  </p>
+<h3 id="并行测试"><a href="#并行测试" class="headerlink" title="并行测试"></a>并行测试</h3><p>多cpu并行执行用例，直接加个-n参数即可，后面num参数就是并行数量，比如num设置为3<br> pytest -n 3</p>
+<h3 id="html测试报告"><a href="#html测试报告" class="headerlink" title="html测试报告"></a>html测试报告</h3><p>安装：pip install pytest-html<br>命令：pytest –html&#x3D;相对路径（）<br>使用pytest-xdist插件也能生成html报告,完美支持pytest-html插件<br> pytest -n 3 –html&#x3D;report.html –self-contained-html</p>
+<h3 id="重复执行用例："><a href="#重复执行用例：" class="headerlink" title="重复执行用例："></a>重复执行用例：</h3><p>使用–count命令行选项指定要运行测试用例和测试次数</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">py<span class="hljs-selector-class">.test</span> <span class="hljs-attr">--count</span>=<span class="hljs-number">10</span> test_file<span class="hljs-selector-class">.py</span><br>pytest baidu/test_1_baidu<span class="hljs-selector-class">.py</span> -s <span class="hljs-attr">--count</span>=<span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+
+<p>会第一个用例运行5次 然后运行第二个用例5次 如果希望 第一个用例 第二个用例这样按顺序重复5次 要用到–repeat-scope  </p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">pytest tearr_function.py -s <span class="hljs-attribute">--count</span>=5 <span class="hljs-attribute">--repeat-scope</span>=session<br></code></pre></td></tr></table></figure>
+<p>如果要在代码中标记要重复多次的用例 可以使用</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">@pytest.<span class="hljs-keyword">mark</span>.<span class="hljs-keyword">repeat</span>(<span class="hljs-keyword">count</span>)<br></code></pre></td></tr></table></figure>
+
+<p>这样执行用例时候，就不用带上–count参数，只针对test_02重复执行5次</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">pytest</span> tearr_function.py -s<br></code></pre></td></tr></table></figure>
+
+<p>果您正在尝试诊断间歇性故障，那么一遍又一遍地运行相同的测试直到失败是有用的。您可以将pytest的-x选项与pytest-repeat结合使用，以强制测试运行器在第一次失败时停止。例如：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">py</span>.test --<span class="hljs-built_in">count</span>=<span class="hljs-number">1000</span> -<span class="hljs-keyword">x</span> test_file.<span class="hljs-keyword">py</span><br></code></pre></td></tr></table></figure>
+<p>这将尝试运行test_file.py 1000次，但一旦发生故障就会停止</p>
+<h3 id="Pytest之fixture前置后置"><a href="#Pytest之fixture前置后置" class="headerlink" title="Pytest之fixture前置后置"></a>Pytest之fixture前置后置</h3><h4 id="unittest与pytest前置后置区别："><a href="#unittest与pytest前置后置区别：" class="headerlink" title="unittest与pytest前置后置区别："></a>unittest与pytest前置后置区别：</h4><ul>
+<li>unittest: 固定名称 setup teardown作用域测试函数 setupClass teardownClass 作用域测试类  </li>
+<li>pytest: 不固定名称&#x2F;前置后置放在一个函数里&#x2F;独立存在不与测试类放在一起&#x2F;作用域为函数&#x2F;类&#x2F;模块&#x2F;会话</li>
+</ul>
+<h4 id="pytest-fixture申明"><a href="#pytest-fixture申明" class="headerlink" title="pytest fixture申明"></a>pytest fixture申明</h4><p>1.测试用例文件中定义<br>2.conftest.py文件中定义，在conftest所在的文件夹中fxiture共享，conftest名称固定</p>
+<ul>
+<li>1）专门用来存放fixture.</li>
+<li>2）作用域：conftest.py所在的文件夹内的用例都可以使用</li>
+<li>3）用例文件当中不需要引入，直接调用fixture名称就可以了。</li>
+<li>4）可以在不同的层级，创建conftest.py</li>
+</ul>
+<h4 id="fixture前置后置定义"><a href="#fixture前置后置定义" class="headerlink" title="fixture前置后置定义"></a>fixture前置后置定义</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-variable">@pytest</span>.fixture<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">access_web</span>():<br>    <span class="hljs-comment"># 前置 - 打开浏览器访问网址</span><br>    driver = webdriver.<span class="hljs-title class_">Chrome</span>()<br>    driver.get(<span class="hljs-variable constant_">CD</span>.web_login_url)<br>    <span class="hljs-comment"># 分界线+返回值</span><br>    <span class="hljs-keyword">yield</span> driver       <br>    <span class="hljs-comment"># 后置 - 关闭浏览器</span><br>    driver.quit()<br></code></pre></td></tr></table></figure>
+<h4 id="如何区分前置后置：yield关键字-yield关键字之前为前置-yield关键字之后为后置"><a href="#如何区分前置后置：yield关键字-yield关键字之前为前置-yield关键字之后为后置" class="headerlink" title="如何区分前置后置：yield关键字 yield关键字之前为前置 yield关键字之后为后置"></a>如何区分前置后置：yield关键字 yield关键字之前为前置 yield关键字之后为后置</h4><h4 id="测试用例中如何调用前置后置"><a href="#测试用例中如何调用前置后置" class="headerlink" title="测试用例中如何调用前置后置"></a>测试用例中如何调用前置后置</h4><p>在测试用例&#x2F;类的前面<br>@pytest.mark.usefixture(“定义的fixture名称”)</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-comment"># 使用了access_web函数的前置和后置</span><br><span class="hljs-variable">@pytest</span>.mark.usefixtures(<span class="hljs-string">&quot;access_web&quot;</span>)  <br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TestLogin</span>:<br><br>    <span class="hljs-comment"># 正常用例 - 登陆+首页</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_login_2_success</span>(<span class="hljs-params"><span class="hljs-variable language_">self</span>,access_web</span>): <br>            pass<br><br></code></pre></td></tr></table></figure>
+<h4 id="如何返回前置中的变量：yield-返回值"><a href="#如何返回前置中的变量：yield-返回值" class="headerlink" title="如何返回前置中的变量：yield + 返回值"></a>如何返回前置中的变量：yield + 返回值</h4><h4 id="测试函数接收fixture返回值的方式-fixture函数名作为参数传入"><a href="#测试函数接收fixture返回值的方式-fixture函数名作为参数传入" class="headerlink" title="测试函数接收fixture返回值的方式-fixture函数名作为参数传入"></a>测试函数接收fixture返回值的方式-fixture函数名作为参数传入</h4><p>将fixture函数名称，作为用例的参数传入即可 即 用例的参数&#x3D;fixture函数名&#x3D;yield后返回值<br>如果你要使用fixture的返回值，那一定要传参，这个时候不用@pytest.mark.usefixtures(“access_web”)申明<br>如果fixture没有返回值，要使用必须申明@pytest.mark.usefixtures(“access_web”)  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_a</span>(<span class="hljs-params">self,access_web</span>):<br>    <span class="hljs-keyword">pass</span><br><br><span class="hljs-meta">@pytest.mark.usefixtures(<span class="hljs-params"><span class="hljs-string">&quot;access_web&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_a</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-keyword">pass</span><br></code></pre></td></tr></table></figure>
+<h3 id="后一个fixture需要使用前一个fixture的返回值，同样把前一个fixture的函数名作为参数传入到后一个fixture中，调用后一个fixture时会自动线执行前一个fixture"><a href="#后一个fixture需要使用前一个fixture的返回值，同样把前一个fixture的函数名作为参数传入到后一个fixture中，调用后一个fixture时会自动线执行前一个fixture" class="headerlink" title="后一个fixture需要使用前一个fixture的返回值，同样把前一个fixture的函数名作为参数传入到后一个fixture中，调用后一个fixture时会自动线执行前一个fixture"></a>后一个fixture需要使用前一个fixture的返回值，同样把前一个fixture的函数名作为参数传入到后一个fixture中，调用后一个fixture时会自动线执行前一个fixture</h3><p>一个fixture只能使用比他高的&#x2F;与他同级的fixture作为它的参数</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@pytest</span>.fixture<br>def <span class="hljs-built_in">access_web</span>():<br>    # 前置 - 打开浏览器访问网址<br>    driver = webdriver.<span class="hljs-built_in">Chrome</span>()<br>    driver.<span class="hljs-built_in">get</span>(CD.web_login_url)<br>    yield driver   # 分界线+返回值<br>    # 后置 - 关闭浏览器<br>    driver.<span class="hljs-built_in">quit</span>()<br><br><span class="hljs-variable">@pytest</span>.fixture<br>def <span class="hljs-built_in">login_web</span>(access_web):<br>    # 前置-登录网址<br>    <span class="hljs-built_in">LoginPage</span>(access_web).<span class="hljs-built_in">login</span>(CD.user, CD.passwd)<br>    yield access_web<br>    logging.<span class="hljs-built_in">info</span>(<span class="hljs-string">&quot;=====每一个用例后置：关闭浏览器会话========&quot;</span>)<br><br>===============执行顺序================<br>access_web的前置<br>login_web的前置<br>。。。测试用例。。。。<br>login_web的后置<br>access_web的后置<br><br></code></pre></td></tr></table></figure>
+<p>如果测试类下所有的测试用例都使用同一个函数级别的前置后置，可以直接在类名上申明调用@pytest.mark.usefixtures(“fixture名”)</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-variable">@pytest</span>.mark.usefixtures(<span class="hljs-string">&quot;access_web&quot;</span>)  <span class="hljs-comment"># 使用了access_web函数的前置和后置</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TestLogin</span>:<br><br><br>    <span class="hljs-comment"># 正常用例 - 登陆+首页</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_login_2_success</span>(<span class="hljs-params"><span class="hljs-variable language_">self</span>,access_web</span>): <span class="hljs-comment"># fixture的函数名称=返回值</span><br>        <span class="hljs-comment"># logging.info(&quot;用例1-正常场景-登陆成功-使用到测试数据-&quot;)</span><br></code></pre></td></tr></table></figure>
+<h4 id="autouse-True-自动调用fixture功能无需申明"><a href="#autouse-True-自动调用fixture功能无需申明" class="headerlink" title="autouse&#x3D;True 自动调用fixture功能无需申明"></a>autouse&#x3D;True 自动调用fixture功能无需申明</h4><p>平常写自动化用例会写一些前置的fixture操作，用例需要用到就直接传该函数的参数名称就行了。当用例很多的时候，每次都传这个参数，会比较麻烦。<br>fixture里面有个参数autouse，默认是Fasle没开启的，可以设置为True开启自动使用fixture功能，这样用例就不用每次都去传参了    </p>
+<p>设置autouse&#x3D;True<br>autouse设置为True，自动调用fixture功能<br>设置scope为module级别，在当前.py用例模块前后自动执行一次<br>设置scope为function级别,每个用例前都调用一次，自动调用     </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest<br><span class="hljs-comment"># 申明一个模块级别的fixture</span><br><span class="hljs-meta">@pytest.fixture(<span class="hljs-params">scope=<span class="hljs-string">&quot;module&quot;</span>,autouse=<span class="hljs-literal">True</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">start</span>(<span class="hljs-params">request</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n----开始执行module------&quot;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;module : %s&#x27;</span>% request.module.__name__)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;------启动浏览器-------&#x27;</span>)<br>    <span class="hljs-keyword">yield</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;------结束测试 end!----------&quot;</span>)<br><br><span class="hljs-comment"># 申明一个函数级别的fixture</span><br><span class="hljs-meta">@pytest.fixture(<span class="hljs-params">scope=<span class="hljs-string">&quot;function&quot;</span>,autouse=<span class="hljs-literal">True</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">open_home</span>(<span class="hljs-params">request</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;function:%s \n--回到首页--&quot;</span>% request.function.__name__)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_01</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;----用例01-----&#x27;</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_02</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;----用例02-----&#x27;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    pytest.main([<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;autouse.py&quot;</span>])<br><br><br>执行结果<br><br>----开始执行module------<br>module : autouse<br>------启动浏览器-------<br><br>function:test_01 --回到首页--<br>.----用例01-----<br>function:test_02 --回到首页--<br>.----用例02-----<br><br>------结束测试 end!----------<br>                                <br></code></pre></td></tr></table></figure>
+<h3 id="pytest之xfail使用"><a href="#pytest之xfail使用" class="headerlink" title="pytest之xfail使用"></a>pytest之xfail使用</h3><p>设置xfail_strict &#x3D; true可以让那些标记为@pytest.mark.xfail但实际通过的测试用例被报告为失败</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_hello</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;hello World!&quot;</span>)<br><br><span class="hljs-comment">#预期会失败 结果运行失败 会被标记为xfail</span><br><span class="hljs-meta">@pytest.mark.xfail</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test1</span>():<br>    a=<span class="hljs-string">&quot;hello&quot;</span><br>    b=<span class="hljs-string">&quot;helloworld&quot;</span><br>    <span class="hljs-keyword">assert</span> a==b<br><br><span class="hljs-comment">#预期会失败 结果运行通过 会被标记为xpass</span><br><span class="hljs-meta">@pytest.mark.xfail</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test2</span>():<br>    a=<span class="hljs-string">&quot;hello&quot;</span><br>    b=<span class="hljs-string">&quot;helloworld&quot;</span><br>    <span class="hljs-keyword">assert</span> a != b<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    pytest.main([<span class="hljs-string">&quot;-v&quot;</span>,<span class="hljs-string">&quot;testXPass.py&quot;</span>])<br><br><br><span class="hljs-comment">#运行结果 1 passed, 1xfailed,1 xpassed in 0.27seconds</span><br></code></pre></td></tr></table></figure>
+
+<p>预期会失败 结果运行失败 会被标记为xfail，预期会失败 结果运行通过 会被标记为xpass，<br>为了让两个都显示x’fail 那就加个配置 xfail_strict&#x3D;true</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs routeros">pytest.ini<br>[pytest]<br>markers=<br>     webtest:<span class="hljs-built_in">Run</span> the webtest case<br>     hello:<span class="hljs-built_in">Run</span> the hello case<br>  <span class="hljs-attribute">xfail_strict</span>=<span class="hljs-literal">true</span><br><br><br>运行结果：1 failed, 1 passed, 1 xfailed <span class="hljs-keyword">in</span> 0.16 seconds<br></code></pre></td></tr></table></figure>
+
+<h3 id="pytest之使用多个fixture"><a href="#pytest之使用多个fixture" class="headerlink" title="pytest之使用多个fixture"></a>pytest之使用多个fixture</h3><p>使用多个fixture<br>如果用例需要用到多个fixture的返回数据，fixture也可以return一个元组、list或字典，然后从里面取出对应数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest<br><span class="hljs-meta">@pytest.fixture()</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">user</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;获取用户名&quot;</span>)<br>    a =<span class="hljs-string">&quot;nuo&quot;</span><br>    b=<span class="hljs-string">&quot;123456&quot;</span><br>    <span class="hljs-keyword">return</span> (a,b)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_1</span>(<span class="hljs-params">user</span>):<br>    u=user[<span class="hljs-number">0</span>]<br>    p=user[<span class="hljs-number">1</span>]<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试账号：%s,密码“%s&quot;</span>%(u,p))<br>    <span class="hljs-keyword">assert</span> u ==<span class="hljs-string">&quot;nuo&quot;</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    pytest.main([<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;fixtures.py&quot;</span>])<br></code></pre></td></tr></table></figure>
+<h4 id="当然也可以分开定义成多个fixture，然后test-用例传多个fixture参数"><a href="#当然也可以分开定义成多个fixture，然后test-用例传多个fixture参数" class="headerlink" title="当然也可以分开定义成多个fixture，然后test_用例传多个fixture参数"></a>当然也可以分开定义成多个fixture，然后test_用例传多个fixture参数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest<br><span class="hljs-meta">@pytest.fixture()</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">user</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;获取用户名&quot;</span>)<br>    a=<span class="hljs-string">&quot;nuo&quot;</span><br>    <span class="hljs-keyword">return</span> a<br><span class="hljs-meta">@pytest.fixture()</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">psw</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;获取密码&quot;</span>)<br>    b=<span class="hljs-string">&quot;123456&quot;</span><br>    <span class="hljs-keyword">return</span> b<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_1</span>(<span class="hljs-params">user,psw</span>):<br>    <span class="hljs-string">&#x27;&#x27;&#x27;传多个fixture&#x27;&#x27;&#x27;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试账号：%s,测试密码：%s&quot;</span>%(user,psw))<br>    <span class="hljs-keyword">assert</span> user == <span class="hljs-string">&quot;nuo&quot;</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    pytest.main([<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;fixtures.py&quot;</span>])<br></code></pre></td></tr></table></figure>
+<h4 id="fixture与fixture互相调用"><a href="#fixture与fixture互相调用" class="headerlink" title="fixture与fixture互相调用"></a>fixture与fixture互相调用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@pytest.fixture()</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">first</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;获取用户名&quot;</span>)<br>    a =<span class="hljs-string">&quot;nuo&quot;</span><br>    <span class="hljs-keyword">return</span> a<br><br><span class="hljs-meta">@pytest.fixture()</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">second</span>(<span class="hljs-params">first</span>):<br>    <span class="hljs-string">&#x27;&#x27;&#x27;pswd调用user fixture&#x27;&#x27;&#x27;</span><br>    a=first<br>    b=<span class="hljs-string">&quot;1234556&quot;</span><br>    <span class="hljs-keyword">return</span> (a,b)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_1</span>(<span class="hljs-params">second</span>):<br>    <span class="hljs-string">&#x27;&#x27;&#x27;用例传fixture&#x27;&#x27;&#x27;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试账号：%s,密码：%s&quot;</span>%(second[<span class="hljs-number">0</span>],second[<span class="hljs-number">1</span>]))<br>    <span class="hljs-keyword">assert</span> second[<span class="hljs-number">0</span>]==<span class="hljs-string">&quot;nuo&quot;</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    pytest.main([<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;fixtures.py&quot;</span>])<br><br><br><span class="hljs-string">&#x27;&#x27;&#x27;fixture的scope=session 跨.py文件调用&#x27;&#x27;&#x27;</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_2</span>(<span class="hljs-params">first</span>):<br>    <span class="hljs-string">&#x27;&#x27;&#x27;用例传fixture&#x27;&#x27;&#x27;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试账号：%s&quot;</span>%first)<br>    <span class="hljs-keyword">assert</span> first == <span class="hljs-string">&quot;nuo&quot;</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    pytest.main([<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;fixtures.py&quot;</span>])<br></code></pre></td></tr></table></figure>
+<h3 id="python之fixture作用范围"><a href="#python之fixture作用范围" class="headerlink" title="python之fixture作用范围"></a>python之fixture作用范围</h3><h4 id="fixture作用范围"><a href="#fixture作用范围" class="headerlink" title="fixture作用范围"></a>fixture作用范围</h4><p>fixture里面有个scope参数可以控制fixture的作用范围:session &gt; module &gt; class &gt; function  </p>
+<ul>
+<li>function 每一个函数或方法都会调用</li>
+<li>class  每一个类调用一次，一个类可以有多个方法</li>
+<li>module，每一个.py文件调用一次，该文件内又有多个function和class</li>
+<li>session 是多个文件调用一次，可以跨.py文件调用，每个.py文件就是module</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest<br><br><span class="hljs-string">&#x27;scope为function级别&#x27;</span><br><span class="hljs-meta">@pytest.fixture()</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">first</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n获取用户名&quot;</span>)<br>    a=<span class="hljs-string">&quot;nuo&quot;</span><br>    <span class="hljs-keyword">return</span> a<br><span class="hljs-meta">@pytest.fixture(<span class="hljs-params">scope=<span class="hljs-string">&quot;function&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">second</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n获取密码&quot;</span>)<br>    b=<span class="hljs-string">&quot;123455&quot;</span><br>    <span class="hljs-keyword">return</span> b<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_1</span>(<span class="hljs-params">first</span>):<br>    <span class="hljs-string">&#x27;&#x27;&#x27;用例传fixture&#x27;&#x27;&#x27;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试账号：%s&quot;</span>%first)<br>    <span class="hljs-keyword">assert</span> first==<span class="hljs-string">&quot;nuo&quot;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_2</span>(<span class="hljs-params">second</span>):<br>    <span class="hljs-string">&#x27;&#x27;&#x27;用例传fixture&#x27;&#x27;&#x27;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试密码：%s&quot;</span>%second)<br>    <span class="hljs-keyword">assert</span> second==<span class="hljs-string">&quot;123455&quot;</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    pytest.main([<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;fixtureandscope.py&quot;</span>])<br></code></pre></td></tr></table></figure>
+
+<h4 id="fixture放到类里"><a href="#fixture放到类里" class="headerlink" title="fixture放到类里"></a>fixture放到类里</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@pytest.fixture()</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">first</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n获取用户名&quot;</span>)<br>    a =<span class="hljs-string">&quot;nuo&quot;</span><br>    <span class="hljs-keyword">return</span> a<br><br><span class="hljs-meta">@pytest.fixture(<span class="hljs-params">scope=<span class="hljs-string">&quot;function&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">second</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n获取密码&quot;</span>)<br>    b=<span class="hljs-string">&quot;123456&quot;</span><br>    <span class="hljs-keyword">return</span> b<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TestCase</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_1</span>(<span class="hljs-params">self,first</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;用例传fixture&#x27;&#x27;&#x27;</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试账号：%s&quot;</span>%first)<br>        <span class="hljs-keyword">assert</span> first ==<span class="hljs-string">&quot;nuo&quot;</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_2</span>(<span class="hljs-params">self,second</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;用例传fixture&#x27;&#x27;&#x27;</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试密码：%s&quot;</span>%second)<br>        <span class="hljs-keyword">assert</span> second==<span class="hljs-string">&quot;123456&quot;</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    pytest.main([<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;fixtureandscope.py&quot;</span>])<br></code></pre></td></tr></table></figure>
+
+<h4 id="‘scope-class’"><a href="#‘scope-class’" class="headerlink" title="‘scope&#x3D;class’"></a>‘scope&#x3D;class’</h4><p>‘fixture为class级别的时候，如果一个class里面有多个用例，都调用了此fixture，那么此fixture只在该class里所有用例开始前执行一次’</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@pytest.fixture(<span class="hljs-params">scope=<span class="hljs-string">&quot;class&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">first</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n获取用户名，scope为class级别只运行一次&quot;</span>)<br>    a=<span class="hljs-string">&quot;nuo&quot;</span><br>    <span class="hljs-keyword">return</span> a<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TestCase</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_1</span>(<span class="hljs-params">self,first</span>):<br>        <span class="hljs-string">&#x27;用例传fixture&#x27;</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试账号：%s&quot;</span>%first)<br>        <span class="hljs-keyword">assert</span> first == <span class="hljs-string">&quot;nuo&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_2</span>(<span class="hljs-params">self,first</span>):<br>        <span class="hljs-string">&#x27;用例传fixture&#x27;</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试账号：%s&quot;</span>%first)<br>        <span class="hljs-keyword">assert</span> first == <span class="hljs-string">&quot;nuo&quot;</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    pytest.main([<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;fixtureandscope.py&quot;</span>])<br></code></pre></td></tr></table></figure>
+
+<h4 id="‘scope-module’"><a href="#‘scope-module’" class="headerlink" title="‘scope&#x3D;module’"></a>‘scope&#x3D;module’</h4><p>‘’’fixture为module级别时在当前.py脚本里面所有用例开始前只执行一次’’’</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@pytest.fixture(<span class="hljs-params">scope=<span class="hljs-string">&quot;module&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">first</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n获取用户名，scope为module级别当前.py模块只运行一次&quot;</span>)<br>    a = <span class="hljs-string">&quot;yoyo&quot;</span><br>    <span class="hljs-keyword">return</span> a<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_1</span>(<span class="hljs-params">first</span>):<br>    <span class="hljs-string">&#x27;&#x27;&#x27;用例传fixture&#x27;&#x27;&#x27;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试账号：%s&quot;</span>%first)<br>    <span class="hljs-keyword">assert</span> first == <span class="hljs-string">&quot;yoyo&quot;</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TestCase</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_2</span>(<span class="hljs-params">self,first</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;用例传fixture&#x27;&#x27;&#x27;</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试账号：%s&quot;</span>%first)<br>        <span class="hljs-keyword">assert</span> first == <span class="hljs-string">&quot;yoyo&quot;</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    pytest.main([<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;fixtureandscope.py&quot;</span>])<br></code></pre></td></tr></table></figure>
+<h4 id="scope-session"><a href="#scope-session" class="headerlink" title="scope&#x3D;session"></a>scope&#x3D;session</h4><p>fixture为session级别是可以跨.py模块调用的,也就是当我们有多个.py文件的用例时候，如果多个用例只需调用一次fixture，那就可以设置为scope&#x3D;”session”，并且写到conftest.py文件里<br>conftest.py文件名称是固定的，pytest会自动识别该文件。放到工程的根目录下，就可以全局调用了，如果放到某个package包下，那就只在该package内有效<br>如果想同时运行test_fixture11.py和test_fixture12.py，在cmd执行<br>pytest -s test_fixture11.py test_fixture12.py</p>
+<h3 id="pytest-mark"><a href="#pytest-mark" class="headerlink" title="pytest-mark"></a>pytest-mark</h3><p>对测试用例打标签，在运行测试用例时，可根据标签名来过滤要运行的用例</p>
+<h4 id="使用方法："><a href="#使用方法：" class="headerlink" title="使用方法："></a>使用方法：</h4><ul>
+<li>1.注册标签名</li>
+<li>2.在测试用例&#x2F;测试类前面加上:@pytest.mark.已注册的标签名</li>
+</ul>
+<h4 id="注册方式"><a href="#注册方式" class="headerlink" title="注册方式"></a>注册方式</h4><ul>
+<li>1.创建pytest.ini文件，在文件中按如下形式添加签名：<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-string">[pytest]</span><br>markers=<br>      slow:just <span class="hljs-keyword">for</span> demo 冒号之后是可选的描述信息<br>      serial<br></code></pre></td></tr></table></figure></li>
+<li>2.在conftest.py文件当中通过hook注册<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs scss">def <span class="hljs-built_in">pytest_configure</span>(config):<br>     config.<span class="hljs-built_in">addinivalue_line</span>(<span class="hljs-string">&quot;markers&quot;</span>,<span class="hljs-string">&quot;smoke1:标记只运行冒烟用例&quot;</span>)<br>     config.<span class="hljs-built_in">addinivalue_line</span>(<span class="hljs-string">&quot;markers&quot;</span>,<span class="hljs-string">&quot;demo1:示例运行&quot;</span>)<br></code></pre></td></tr></table></figure>
+在测试类里，使用以下申明（测试类下，所有用例都被打上标签）<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">class</span> TestClass(object):<br>      pytestmark=pytest.<span class="hljs-keyword">mark</span>.已注册标签名<br>      pytestmark=[pytest.<span class="hljs-keyword">mark</span>.标签1,pytest.<span class="hljs-keyword">mark</span>.标签2]   # 多标签模式<br></code></pre></td></tr></table></figure>
+在模块文件里，同理（py文件下，所有测试函数和测试类里的测试函数，都有该标签）<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile">import pytest<br>pytestmark=pytest.mark.已注册标签名<br>pytestmark=[pytest.mark.标签1,pytest.mark.标签2]   <span class="hljs-comment"># 多标签模式</span><br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="pytest参数化"><a href="#pytest参数化" class="headerlink" title="pytest参数化"></a>pytest参数化</h3><p>在测试用例前加上：@pytest.mark.parametrize(“参数名”，列表数据)<br>参数名：用来接收每一项数据，并作为测试用例的参数<br>列表数据：一组测试数据<br>@pytest.mark.parametrize(“参数1,参数2”，[(数据1，数据2),(数据1，数据2)])   </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@pytest.mark.parametrize(<span class="hljs-params"><span class="hljs-string">&quot;a,b,c&quot;</span>,[(<span class="hljs-params"><span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span></span>),(<span class="hljs-params"><span class="hljs-number">11</span>,<span class="hljs-number">22</span>,<span class="hljs-number">33</span></span>),(<span class="hljs-params"><span class="hljs-number">14</span>,<span class="hljs-number">15</span>,<span class="hljs-number">64</span></span>)]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_add</span>(<span class="hljs-params">a,b,c</span>)<br>    res = a+b<br>    <span class="hljs-keyword">assert</span> c == res<br><br></code></pre></td></tr></table></figure>
+<h4 id="组合参数化：多组参数-依次组合"><a href="#组合参数化：多组参数-依次组合" class="headerlink" title="组合参数化：多组参数 依次组合"></a>组合参数化：多组参数 依次组合</h4><p>使用多个@pytest.mark.parametrize</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@pytest</span>.mark.<span class="hljs-built_in">parametrize</span>(<span class="hljs-string">&quot;x&quot;</span>,[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>])<br><span class="hljs-variable">@pytest</span>.mark.<span class="hljs-built_in">parametrize</span>(<span class="hljs-string">&quot;y&quot;</span>,[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>])<br>def <span class="hljs-built_in">test_f</span>(x,y):<br>    pass<br></code></pre></td></tr></table></figure>
+<h3 id="pytest重运行机制-rerunfailures"><a href="#pytest重运行机制-rerunfailures" class="headerlink" title="pytest重运行机制 rerunfailures"></a>pytest重运行机制 rerunfailures</h3><p>插件名称：rerunfailures<br>安装方法:pip install pytest-rerunfailures<br>重试方法：用例一旦失败了马上重运行用例<br>使用方式：  </p>
+<ul>
+<li>命令行参数形式 pytest –reruns 重试次数 比如pytest reruns 2 表示运行失败的用例可以重新运行2次  </li>
+<li>pytest –reruns 重试次数 –reruns-delay 次数  表示次数之间的延时设置）单位：秒   </li>
+<li>pytest –reruns 2 –reruns-delay 5表示失败的用例可以重运行两次 第一次和第二次间隔时间为5秒钟，失败后会立马重运行</li>
+</ul>
+<p><img src="/the-nuo/picture/pytest.png" srcset="/img/loading.gif" lazyload alt="pytest"></p>
+<h2 id="pytest-Allure-jenkis集成"><a href="#pytest-Allure-jenkis集成" class="headerlink" title="pytest+Allure+jenkis集成"></a>pytest+Allure+jenkis集成</h2><h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><ul>
+<li>1.命令行安装：<a target="_blank" rel="noopener" href="https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/">https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/</a><br>mac系统：brew install allure  </li>
+<li>2.解压</li>
+<li>3.把bin配置到公共环境变量 ~&#x2F;.bash_profile</li>
+</ul>
+<h4 id="与pytest集成"><a href="#与pytest集成" class="headerlink" title="与pytest集成"></a>与pytest集成</h4><p>需要pytest执行用例后，生成allure能够解析的测试结果文件</p>
+<ul>
+<li>1.安装：pip install allure-pytest</li>
+<li>2.使用：pytest –alluredir&#x3D;&#x2F;tmp&#x2F;my_allure_results</li>
+<li>3.使用allure命令，生成html样式的报告  allure serve alluredir的路径</li>
+</ul>
+<h4 id="pytest-Allure-jenkis集成-1"><a href="#pytest-Allure-jenkis集成-1" class="headerlink" title="pytest+Allure+jenkis集成"></a>pytest+Allure+jenkis集成</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Simple-Small/p/11512337.html">https://www.cnblogs.com/Simple-Small/p/11512337.html</a></p>
+<h4 id="web自动化集成之jenkis-MS模式"><a href="#web自动化集成之jenkis-MS模式" class="headerlink" title="web自动化集成之jenkis-MS模式"></a>web自动化集成之jenkis-MS模式</h4><ul>
+<li>1.允许master将任务分配到其他的slave机上去执行</li>
+<li>2.1个master N个slave  master和slave不能是同一台设备</li>
+<li>3.只有master装jenkis,slave机不需要装jenkis</li>
+<li>4.查看master slave方法：manage jenkis - manage Nodes</li>
+<li>5.Master:执行任务&#x2F;任务管理&#x2F;slave管理-资源 数据 配置</li>
+<li>6.slave:执行任务&#x2F;反馈任务进展和结果&#x2F;执行能力-同事执行2个任务 任务在slave上执行，任务需要的数据&#x2F;脚本必须在slave上，slave必须具备执行任务的环境</li>
+<li>7.slave得向master注册 每一个任务都涉及到任务的执行环境&#x2F;任务的数据 任务类别</li>
+</ul>
+<h4 id="怎么添加slave机："><a href="#怎么添加slave机：" class="headerlink" title="怎么添加slave机："></a>怎么添加slave机：</h4><ul>
+<li>1.管理员身份在Master机上manage jenkis - manage Nodes-新建节点 准备一个slave信息&#x2F;位置<ul>
+<li>1.并发构建数一般为1</li>
+<li>2.远程工作目录：master分配的任务所有的数据包括脚本存放的目录 一定要是slave机上存在的</li>
+<li>3.标签：对任务进行分类，方便区分 例如autotest master分配时可以根据类别选择slave机分配</li>
+<li>4.用法：only build jobs with label expression matching this node</li>
+<li>5.启动方式（跟master之间的报到方式）<ul>
+<li>mac&#x2F;linux 通过SSH launch agent agents via SSH</li>
+<li>windows Let jenkis control this window slave as a windows service启动代理。 代理启动步骤manage jenkis-configure global security-Agents选择最后一个JAVA WEB START代理协议&#x2F;4(TLS加密)</li>
+</ul>
+</li>
+<li>6.可用性：尽量保持代理在线</li>
+<li>7.保存</li>
+</ul>
+</li>
+<li>2.slave主动向master发起链接-注册<ul>
+<li>1）进入小弟机的界面点击Launch</li>
+</ul>
+</li>
+</ul>
+<p>jenkis切换国内源下载插件<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/whm-blog/p/10448096.html">https://www.cnblogs.com/whm-blog/p/10448096.html</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AutoTest/" class="category-chain-item">AutoTest</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AutoTest/" class="print-no-link">#AutoTest</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>UI自动化</div>
+      <div>https://zn-zyl.github.io/2025/02/14/AutoTest/UI自动化/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhounuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年2月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/17/CICD/Docker%E5%AD%A6%E4%B9%A0/" title="Docker学习">
+                        <span class="hidden-mobile">Docker学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

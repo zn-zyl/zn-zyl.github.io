@@ -1,0 +1,770 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhounuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Django基础django基础知识树   一：创建django项目 1.创建项目虚拟环境（使用pycharm创建）打开pycharm,点击File&#x3D;&gt;new Project &#x3D;&gt;Django  2.安装Django pip install -i https:&#x2F;&#x2F;pypi.douban&#x2F;simple django  3.创建项目工程目录  a.专业版本 在创建时选择">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django基础">
+<meta property="og:url" content="https://zn-zyl.github.io/2023/05/17/django/django%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="ZN Blog">
+<meta property="og:description" content="Django基础django基础知识树   一：创建django项目 1.创建项目虚拟环境（使用pycharm创建）打开pycharm,点击File&#x3D;&gt;new Project &#x3D;&gt;Django  2.安装Django pip install -i https:&#x2F;&#x2F;pypi.douban&#x2F;simple django  3.创建项目工程目录  a.专业版本 在创建时选择">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-01_15-50-38.png">
+<meta property="article:published_time" content="2023-05-16T16:18:48.000Z">
+<meta property="article:modified_time" content="2025-02-18T02:17:53.612Z">
+<meta property="article:author" content="zhounuo">
+<meta property="article:tag" content="django">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-01_15-50-38.png">
+  
+  
+  
+  <title>django基础 - ZN Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zn-zyl.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zn&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="django基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-17 00:18" pubdate>
+          2023年5月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">django基础</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Django基础"><a href="#Django基础" class="headerlink" title="Django基础"></a>Django基础</h1><h2 id="django基础知识树"><a href="#django基础知识树" class="headerlink" title="django基础知识树"></a>django基础知识树</h2><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-01_15-50-38.png" srcset="/img/loading.gif" lazyload></p>
+<iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:525px; height:245px;" src="https://www.processon.com/embed/5ee8c8dcf346fb1ae5676195"></iframe>
+
+<h2 id="一：创建django项目"><a href="#一：创建django项目" class="headerlink" title="一：创建django项目"></a>一：创建django项目</h2><ul>
+<li><p>1.创建项目虚拟环境（使用pycharm创建）打开pycharm,点击File&#x3D;&gt;new Project &#x3D;&gt;Django</p>
+</li>
+<li><p>2.安装Django<br> pip install -i <a target="_blank" rel="noopener" href="https://pypi.douban/simple">https://pypi.douban/simple</a> django</p>
+</li>
+<li><p>3.创建项目工程目录</p>
+<ul>
+<li>a.专业版本 在创建时选择Django 选项</li>
+<li>b.社区版本 Django-admin startproject 项目名 .</li>
+<li>c.项目名建议和工程目录同名</li>
+<li>d.“.”:代表在当前工程目录下创建，把项目名所在目录作为根目录</li>
+</ul>
+</li>
+<li><p>4.运行项目</p>
+<ul>
+<li>a.python3.7 manage.py runserver    运行项目默认8080端口  </li>
+<li>或者Tools-run manage.py task进入manage.py运行环境 直接输入 runserver启动项目</li>
+<li>b.python3.7 manage.py runserver 127.0.0.1：8888    修改运行的端口 ip:端口号（端口号要大于1024）</li>
+<li>c.可以创建运行器，在右上角 使用add configure来添加</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-配置初始配置"><a href="#2-配置初始配置" class="headerlink" title="2: 配置初始配置"></a>2: 配置初始配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">*指定简体中文*<br>mydev/settins.py LANGUAGE_CODE = <span class="hljs-string">&#x27;zh-hans&#x27;</span> 改为中文<br>*指定时区*<br>mydev/settins.py TIME_ZONE = <span class="hljs-string">&#x27;Asia/Shanghai&#x27;</span> 修改时区<br></code></pre></td></tr></table></figure>
+<h2 id="二-django工程目录结构"><a href="#二-django工程目录结构" class="headerlink" title="二: django工程目录结构"></a>二: django工程目录结构</h2><ul>
+<li>mydev               项目同名的目录 主要存放相关配置信息</li>
+<li>mydev&#x2F;<strong>init</strong>.py   当前mydev为一个包</li>
+<li>mydev&#x2F;asgi.py       主要用于存放ASGI异步请求的入口配置信息</li>
+<li>mydev&#x2F;settings.py   存放的是项目全局配置信息</li>
+<li>mydev&#x2F;urls.py       主要存放项目的路由信息</li>
+<li>mydev&#x2F;wsgi.py       主要用于存放WSGI协议服务的入口配置信息（一般在部署的时候使用）</li>
+<li>db.sqlite3:         默认的关系型文本数据库</li>
+<li>manage.py：         为命令行管理工具，用于开发阶段的项目的启动 管理数据迁移 静态文件收集等等</li>
+</ul>
+<h2 id="三-定制一个页面"><a href="#三-定制一个页面" class="headerlink" title="三: 定制一个页面"></a>三: 定制一个页面</h2><ul>
+<li><p>1.子应用的作用<br>  · 实现业务功能模块的复用</p>
+<p> ​ · 将工程项目拆分为不同的子功能模块，以子应用的形式存在</p>
+<p> ​ · 各功能模块之间可以保持相对的独立</p>
+</li>
+</ul>
+<p>​    · 实现路由的分发，便于管理各模块的url，减少代码维护成本</p>
+<ul>
+<li><p>2.创建子应用</p>
+<ul>
+<li>a.python manage.py startapp projects（子应用名）   推荐子应用名小写复数形式，不要用中文</li>
+<li>b.Tools &#x3D;&gt; run manage.py task     输入命令 startapp projects</li>
+<li>c.projects&#x2F;migrations:     存放数据库迁移脚本和迁移历史记录等信息、</li>
+<li>d.projects&#x2F;admin.py:       admin后台站点的相关配置（需要后台站点时才会用到）</li>
+<li>f.projects&#x2F;apps.py:        为app_label的相关配置，很少使用</li>
+<li>g.projects&#x2F;models.py:      存放数据库模型相关信息</li>
+<li>h.projects&#x2F;tests.py:       对当前子应用进行自测，写单元测试</li>
+<li>i.projects&#x2F;views.py:       定义业务逻辑（向前端返回的页面）</li>
+</ul>
+</li>
+<li><p>3.在全局配置文件 mydev&#x2F;settings.py的INSTALLED_APPS中，对子应用进行注册 </p>
+ <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">子应用名<span class="hljs-selector-class">.apps</span>.子应用名首字母大小Config<br><span class="hljs-string">&#x27;projects.apps.ProjectsConfig&#x27;</span><br>或者直接应用名 <span class="hljs-string">&#x27;projects&#x27;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>4.创建视图函数</p>
+<ul>
+<li>在projects&#x2F;views.py下创建视图函数</li>
+</ul>
+</li>
+<li><p>5.在全局路由表中添加路由信息</p>
+</li>
+</ul>
+<h2 id="四-路由"><a href="#四-路由" class="headerlink" title="四: 路由"></a>四: 路由</h2><p>前端访问url获取页面 –&gt; 后端调用指定函数func(a, b, …)</p>
+<ul>
+<li><p>1.定义<br>  路由表：url与后端视图函数的一个一一映射关系表<br>  路由系统的本质就是URL与要调用URL的视图函数的一个映射表，它的主要作用就是让views里面的执行函数与与请求的url建立映射关系，当请求来了的时候根据这个url映射来调用对应的执行函数，从而返回给客户端相应的信息</p>
+</li>
+<li><p>2.全局路由<br>  全局路由的作用：所有的路由在寻址时都会先从主路由开始找 因此即便在子路由中定义了，也需要在主路由中注册一下 path(‘page&#x2F;‘, include(‘projects.urls’))<br>  子路由的作用：可以定义每个项目中自己的路由</p>
+</li>
+<li><p><strong>3.路由匹配规则</strong></p>
+<ul>
+<li>a 从列表的第一个元素开始（从上到下）开始匹配</li>
+<li>b 一但调用成功 会自动调用path第二个函数所指定的视图函数</li>
+<li>c 一但匹配成功，不会再往下匹配</li>
+<li>d 如果匹配不成功，会返回一个状态码为404的页面</li>
+<li>e url路由信息推荐使用&#x2F;结尾</li>
+<li>f.可以再子应用中定义子路由，子应用名&#x2F;urls.py中定义</li>
+<li>g.可以使用include函数来加载子路由，第一个参数为字符串 第二个参数为（’子应用名.urls’）  <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">**总路由**<br><span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> <span class="hljs-type">path</span>, <span class="hljs-keyword">include</span><br><br>urlpatterns = [<br>path(<span class="hljs-string">&#x27;admin/&#x27;</span>, <span class="hljs-keyword">admin</span>.site.urls),<br>path(<span class="hljs-string">&#x27;page/&#x27;</span>, <span class="hljs-keyword">include</span>(<span class="hljs-string">&#x27;projects.urls&#x27;</span>))<br>]<br><br>**子路由**<br>urlpatterns = [<br>*函数视图路由*<br>path(<span class="hljs-string">&#x27;index/&#x27;</span>, index_page),<br><br>*类视图定义路由*<br>a. <span class="hljs-type">path</span>函数的第二个参数为类视图名.as_view()<br>path(<span class="hljs-string">&#x27;index3/&#x27;</span>, Index_page.as_view())]<br></code></pre></td></tr></table></figure></li>
+<li>6.所有路由在寻址时都会先从主路由开始找，如果url第一部分匹配成功 那么会将url剩下的部分拿到子路由中匹配。</li>
+</ul>
+<p>         </p>
+</li>
+<li><p>4.路由分发<br>​    在子路由中，将url和需要调用的视图函数之间进行映射，全局路由对各个应用进行绑定，利用include加载子路由，从而实现路由的分发，便于根据不同的应用来管理各自的url,减少代码维护成本</p>
+</li>
+</ul>
+<h2 id="五-视图"><a href="#五-视图" class="headerlink" title="五:视图"></a>五:视图</h2><h4 id="1-函数视图"><a href="#1-函数视图" class="headerlink" title="1. 函数视图"></a>1. 函数视图</h4><ul>
+<li>1.第一个参数为HttpRequest对象或者HttpRequest子类对象，无需手动传递</li>
+<li>2.一般会使用request</li>
+<li>3.一定要返回HttpResponse对象或者HttpResponse子类对象  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-keyword">def</span> <span class="hljs-title function_">index01_page</span>(<span class="hljs-params">request</span>):<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">HttpResponse</span>(<span class="hljs-string">&#x27;&lt;h2&gt;Hello World&lt;/h2&gt;&#x27;</span>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-类视图"><a href="#2-类视图" class="headerlink" title="2.类视图"></a>2.类视图</h4><ul>
+<li>1.一定要继承View父类 或者View的子类</li>
+<li>2.可以定义get post put delete 方法 来实现get请求 post请求 put请求 delete请求</li>
+<li>3.get post put delete方法名称固定，且均为小写</li>
+<li>4.实例方法的第二个参数为HttpRequest对象</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Index_page</span>(<span class="hljs-title class_ inherited__">View</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get</span>(<span class="hljs-params">self, request</span>):<br><br>        <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        1.url后面的？号参数 称为query string查询字符串参数 ？参数名1=参数值1&amp;参数名2=参数值2</span><br><span class="hljs-string">        2.request.GET获取查询字符串参数</span><br><span class="hljs-string">        3.request.GET返回QueryDict对象 类似于一个字典 支持字典中的所有操作 </span><br><span class="hljs-string">        4.request.GET[KEY],request.GET.get(key),request.GET.getlist（）去获取值 request.GET.getlist（）可以获取相同key的多个参数值合成一个list</span><br><span class="hljs-string"></span><br><span class="hljs-string">        :param request:</span><br><span class="hljs-string">        :return:</span><br><span class="hljs-string">        &quot;&quot;&quot;</span><br>        <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;&lt;h1&gt;get方法呀&lt;/h1&gt;&quot;</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">post</span>(<span class="hljs-params">self, request</span>):.....<br>        <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        可以使用request.POST方法，获取application/x-www-urlencoded类型的参数</span><br><span class="hljs-string">        可以使用request.body方法，获取application/json类型的参数</span><br><span class="hljs-string">        可以使用request.META方法，获取请求头参数，key为HTTP_请求头key的大写</span><br><span class="hljs-string"></span><br><span class="hljs-string">        :param request:</span><br><span class="hljs-string">        :return:</span><br><span class="hljs-string">        &quot;&quot;&quot;</span><br>        data_dict = json.loads(request.body, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>)<br>        <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">f&#x27;&lt;h2&gt;post请求<span class="hljs-subst">&#123;data_dict[<span class="hljs-string">&quot;name&quot;</span>]&#125;</span>&lt;/h2&gt;&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="六：请求与响应"><a href="#六：请求与响应" class="headerlink" title="六：请求与响应"></a>六：请求与响应</h2><h3 id="1-请求参数类型"><a href="#1-请求参数类型" class="headerlink" title="1. 请求参数类型"></a>1. 请求参数类型</h3><p>利用HTTP协议向服务器传参的几种途径</p>
+<p>1）查询字符串传参</p>
+<p>​ 如：ip:port&#x2F;index&#x2F;?name&#x3D;ergui&amp;age&#x3D;18 ​ url后面的?参数，可以使用request.GET获取，返回QueryDict对象，可通过request.GET[key]、request.GET.get(key)、request.GET.getlist()获取参数值</p>
+<p>2）请求体参数</p>
+<p>​ <strong>form表单传参</strong></p>
+<p>​ 使用request.POST方法，获取application&#x2F;x-www-form-urlencoded类型的参数</p>
+<p>​ <strong>json格式参数</strong></p>
+<p>​ 使用request.body方法，获取application&#x2F;json类型的参数</p>
+<p>​ <strong>上传文件</strong></p>
+<p>​ 使用request.body方法，获取到文件的二进制格式数据,新建一个文件写入</p>
+<p>3）路径参数</p>
+<p>​ 如：ip:port&#x2F;index&#x2F;10&#x2F;</p>
+<p>​ 把参数伪装成路径，传递到后端</p>
+<p>​ 在路由中配置路径：&lt; url类型转换器:路径参数名 &gt; int path uuid slug；请求函数中配置请求参数：def post(self, request, pk)</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lisp">path(&#x27;index04/&lt;int<span class="hljs-symbol">:pk&gt;/&lt;username&gt;/</span>&#x27;, views.IndexPage.as_view())<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-响应"><a href="#2-响应" class="headerlink" title="2. 响应"></a>2. 响应</h3><p>视图中必须返回HTTPResponse对象或子对象</p>
+<p>HttpResponse(content&#x3D;响应体, content_type&#x3D;响应体数据类型, status&#x3D;状态码)<br>HttpResponse对象 第一个参数为字符串或者字节类型 会将字符串内容返回到前端<br>jsonResponse</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">class</span> <span class="hljs-title class_">IndexPage</span>(View):<br>    def <span class="hljs-keyword">get</span>(self, request):<br>        <span class="hljs-keyword">data</span> = [<br>            &#123;<br>                <span class="hljs-string">&#x27;project_name&#x27;</span>: <span class="hljs-string">&#x27;王者项目&#x27;</span>,<br>                <span class="hljs-string">&#x27;leader&#x27;</span>: <span class="hljs-string">&#x27;ergui&#x27;</span>,<br>                <span class="hljs-string">&#x27;app_name&#x27;</span>: <span class="hljs-string">&#x27;王者农药&#x27;</span><br>            &#125;,<br>            &#123;<br>                <span class="hljs-string">&#x27;project_name&#x27;</span>: <span class="hljs-string">&#x27;活到最后项目&#x27;</span>,<br>                <span class="hljs-string">&#x27;leader&#x27;</span>: <span class="hljs-string">&#x27;star&#x27;</span>,<br>                <span class="hljs-string">&#x27;app_name&#x27;</span>: <span class="hljs-string">&#x27;吃鸡&#x27;</span><br>            &#125;<br>        ]<br>        <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-keyword">data</span>, content_type=<span class="hljs-string">&quot;application/json&quot;</span>, status=<span class="hljs-number">201</span>)<br>        <br>        # render()主要用于渲染模板，生成一个html页面，第一个参数为request，第二个参数为在templates目录下的模板名，第三个参数为context，只能传字典<br>        # <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&#x27;demo.html&#x27;</span>)<br>        # locals()，获取当前命名空间中的所有变量值，存放在一个字典中<br>        # <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&#x27;demo.html&#x27;</span>, locals())<br>        <br>        # JsonResponse是HttpResponse的子类，第一个参数为字典或者嵌套字典的列表，如果使用非字典格式，需设置safe为False<br>        <span class="hljs-keyword">return</span> JsonResponse(<span class="hljs-keyword">data</span>, safe=False)<br></code></pre></td></tr></table></figure>
+
+<h2 id="七：MVT模式和两种开发模式"><a href="#七：MVT模式和两种开发模式" class="headerlink" title="七：MVT模式和两种开发模式"></a>七：MVT模式和两种开发模式</h2><p>1.MVT</p>
+<p>M：Model，与MVC中的M功能相同，负责和数据库交互，进行数据处理</p>
+<p>V：View，与MVC中的C功能相同，接收请求，进行业务处理，返回响应</p>
+<p>T：Template，与MVC中的V功能相同，负责构造要返回的html页面</p>
+<ol>
+<li>两种开发模型</li>
+</ol>
+<p>1）前后不分离</p>
+<p>​ 前端数据的展示由后端来控制，后端渲染或重定向页面 ​ 耦合严重 ​ 返回的为html页面，实用性差，拓展性差，只能用于浏览器，与其他终端不适配</p>
+<p>​</p>
+<p>2）前后分离</p>
+<p>​ 前后端独立，后端只需对数据进行处理，向前端提供数据，由前端负责页面的展示 ​ 解耦合 ​ 前后端可同时进行开发，缩小业务上线周期 ​ 大部分情况下，前端发送json格式参数，后端同样以json格式数据返回 ​ 扩展性、适应性好，可多终端运行同一套接口，如PC、APP、小程序等</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/django/" class="category-chain-item">django</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/django/" class="print-no-link">#django</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>django基础</div>
+      <div>https://zn-zyl.github.io/2023/05/17/django/django基础/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhounuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/17/django/restful%E6%8E%A5%E5%8F%A3/" title="restful接口">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">restful接口</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/17/AutoTest/httprunner/" title="httprunner">
+                        <span class="hidden-mobile">httprunner</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

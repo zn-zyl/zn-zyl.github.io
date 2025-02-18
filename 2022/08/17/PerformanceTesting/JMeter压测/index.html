@@ -1,0 +1,808 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhounuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JMeter压测JMeter单机压测JMeter线程组运行模式 1.按照运行次数运行:线程组设置循环x次  2.按照运行时间运行（用的比较多） 1&gt; 线程组设置循环永远 2&gt; 勾选调度器，设置持续时间，单位秒    线程组和请求的运行逻辑  线程组和请求的设置逻辑关键逻辑 一个线程组内的多个请求是顺序执行的  不同线程组内的请求是并行执行的  实际工作中如何设置线程组和请求的关系? 如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JMeter压测">
+<meta property="og:url" content="https://zn-zyl.github.io/2022/08/17/PerformanceTesting/JMeter%E5%8E%8B%E6%B5%8B/index.html">
+<meta property="og:site_name" content="ZN Blog">
+<meta property="og:description" content="JMeter压测JMeter单机压测JMeter线程组运行模式 1.按照运行次数运行:线程组设置循环x次  2.按照运行时间运行（用的比较多） 1&gt; 线程组设置循环永远 2&gt; 勾选调度器，设置持续时间，单位秒    线程组和请求的运行逻辑  线程组和请求的设置逻辑关键逻辑 一个线程组内的多个请求是顺序执行的  不同线程组内的请求是并行执行的  实际工作中如何设置线程组和请求的关系? 如">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_15-34-15.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-17_23-03-26.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_15-58-43.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_16-01-37.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_23-30-06.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_16-29-33.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_17-51-48.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_22-36-21.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_22-57-24.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_23-05-47.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-18_23-17-35.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-19_11-33-34.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-19_12-01-33.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-19_11-13-37.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-19_12-09-20.png">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-19_12-17-33.png">
+<meta property="article:published_time" content="2022-08-17T15:14:06.000Z">
+<meta property="article:modified_time" content="2025-02-18T02:17:53.428Z">
+<meta property="article:author" content="zhounuo">
+<meta property="article:tag" content="PerformanceTesting">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-11_15-34-15.png">
+  
+  
+  
+  <title>JMeter压测 - ZN Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zn-zyl.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zn&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JMeter压测"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-17 23:14" pubdate>
+          2022年8月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">JMeter压测</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="JMeter压测"><a href="#JMeter压测" class="headerlink" title="JMeter压测"></a>JMeter压测</h1><h2 id="JMeter单机压测"><a href="#JMeter单机压测" class="headerlink" title="JMeter单机压测"></a>JMeter单机压测</h2><h2 id="JMeter线程组运行模式"><a href="#JMeter线程组运行模式" class="headerlink" title="JMeter线程组运行模式"></a>JMeter线程组运行模式</h2><ul>
+<li>1.按照运行次数运行:线程组设置循环x次 </li>
+<li>2.按照运行时间运行（用的比较多）<ul>
+<li>1&gt; 线程组设置循环永远</li>
+<li>2&gt; 勾选调度器，设置持续时间，单位秒</li>
+</ul>
+</li>
+</ul>
+<h2 id="线程组和请求的运行逻辑"><a href="#线程组和请求的运行逻辑" class="headerlink" title="线程组和请求的运行逻辑"></a>线程组和请求的运行逻辑</h2><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-11_15-34-15.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-17_23-03-26.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="线程组和请求的设置逻辑"><a href="#线程组和请求的设置逻辑" class="headerlink" title="线程组和请求的设置逻辑"></a>线程组和请求的设置逻辑</h2><h5 id="关键逻辑"><a href="#关键逻辑" class="headerlink" title="关键逻辑"></a>关键逻辑</h5><ul>
+<li>一个线程组内的多个请求是顺序执行的 </li>
+<li>不同线程组内的请求是并行执行的</li>
+</ul>
+<h5 id="实际工作中如何设置线程组和请求的关系"><a href="#实际工作中如何设置线程组和请求的关系" class="headerlink" title="实际工作中如何设置线程组和请求的关系?"></a>实际工作中如何设置线程组和请求的关系?</h5><ul>
+<li>如果多个接口之间没有强依赖关系，每个接口单独设置一个线程组</li>
+<li>如果多个接口之间有依赖关系(数据关联),把有关联关系的接口按照顺放在同一个线程组内</li>
+</ul>
+<h2 id="JMeter基本元件-特殊的线程组"><a href="#JMeter基本元件-特殊的线程组" class="headerlink" title="JMeter基本元件-特殊的线程组"></a>JMeter基本元件-特殊的线程组</h2><h4 id="setup线程组"><a href="#setup线程组" class="headerlink" title="setup线程组"></a>setup线程组</h4><p>执行全局初始化操作的线程组，在所有线程组前执行</p>
+<h4 id="tearDown线程组"><a href="#tearDown线程组" class="headerlink" title="tearDown线程组"></a>tearDown线程组</h4><p>执行全局结束操作的线程组，在所有线程组之后执行</p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>1.JMeter打包压缩上传到linux服务器 </p>
+<ul>
+<li>解压 </li>
+<li>在etc&#x2F;profile下配置JMeter环境变量</li>
+<li>进入JMeter bin目录下配置脚本可执行权限 chmod +x .&#x2F;*</li>
+</ul>
+<h2 id="JMeter命令行模式-单机"><a href="#JMeter命令行模式-单机" class="headerlink" title="JMeter命令行模式-单机"></a>JMeter命令行模式-单机</h2><ul>
+<li>1，压力机安装并配置好JDK </li>
+<li>2，在windows下调试好JMeter脚本，并上传至Linux下 </li>
+<li>3、进到JMeter 根目录下需要添加执行权限 chmod -R +x .&#x2F;* 单机器测试步骤:</li>
+<li>4.执行压测命令jmeter -n -t pinter.jmx -l result.jtl<ul>
+<li>-n: 命令行模式，no-gui 不加会报错</li>
+<li>-t:jmx脚本路径+脚本名称;</li>
+<li>-l:jtl结果文件存放路径</li>
+</ul>
+</li>
+</ul>
+<h2 id="JMeter命令行模式-概要日志"><a href="#JMeter命令行模式-概要日志" class="headerlink" title="JMeter命令行模式-概要日志"></a>JMeter命令行模式-概要日志</h2><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_15-58-43.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="JMeter参数优化"><a href="#JMeter参数优化" class="headerlink" title="JMeter参数优化"></a>JMeter参数优化</h3><ul>
+<li>1，控制台取样间隔的设置<br>summariser.interval&#x3D;10，默认为30s，最低可修改为6s 一般设置为10s 修改JMeter的bin目录下jmeter.properties文件</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_16-01-37.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>2，Jvm参数优化 不要超过物理内存的四分之一<br>jmeter&#x2F;bin目录下，vi jmeter，修改HEAP的size大小，默认1024M，可以设置成2048M<br>HEAP&#x3D;”-Xms2g -Xmx2g -XX:MaxMetaspaceSize&#x3D;256m”</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_23-30-06.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>3，默认编码修改 sampleresult.default.encoding</li>
+</ul>
+<h2 id="JMeter命令行模式-结果报表"><a href="#JMeter命令行模式-结果报表" class="headerlink" title="JMeter命令行模式-结果报表"></a>JMeter命令行模式-结果报表</h2><p>三种方式来获取Jmeter的结果报表</p>
+<ul>
+<li>一、在GUI模式下跑Jmeter的脚本，用tps插件实时展示图表 </li>
+<li>二、在命令行模式下跑Jmeter的脚本，生成的jtl文件，在GUI界面的聚合报告里打开，可以展示tps 和 响应时间等数据 </li>
+<li>三、在命令行模式下跑Jmeter的脚本，生成的jtl文件，通过Jmeter自带命令，生成html报表<br>注意:<br>在实际工作中，不推荐第一种执行方式，会影响Jmeter</li>
+</ul>
+<h2 id="JMeter命令行模式-html报表"><a href="#JMeter命令行模式-html报表" class="headerlink" title="JMeter命令行模式-html报表"></a>JMeter命令行模式-html报表</h2><p> Html报表生成步骤</p>
+<ul>
+<li>1，进入jmeter的bin目录下，修改reportgenerator.properties </li>
+<li>2，修改jmeter.reportgenerator.overall_granularity&#x3D;1000(报表中数据展示间隔1秒) 单位为ms</li>
+<li>3，创建一个存放数据报表的文件夹 mkdir reports</li>
+<li>4，执行命令:jmeter –g result.jtl –o .&#x2F;reports</li>
+<li>5.对整个reports文件夹进行压缩<br>其中:<br>-g 指定jtl文件的路径<br>-o 指定html报表生成到哪个文件夹下<br>注意:只有Jmeter3.0版本以上支持此功能</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_16-29-33.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="Controller和压力机"><a href="#Controller和压力机" class="headerlink" title="Controller和压力机"></a>Controller和压力机</h2><p>压力机：产生压力的机器 可以是windows系统或者linux系统。<br>压力机可以和服务器数量持平。可以先申请一半机器先尝试</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_17-51-48.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="如何判断压力机不够？"><a href="#如何判断压力机不够？" class="headerlink" title="如何判断压力机不够？"></a>如何判断压力机不够？</h4><p>压力机比较消耗CPU和内存，CPU使用率超过80%就需要增加机器</p>
+<h2 id="JMeter命令行模式-分布式"><a href="#JMeter命令行模式-分布式" class="headerlink" title="JMeter命令行模式-分布式"></a>JMeter命令行模式-分布式</h2><ul>
+<li>1.硬件环境准备</li>
+<li>2.配置 vi&#x2F;etc&#x2F;hostname 修改hostname 每一台jmeter机器都要改 例如mycentos2 重启一下xshell</li>
+<li>3.修改本机ip和本机hostname映射关系 vi&#x2F;etc&#x2F;hosts 查看ip命令ipaddr</li>
+</ul>
+<h4 id="分布式测试步骤"><a href="#分布式测试步骤" class="headerlink" title="分布式测试步骤:"></a>分布式测试步骤:</h4><p>系统HOSTS文件中进行类似 本机IP 主机名的配置，如10.0.0.23 zhoucentos，否则启动jmeter server会报错! </p>
+<ul>
+<li>1，在每台机器上都部署 jmeter</li>
+<li>2，如果是java脚本，将java脚本和相关lib包都放在jmeter目录lib&#x2F;ext下(jar).如果有参数文件，参数文件也要上传到每一台压力机上</li>
+<li>3，将jmeter的场景文件jmx上传到主jmeter的任意位置，参数文件放到每一台压力机上(存放目录要相同)</li>
+<li>4，bin目录下修改jmeter.properties文件，ssl.disable&#x3D;true(去掉注释) </li>
+<li>5，在每台机器上进入到jmeter的bin目录下，都启动nohup .&#x2F;jmeter-server &amp; (后台启动jmeter-server服务)  分布式之间的通信机制通过jmeter server</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_22-36-21.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>6，在主jmeter的bin目录下，修改jmeter.properties，将其中的remote_hosts修改为作为压力机的两台机器ip， remote_hosts&#x3D;127.0.0.1,192.168.0.102</li>
+<li>7，在主jmeter的机器上，执行jmeter -n -t pinter.jmx -l result.jtl -r -r是单机压测和分布式压测的区别</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_22-57-24.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="分布式启动失败原因："><a href="#分布式启动失败原因：" class="headerlink" title="分布式启动失败原因："></a>分布式启动失败原因：</h5><ul>
+<li>防火墙没关</li>
+<li>上一次在主jmeter上做了CTRL+C的操作</li>
+<li>某一台jmeter server没有启动成功</li>
+</ul>
+<h5 id="如果要停止压测-需要复制主压力机会话-在jmeter-bin目录下执行-shutdown-sh"><a href="#如果要停止压测-需要复制主压力机会话-在jmeter-bin目录下执行-shutdown-sh" class="headerlink" title="如果要停止压测 需要复制主压力机会话 在jmeter bin目录下执行.&#x2F;shutdown.sh"></a>如果要停止压测 需要复制主压力机会话 在jmeter bin目录下执行.&#x2F;shutdown.sh</h5><h4 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h4><p>运行jmeter-server时，出现“Exception creating connection to:192.16.<em>.</em>;nested exception is:java.io.FileNotFoundException:rmi_keystore.jks(系统找不到指定的文件)”错误 将主从机器上的jmeter.properties文件 参数server.rmi.ssl.disable均改为true<br>其中linux上是用以下命令:vi jmeter.properties 使用&#x2F;server.rmi.ssl.disable&#x2F;进行查找  </p>
+<ul>
+<li>1、如果是http脚本，在controller的机器上有脚本文件即可; </li>
+<li>2、如果是Java脚本，在每一台机器上都得有脚本文件和依赖的</li>
+</ul>
+<h3 id="命令行压测，排查报错"><a href="#命令行压测，排查报错" class="headerlink" title="### 命令行压测，排查报错"></a>### 命令行压测，排查报错</h3><p>压测过程中如果有报错的话，可以通过察看结果树来察看<br>配置好以后需要重新上传jmeter脚本</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_23-05-47.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="排查步骤"><a href="#排查步骤" class="headerlink" title="排查步骤"></a>排查步骤</h4><ul>
+<li>1.脚本当前目录下会有jmeter.log 查看是否有错误日志</li>
+<li>2.如果是分布式压测 在jmeter&#x2F;bin目录下检查jmeter-server.log 是否有报错信息 tail -100 erro.xml</li>
+<li>3.如果配置了查看结果树保存报错信息，可以将报错xml在查看结果树中打开，进行分析</li>
+<li>4.也可以去jtl文件中查看是否有错误提示信息</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-18_23-17-35.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="性能测试的目的"><a href="#性能测试的目的" class="headerlink" title="性能测试的目的"></a>性能测试的目的</h2><h4 id="测试系统最大处理能力"><a href="#测试系统最大处理能力" class="headerlink" title="测试系统最大处理能力"></a>测试系统最大处理能力</h4><p>寻找系统最大的TPS,判断TPS和对应响应时间是否满足预期</p>
+<h4 id="测试系统支持最高并发"><a href="#测试系统支持最高并发" class="headerlink" title="测试系统支持最高并发"></a>测试系统支持最高并发</h4><p>寻找系统最高能支持多少并发，当系统出现宕机，进程崩溃，报错率持续上升，响应时间超过可忍受范围，程序无响应任意情况，即认可系统达到了可支持的最高并发</p>
+<h2 id="性能测试场景"><a href="#性能测试场景" class="headerlink" title="性能测试场景"></a>性能测试场景</h2><h3 id="三个基本压测场景"><a href="#三个基本压测场景" class="headerlink" title="三个基本压测场景"></a>三个基本压测场景</h3><ul>
+<li><h4 id="1-先进行单接口测试"><a href="#1-先进行单接口测试" class="headerlink" title="1.先进行单接口测试"></a>1.先进行单接口测试</h4><ul>
+<li>用多少并发开始测没有具体的标准看个人习惯。一般10并发开始测 持续时间一般选择180秒或者300秒跑一轮</li>
+<li>准备excel记录数据 可以通过修改jmeter脚本搜索&#x2F;num_thread修改并发数</li>
+<li>并发数设置一定要灵活，如果tps增加很快说明性能很好，平均响应时间没什么变化，可以果断大幅度增加并发数</li>
+<li>在拐点的前两个 拐点 拐点的后两个 重新跑一遍老老实实等到跑完。记录数据</li>
+</ul>
+</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-19_11-33-34.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><h4 id="2-再按照一定的并发比例，进行多接口混合测试"><a href="#2-再按照一定的并发比例，进行多接口混合测试" class="headerlink" title="2.再按照一定的并发比例，进行多接口混合测试"></a>2.再按照一定的并发比例，进行多接口混合测试</h4><ul>
+<li>大部分公司按照用户比例进行混合 按照并发的比例去设置 </li>
+<li>设定起始并发接口按照比例分配并发数</li>
+<li>混合场景以总TPS为准来看拐点</li>
+</ul>
+</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-19_12-01-33.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><h4 id="3-最好按照混合场景比例，进行长时间稳定性测试"><a href="#3-最好按照混合场景比例，进行长时间稳定性测试" class="headerlink" title="3.最好按照混合场景比例，进行长时间稳定性测试"></a>3.最好按照混合场景比例，进行长时间稳定性测试</h4><ul>
+<li>以混合场景为基础 以拐点并发数为准按比例划分</li>
+<li>运行时间设置为12h</li>
+<li>稳定性测试不会过度关注tps高和低 会更关注运行是否平稳</li>
+</ul>
+</li>
+<li><h4 id="4-其他压测场景"><a href="#4-其他压测场景" class="headerlink" title="4.其他压测场景"></a>4.其他压测场景</h4></li>
+</ul>
+<p>根据自己的业务情况，选择不同业务场景的压测</p>
+<h2 id="性能测试执行策略"><a href="#性能测试执行策略" class="headerlink" title="性能测试执行策略"></a>性能测试执行策略</h2><h3 id="加压策略"><a href="#加压策略" class="headerlink" title="加压策略"></a>加压策略</h3><p>从小并发开始，逐步增加并发，寻找性能拐点</p>
+<h3 id="执行测试"><a href="#执行测试" class="headerlink" title="执行测试"></a>执行测试</h3><p>试压阶段：寻找拐点，记录拐点数据<br>收集数据：选择拐点前后5组数据，按照固定时间（3-5分钟）重新跑一次，记录详细数据</p>
+<h2 id="性能拐点"><a href="#性能拐点" class="headerlink" title="性能拐点"></a>性能拐点</h2><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-19_11-13-37.png" srcset="/img/loading.gif" lazyload></p>
+<p>经过梯度压测，40并发时TPS达到拐点，所以40并发是本系统的最佳并发数。<br>最终在测试报告中，记录下20、30、40、50、60五组数据即</p>
+<h2 id="再谈TPS、响应时间、并发"><a href="#再谈TPS、响应时间、并发" class="headerlink" title="再谈TPS、响应时间、并发"></a>再谈TPS、响应时间、并发</h2><ul>
+<li>并发：真实并发用户和服务端并发用户  </li>
+<li>服务端并发 &lt; 真实并发用户 因为请求会陆陆续续到达</li>
+<li>支持600个服务端并发，到底多少个用户不知道。</li>
+</ul>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-19_12-09-20.png" srcset="/img/loading.gif" lazyload></p>
+<p>决定性能好坏的不是并发数 而是处理能力即TPS<br>系统性能受限于硬件配置:CPU、内存<br>当CPU使用率和内存使用率接近100%的时候，系统会达到极限</p>
+<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-19_12-17-33.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>在压测工具中设置的并发数，其实就是服务端的并发数</li>
+<li>不需要关注真实用户并发，关注服务端并发即可</li>
+<li>一个系统的性能好坏，不能用支持的并发数来衡量，而是以TPS、响应时间来衡量 </li>
+<li>性能测试没必要过分关注并发数，而是更应该关注业务性能指标TPS、响应时间</li>
+<li>性能差的系统，比性能好的系统支持更高的并发数</li>
+<li>如果想让一个系统支持更高的并发数，只需要将系统的响应时间变长即可</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/PerformanceTesting/" class="category-chain-item">PerformanceTesting</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/PerformanceTesting/" class="print-no-link">#PerformanceTesting</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JMeter压测</div>
+      <div>https://zn-zyl.github.io/2022/08/17/PerformanceTesting/JMeter压测/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhounuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/03/17/django/ORM/" title="ORM">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ORM</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/17/PerformanceTesting/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="性能测试基础知识">
+                        <span class="hidden-mobile">性能测试基础知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
