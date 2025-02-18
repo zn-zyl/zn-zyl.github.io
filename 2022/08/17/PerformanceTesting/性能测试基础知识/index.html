@@ -26,16 +26,16 @@
 <meta property="og:site_name" content="ZhouNuo Blog">
 <meta property="og:description" content="性能测试基础知识定义通过一定的手段，在多并发情况下，获取被测系统的各项性能指标，验证被测系统在高并发下的处理能力、响应能力，稳定性等，能否满足预期。定位性能瓶颈，排查性能隐患，保障系统的质量，提升用户体验。 什么样的系统需要做性能测试 用户量大，PC比较高的系统 系统核心模块&#x2F;接口 业务逻辑&#x2F;算法比较复杂 促销&#x2F;活动推广  性能测试发生的场景 新系统，新项目 线上性能">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-02_14-10-08.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-10_16-10-59.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-02_14-25-49.png">
-<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-02_14-30-00.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-02_14-10-08.png">
+<meta property="og:image" content="https://zn-zyl.github.io/public/picture/Snipaste_2021-06-10_16-10-59.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-02_14-25-49.png">
+<meta property="og:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-02_14-30-00.png">
 <meta property="article:published_time" content="2022-08-17T14:00:42.000Z">
-<meta property="article:modified_time" content="2025-02-18T02:17:53.429Z">
+<meta property="article:modified_time" content="2025-02-18T09:37:44.623Z">
 <meta property="article:author" content="zhounuo">
 <meta property="article:tag" content="PerformanceTesting">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-02_14-10-08.png">
+<meta name="twitter:image" content="https://zn-zyl.github.io/picture/Snipaste_2021-06-02_14-10-08.png">
   
   
   
@@ -287,8 +287,8 @@
 <h4 id="TPS-QPS"><a href="#TPS-QPS" class="headerlink" title="TPS&#x2F;QPS"></a>TPS&#x2F;QPS</h4><p>Transaction Per Second 每秒处理的事务数 </p>
 <p>Request Per Second 每秒的请求数</p>
 <p>测试“下单” 业务 将下单放到事务标签里</p>
-<p>测试“添加购物车-下单” 整体业务 将两个接口加在一个事务标签里<br>;’[‘’[]]<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-02_14-10-08.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="性能测试指标-平均响应时间"><a href="#性能测试指标-平均响应时间" class="headerlink" title="性能测试指标-平均响应时间"></a>性能测试指标-平均响应时间</h3><p>一个请求的响应时间都包含哪些时间？<br><img src="/../.vuepress/public/picture/Snipaste_2021-06-10_16-10-59.png" srcset="/img/loading.gif" lazyload></p>
+<p>测试“添加购物车-下单” 整体业务 将两个接口加在一个事务标签里<br>;’[‘’[]]<br><img src="/picture/Snipaste_2021-06-02_14-10-08.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="性能测试指标-平均响应时间"><a href="#性能测试指标-平均响应时间" class="headerlink" title="性能测试指标-平均响应时间"></a>性能测试指标-平均响应时间</h3><p>一个请求的响应时间都包含哪些时间？<br><img src="/public/picture/Snipaste_2021-06-10_16-10-59.png" srcset="/img/loading.gif" lazyload></p>
 <p>响应时间&#x3D;网络传输的总时间+各组件业务处理时间&#x3D;RT(Response Time) </p>
 <p>平均响应时间:在测试过程中，所有请求的平均耗时&#x3D;ART(Average Response Time)</p>
 <h3 id="性能测试指标-TOP响应时间"><a href="#性能测试指标-TOP响应时间" class="headerlink" title="性能测试指标-TOP响应时间"></a>性能测试指标-TOP响应时间</h3><p>将所有请求的响应时间从大到小进行排序，计算指定比例的请求都是小于某个时间。<br>该指标统计的是大多数请求的耗时</p>
@@ -305,11 +305,11 @@
 <h3 id="TPS-响应时间和并发数的关系"><a href="#TPS-响应时间和并发数的关系" class="headerlink" title="TPS 响应时间和并发数的关系"></a>TPS 响应时间和并发数的关系</h3><p>响应时间单位为秒的情况下 </p>
 <p>TPS &#x3D; 1 &#x2F; 响应时间 * 并发数</p>
 <p>TPS &#x3D; 并发数 &#x2F; 响应时间</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-02_14-25-49.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-02_14-25-49.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="集合点"><a href="#集合点" class="headerlink" title="集合点"></a>集合点</h3><p>集合点是为了增加瞬间并发压力的一种机制，在脚本中增加一个标记，所有虚拟用户执行到标记处会进行等 待，等所有用户都到达后，再同时继续执行下一步操作。</p>
 <p>优点:对服务器来说，会产生一种瞬间高并发</p>
 <p>缺点:对服务器来说，平均压力会降低</p>
-<p><img src="/../.vuepress/public/picture/Snipaste_2021-06-02_14-30-00.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/picture/Snipaste_2021-06-02_14-30-00.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="什么时候需要加集合点呢？"><a href="#什么时候需要加集合点呢？" class="headerlink" title="什么时候需要加集合点呢？"></a>什么时候需要加集合点呢？</h4><p>根据业务来选择，如果业务场景是瞬间高并发类型的，如抢购、秒杀等，需要加集合点;<br>其他的场景都不需要加，一般加了集合点后，就不使用TPS来衡量系统性能 集合点功能要慎重选择，因为加了集合点后，系统的平均压力会降低</p>
 <h3 id="性能监控指标"><a href="#性能监控指标" class="headerlink" title="性能监控指标"></a>性能监控指标</h3><h4 id="操作系统级别监控"><a href="#操作系统级别监控" class="headerlink" title="操作系统级别监控"></a>操作系统级别监控</h4><p>CPU使用率，内存使用率，网络IO(input&#x2F;output) 磁盘（read&#x2F;write&#x2F;util)</p>
 <h4 id="中间件监控"><a href="#中间件监控" class="headerlink" title="中间件监控"></a>中间件监控</h4><p>连接数，长短连接，使用内存</p>
