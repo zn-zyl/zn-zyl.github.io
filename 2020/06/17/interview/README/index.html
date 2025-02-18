@@ -1,0 +1,736 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhounuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2.怎么从0到1设计自动化测试流程的？12345678910111213141516171819202122232425262728293031背景：   - 1.开发没有持续维护接口文档   - 2.接口测试没有做，没有做过自动化测试，提测后直接进入功能测试。   1.引入swagger接口文档工具 第二 编写了自动化测试流程介入现有研发流程 流程图，接口测试前移放到和开发阶段同步进行并且编写自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试准备">
+<meta property="og:url" content="https://zn-zyl.github.io/2020/06/17/interview/README/index.html">
+<meta property="og:site_name" content="ZN Blog">
+<meta property="og:description" content="2.怎么从0到1设计自动化测试流程的？12345678910111213141516171819202122232425262728293031背景：   - 1.开发没有持续维护接口文档   - 2.接口测试没有做，没有做过自动化测试，提测后直接进入功能测试。   1.引入swagger接口文档工具 第二 编写了自动化测试流程介入现有研发流程 流程图，接口测试前移放到和开发阶段同步进行并且编写自">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-19_21-04-03.png">
+<meta property="article:published_time" content="2020-06-16T22:16:07.000Z">
+<meta property="article:modified_time" content="2025-02-18T06:16:36.075Z">
+<meta property="article:author" content="zhounuo">
+<meta property="article:tag" content="interview">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zn-zyl.github.io/.vuepress/public/picture/Snipaste_2021-06-19_21-04-03.png">
+  
+  
+  
+  <title>面试准备 - ZN Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zn-zyl.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zn&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="面试准备"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-06-17 06:16" pubdate>
+          2020年6月17日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">面试准备</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="2-怎么从0到1设计自动化测试流程的？"><a href="#2-怎么从0到1设计自动化测试流程的？" class="headerlink" title="2.怎么从0到1设计自动化测试流程的？"></a>2.怎么从0到1设计自动化测试流程的？</h3><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs clean">背景：<br>   - <span class="hljs-number">1.</span>开发没有持续维护接口文档<br>   - <span class="hljs-number">2.</span>接口测试没有做，没有做过自动化测试，提测后直接进入功能测试。<br>  <br> <span class="hljs-number">1.</span>引入swagger接口文档工具 第二 编写了自动化测试流程介入现有研发流程 流程图，接口测试前移放到和开发阶段同步进行并且编写自动化测试脚本脚本 。<br>前期准备工作：<br>#### <span class="hljs-number">1.</span>技术团队开了自动化项目启动会议<br><span class="hljs-number">1.</span>在会上我用ppt讲解了自动化测试是什么 自动化测试的价值，以及展示了自动化脚本的运行 测试报告的生成和展示。<br>#### <span class="hljs-number">2.</span>搭建了swagger接口文档平台 <br>编写了swagger部署和集成文档，接口文档注释添加规则文档， 接口自动化测试介入开发流程文档，评估了开发接入和学习成本  <br>在swagger宣讲会上了做了介绍和讨论。<br>#### <span class="hljs-number">3.</span>自动化测试框架的搭建<br><br>测试流程<br><span class="hljs-number">1.</span> <span class="hljs-number">2.</span> <span class="hljs-number">3.</span><br>#### <span class="hljs-number">4.</span>项目试点落地实施<br>选了三个迭代版本进行试点 循序渐进，前两个版本仅要求他们做了主流程接口文档的维护<br>我们按照接口自动化测试介入现有研发流程图来进行开发和测试之间的磨合。<br>开发出接口时会进行一轮接口测试，开发也会及时维护接口文档。 <br>三个版本后推广到了当前所以的迭代项目  <br><br>#### <span class="hljs-number">5.</span>扫尾工作<br><span class="hljs-number">1.</span>历史接口注释添加 这个主要是开发团队的任务由我来主导，和各个开发leader对接，自己预估给出排期我负责check进度和质量。<br>三个月左右我们的历史接口注释添加完毕<br><br><span class="hljs-number">2.</span>测试这块后期进行了接口测试用例设计，测试脚本编写方面的培训。<br>当前我们测试团队成员均会先进行接口测试并编写调试接口脚本。<br><br>在整个过程中流程的制定主要是和领导还有开发leader一起  <br>接口平台的搭建是和运维一起搭的   <br>swagger的部署和接入这块是和架构师一起做的。<br></code></pre></td></tr></table></figure>
+<h3 id="3-从中有没有遇到过阻力你认为最大的困难是什么？"><a href="#3-从中有没有遇到过阻力你认为最大的困难是什么？" class="headerlink" title="3.从中有没有遇到过阻力你认为最大的困难是什么？"></a>3.从中有没有遇到过阻力你认为最大的困难是什么？</h3><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">最大的困难还是团队之间拥有同一目标，统一认知，拥抱变化愿意改变既有习惯和模式<br>首先我觉得最最重要是领导的支持，这是推进落地必不可少的条件，第二是自己的坚持和强大的内心。<br><br><br>比如接口测试文档，之前开发团队并没有及时维护，现在推进swagger接口文档有些开发觉得额外增加了工作量，一开始有抵触情绪。  <br>我们前期也有一定的心里预期也做了一些工作来避免这些。<br><br><span class="hljs-bullet">- </span>1.开了说明会 告诉他们接入的好处，对项目质量的好处对开发团队的好处。评估了开发学习成本和学习时间。直观告诉这个东西很快可以搞定。 <br><span class="hljs-bullet">- </span>2.各系统如何接入swagger，接口注释如何添加全部编写了说明文档。并且在会议上做了演示和讲解。<br><span class="hljs-bullet">- </span>3.并没有立马大规模推广，进行了试点和磨合，循序渐进的来推进<br></code></pre></td></tr></table></figure>
+<h3 id="4-从中你学到了什么？"><a href="#4-从中你学到了什么？" class="headerlink" title="4.从中你学到了什么？"></a>4.从中你学到了什么？</h3><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-bullet">- </span>1.首先善于观察和思考项目流程中的痛点并且思考解决方案<br><span class="hljs-bullet">- </span>2.善于借力，多和架构师运维合作，共同完成一些技术推进工作<br><span class="hljs-bullet">- </span>3.拥有强大的内心很重要，并且领导也很重要，要多争取领导的支持和站台<br></code></pre></td></tr></table></figure>
+
+<h4 id="5-介绍一个接口自动化框架"><a href="#5-介绍一个接口自动化框架" class="headerlink" title="5.介绍一个接口自动化框架"></a>5.介绍一个接口自动化框架</h4><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">接口自动化是采用python+ddt+unittest <br>excel存储测试用例，ddt数据驱动读取测试用例拆包传到unittest 测试类中运行。.<br>主要设计思想 <br>第一：测试数据和测试用例分离，测试账号存储在配置文件，测试用例存储在excel，减少维护成本，提高用例可用性<br>第二：ddt 测试数据和测试代码分离，通过ddt读取数据来驱动测试用例批量执行。保证测试数据发生大量变化的情况下，测试代码可以不用改变<br><br>测试用例层：datas：excel测试数据存储。以模块为单位 一个模块一个<span class="hljs-keyword">sheet页</span><br><span class="hljs-keyword"></span><span class="hljs-symbol">          cases:</span> 测试用例 一个模块一个文件，读取excel对应<span class="hljs-keyword">sheet页的测试用例批量发起请求并断言</span><br><span class="hljs-keyword"></span><span class="hljs-symbol">          conf:</span>配置文件 主要负责接口<span class="hljs-keyword">base地址 </span>账号信息 数据库连接信息存储<br>逻辑处理层：handle excel<br>        handle mysql<br>        handle <span class="hljs-built_in">config</span><br>        handle log<br><span class="hljs-symbol">        context:</span>处理关联接口的测试用例<br>输出层：logs 运行日志输出<br>       reports 测试用例输出<br><br>第三方模块：htmlrunner生成测试报告<br><span class="hljs-symbol">main:</span>执行主入口模块<br>持续集成：<br>集成了<span class="hljs-keyword">jenkis拉取git代码运行 </span>生成测试报告发送测试邮件并且集成了钉钉@相关联系人进行测试报告分析和查看<br><span class="hljs-keyword">jenkis上配置了三个任务 </span>分别拉取对应git分支的代码执行。<br>测试环境 验证环境 生产环境维护了<span class="hljs-number">3</span>套代码，逻辑是一样的，主要是测试账号 请求url配置信息的不同 <br><br>执行策略：<br>生产环境是每次上线发布后执行<br>验证环境 配置的定时时间每天运行<br>测试环境 也是每次执行冒烟测试时自行运行<br><br>稳定性方面<span class="hljs-comment">;主要是加入了重运行机制。</span><br><br></code></pre></td></tr></table></figure>
+<h3 id="6-介绍一下UI自动化框架"><a href="#6-介绍一下UI自动化框架" class="headerlink" title="6.介绍一下UI自动化框架"></a>6.介绍一下UI自动化框架</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs">数据分离 测试数据和测试用例分离<br>PO设计模式 测试对象和测试用例分离 一般分为三层 1.页面维度的元素定位 2，页面维度的元素操作 3.测试用例<br>用例当中看不到元素定位和操作<br>测试用例层：<br>逻辑处理层<br>输出层<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="7-为什么选择-现在的python-ddt-unittest接口框架"><a href="#7-为什么选择-现在的python-ddt-unittest接口框架" class="headerlink" title="7.为什么选择 现在的python+ddt+unittest接口框架"></a>7.为什么选择 现在的python+ddt+unittest接口框架</h3><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs d">本人比较熟悉python <span class="hljs-keyword">unittest</span>框架<br>如果现在的话，根据团队成员的不同水平，如果全员均不会写脚本的话，会采用httprunner为主。<br></code></pre></td></tr></table></figure>
+<h3 id="8-怎么排查bug"><a href="#8-怎么排查bug" class="headerlink" title="8.怎么排查bug"></a>8.怎么排查bug</h3><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-bullet">- </span>1.如果直接出现报错查看报错日志。也可以通过skywalking查看哪个系统挂掉了<br><span class="hljs-bullet">- </span>2.看一下是否和后端有交互，如果没有就是一个前端的bug.如果有先查看前端传参是否正确，前端传参正确，一般就是后端的问题，去数据库按照查询条件捞数据，查看是否后端sql脚本问题，逻辑处理的问题。<br></code></pre></td></tr></table></figure>
+<h3 id="9-找一个业务说明一下系统之间的调用关系和技术实现"><a href="#9-找一个业务说明一下系统之间的调用关系和技术实现" class="headerlink" title="9.找一个业务说明一下系统之间的调用关系和技术实现"></a>9.找一个业务说明一下系统之间的调用关系和技术实现</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs">1.学员端有一个线上课程打卡功能<br>业务逻辑是这样：学员在学员端点击线上课程跳转到第三方鲸打卡小程序。完成打卡操作后，鲸打卡会把打卡信息 比如用户手机号，得分 推送回我们。我们会在进行后续的添加积分操作<br><br>当前在学员端的操作查询学员线上课程信息等级信息积分信息调用student系统。后续积分操作会调用crm系统进行学员积分添加。<br>关于技术实现：  <br>我们当前学员端在鲸打卡小程序的打卡操作一般集中在晚上。打卡时间比较集中，会在一个时间段内把打卡信息推送过来，<br>此时我们放在mq消息队列中，业务系统慢慢去消费处理。如果mq在消费消息中出现异常，mq会有重试机制 一直重试<br><br>银联对账机制：<br>在销售端创建银联订单推送银联，订单同步失败后，会重新推送不断调银联接口。<br><br>我们的合同创建过程信息比较多分为4步每一次点击下一步会跳到一个新的页面，且在每一步都有可能直接关闭，<br>前面创建过程使用了redis缓存机制。等到第四步确认提交后数据统一落库。<br></code></pre></td></tr></table></figure>
+
+<h3 id="10-讲解一下功能测试用例设计-选取一个你们公司的场景"><a href="#10-讲解一下功能测试用例设计-选取一个你们公司的场景" class="headerlink" title="10.讲解一下功能测试用例设计 选取一个你们公司的场景"></a>10.讲解一下功能测试用例设计 选取一个你们公司的场景</h3><p>背景：<br>1.创建银联订单：</p>
+<h3 id="11选取一个接口-比如订单接口-讲解一下接口测试用例设计"><a href="#11选取一个接口-比如订单接口-讲解一下接口测试用例设计" class="headerlink" title="11选取一个接口 比如订单接口 讲解一下接口测试用例设计"></a>11选取一个接口 比如订单接口 讲解一下接口测试用例设计</h3><ul>
+<li>1.输入可根据参数类型进行设计<ul>
+<li>a 必填项校验 </li>
+<li>b 参数长度校验  超长字符未进行处理，会导致存储显示等异常</li>
+<li>c 参数值的有效性校验 比如身份证号手机号 </li>
+<li>d 参数是枚举值，各种枚举值都要测试，每一种枚举值就代表一种测试场景</li>
+<li>f 参数的默认值，边界值，特殊字符，空字符等。</li>
+<li>e 唯一性校验 有些字段必须唯一不能重复 比如姓名或者身份证号</li>
+</ul>
+</li>
+<li>2.接口处理可按照逻辑进行用例设计，接口逻辑结合实际的业务场景逻辑复杂先画业务流程图或xmind写测试点 要做到场景覆盖。<ul>
+<li>a 约束条件 比如实物为有限状态才能赠送。学员有课时才能参加活动</li>
+<li>b 状态限制 比如我们的系统大部分状态下都需要登录状态且权限正确才能操作</li>
+<li>c 数值限制 比如学员升级接口。如果学员课时不足无法扣课时则不能进行升级</li>
+<li>d 顺序分析 一些接口是有调用顺序的，比如打乱顺序调用是否会报错</li>
+<li>场景覆盖时考虑异常场景，比如我们的创建订单并同步银行接口。同步失败或者接口超时后，是否有正常业务提示。</li>
+<li>重复提交（幂等）比如我们的核销扣课时接口，只能扣一次如果短时间内多次点击的话，要看开发是否有做处理 如唯一字段唯一索引，重复插入数据报错</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-接口测试用例返回值校验怎么校验？"><a href="#12-接口测试用例返回值校验怎么校验？" class="headerlink" title="12.接口测试用例返回值校验怎么校验？"></a>12.接口测试用例返回值校验怎么校验？</h3><p>针对输出 可根据结果进行分析设计</p>
+<ul>
+<li>a 校验返回值 code msg</li>
+<li>b 了解数据库通过sql脚本去验证</li>
+</ul>
+<h3 id="13-讲解一下你的接口测试平台"><a href="#13-讲解一下你的接口测试平台" class="headerlink" title="13.讲解一下你的接口测试平台"></a>13.讲解一下你的接口测试平台</h3><p><img src="/../.vuepress/public/picture/Snipaste_2021-06-19_21-04-03.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="14-django的生命周期"><a href="#14-django的生命周期" class="headerlink" title="14.django的生命周期"></a>14.django的生命周期</h3><p>前端请求—&gt;nginx—&gt;uwsgi.—&gt;中间件—&gt;url路由—-&gt;view试图—&gt;orm—-&gt;拿到数据返回给view—-&gt;试图将数据渲染到模版中拿到字符串—-&gt;中间件—&gt;uwsgi—-&gt;nginx—-&gt;前端渲染。</p>
+<h3 id="15-django中间件"><a href="#15-django中间件" class="headerlink" title="15.django中间件"></a>15.django中间件</h3><p>中间件是 Django 用来处理请求和响应的钩子框架，配置文件settings.py的 MIDDLEWARE 配置项列表中</p>
+<h3 id="16-选取一个模块介绍一下你们公司的业务"><a href="#16-选取一个模块介绍一下你们公司的业务" class="headerlink" title="16.选取一个模块介绍一下你们公司的业务"></a>16.选取一个模块介绍一下你们公司的业务</h3><h3 id="17-介绍一下公司一个功能模块的测试用例设计"><a href="#17-介绍一下公司一个功能模块的测试用例设计" class="headerlink" title="17.介绍一下公司一个功能模块的测试用例设计"></a>17.介绍一下公司一个功能模块的测试用例设计</h3><h3 id="18-性能当前怎么做的，性能测试流程。关键指标"><a href="#18-性能当前怎么做的，性能测试流程。关键指标" class="headerlink" title="18.性能当前怎么做的，性能测试流程。关键指标"></a>18.性能当前怎么做的，性能测试流程。关键指标</h3><h3 id="19-怎么把控测试进度"><a href="#19-怎么把控测试进度" class="headerlink" title="19.怎么把控测试进度"></a>19.怎么把控测试进度</h3><p>1.每月需求碰头会，了解接下来一个月的安排<br>2.执行测试团队人力资源排期表。团队一起来维护。横列是日期</p>
+<ul>
+<li>1.在项目前期制定合理的测试计划，充分考虑测试的风险点，预估充足的测试时间。</li>
+<li>2.关键节点把控 开发提测节点延迟预警，如果延迟要尽快反馈，商量解决方案。和测试人员及时了解测试进度，是否按照预期推进，阻塞流程是否有及时解决。</li>
+<li>3.过程监控，tapd上查看各项目bug趋势，每天新增解决bug，判断当前项目所处阶段，测试人员时间安排</li>
+<li>4.测试日报</li>
+<li>4.如果有需求变更，参照需求变更</li>
+</ul>
+<h3 id="20-怎么把控测试质量"><a href="#20-怎么把控测试质量" class="headerlink" title="20.怎么把控测试质量"></a>20.怎么把控测试质量</h3><ul>
+<li>按照测试分层，最底层做单元测试，    </li>
+<li>中间层，做接口测试，集成测试。  接口测试工作前移和开发一起进行  </li>
+<li>最上层做ui测试，端到端测试，探索性测试。  </li>
+<li>每个测试阶段，投入不同的测试手段。</li>
+</ul>
+<h3 id="21-怎么把控测试覆盖度"><a href="#21-怎么把控测试覆盖度" class="headerlink" title="21.怎么把控测试覆盖度"></a>21.怎么把控测试覆盖度</h3><ul>
+<li>首先接口测试覆盖所有接口，包括后期自动化脚本回归。 </li>
+<li>功能是覆盖所有的需求功能点，用例100%执行，bug全部回归完毕</li>
+</ul>
+<h3 id="22-介绍一下项目重构中遇到的问题以及怎么解决的"><a href="#22-介绍一下项目重构中遇到的问题以及怎么解决的" class="headerlink" title="22.介绍一下项目重构中遇到的问题以及怎么解决的"></a>22.介绍一下项目重构中遇到的问题以及怎么解决的</h3><h3 id="23-重构项目的测试方案"><a href="#23-重构项目的测试方案" class="headerlink" title="23.重构项目的测试方案"></a>23.重构项目的测试方案</h3><p>根据测试计划<br>总得测试方案 1.及早介入 2.先化整为零各个击破，然后再交叉测试<br>1.根据项目需求分析后 我们确认做三轮功能测试，接口自动化测试 和 个别高并发场景做性能压测<br>2.第一轮：接口测试+模块测试+接口主流程冒烟测试脚本编写及第一轮集成测试<br>  第二轮：集成测试关联模块测试+回归测试<br>  第三轮：集成测试交叉测试+迁移数据校验+性能测试<br>  第四轮：上线</p>
+<h3 id="24-对于需求变更你是怎么做的"><a href="#24-对于需求变更你是怎么做的" class="headerlink" title="24.对于需求变更你是怎么做的"></a>24.对于需求变更你是怎么做的</h3><p>1.评估需求是否合理，和这个版本是否有很大关系，能否放到下个版本。<br>2.评估变更影响范围，回归测试范围，是否需要改变测试方案，评估出测试时间<br>3.结合开发时间评估，给出需求变更总时间，并结合deadline时间交给产品确定是否接受需求变更时间和成本<br>4.通过的话开始详细需求评审，测试用例新增和修改。确定测试方案。并按照正常测试流程介入</p>
+<h3 id="25-团队建设方面你是怎么做的"><a href="#25-团队建设方面你是怎么做的" class="headerlink" title="25.团队建设方面你是怎么做的"></a>25.团队建设方面你是怎么做的</h3><ul>
+<li>1.测试团队制度建设：我觉得好的制度建设有利于绩效考评和工作开展<ul>
+<li>1.每周五测试团队内部周会，每周五邮件形式发送工作周报，总结一周工作下周计划及每周遇到的问题无论是测试问题还是流程问题，一起讨论方案</li>
+<li>2.工作总结。每个版本迭代结束后，测试点，逻辑图，测试用例，sql脚本，项目总结等全部整理归档到confluence</li>
+</ul>
+</li>
+<li>2.奖惩制度<ul>
+<li>1.项目上线后发生重大功能漏测，根据bug等级不同进行相应惩罚</li>
+<li>2.有突出贡献的有奖励</li>
+</ul>
+</li>
+<li>3.技术分享及培训<ul>
+<li>1.每2~3周会进行一场分享，可以是技术分享，业务分享，也可以是大家一起进行阅读，时间在1小时。比如极客时间的软件测试52讲一起阅读</li>
+</ul>
+</li>
+<li>4.设立okr和绩效考核<ul>
+<li>团队成员根据自己情况设立okr.会定期对okr进行面谈。绩效考核也以okr的实现情况来评级</li>
+</ul>
+</li>
+</ul>
+<h3 id="26-如何管理测试团队"><a href="#26-如何管理测试团队" class="headerlink" title="26.如何管理测试团队"></a>26.如何管理测试团队</h3><ul>
+<li>1.建立监控机制<ul>
+<li>工作周报 月度总结 年度总结</li>
+</ul>
+</li>
+<li>2.建立考核制度</li>
+<li>3.建立培训机制和评审机制</li>
+<li>4.技术文档库及交流社区平台建设</li>
+</ul>
+<h3 id="27-怎么教会测试团队成员从0到1运用postman-接口测试用例脚本编写"><a href="#27-怎么教会测试团队成员从0到1运用postman-接口测试用例脚本编写" class="headerlink" title="27.怎么教会测试团队成员从0到1运用postman,接口测试用例脚本编写"></a>27.怎么教会测试团队成员从0到1运用postman,接口测试用例脚本编写</h3><ul>
+<li>1.提前找postman相关视频发给团队成员观看并要求记笔记</li>
+<li>2.编写postman使用培训文档，接口测试用例编写原则并结合公司接口来现场讲解如何使用postman测试接口</li>
+<li>3.接口测试用例组内互相review。</li>
+<li>4.在前期练手项目中，慢慢接入。前2~3个项目只要求覆盖主流程，熟练后慢慢覆盖到所以接口，并且要求前期接口测试过程中必须有bug提交<br>关于接口测试脚本：</li>
+<li>1.编写接口测试脚本培训文档。讲解当前的接口框架每个模块的作用，编写单接口测试用例 关联接口测试用例步骤，测试数据的编写规范比如入参格式。</li>
+<li>2.以公司项目接口为例进行现场讲解。</li>
+<li>3.先选取项目试点 2~3个版本积少成多，慢慢推广</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/interview/" class="category-chain-item">interview</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/interview/" class="print-no-link">#interview</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>面试准备</div>
+      <div>https://zn-zyl.github.io/2020/06/17/interview/README/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhounuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年6月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/17/testbasic/linux/" title="linux">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">linux</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/17/testbasic/%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="软件生命周期">
+                        <span class="hidden-mobile">软件生命周期</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
